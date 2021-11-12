@@ -1,0 +1,405 @@
+/* The element on which display:grid is applied */
+.container {
+    display: grid;
+    /* value shall be track size */
+    grid-template-columns: [col-one] 250px [col-two] 1fr [col-three] 1fr [col-end];
+    /* First & second row will be 100px height and remaining row height will be auto. */
+    grid-template-rows: [row-one] 50px [row-two] 50px [row-three] auto [row-four] 30px [row-end];
+  
+    /* put . for single empty cell */
+    grid-template-areas:
+	  "topbar topbar topbar"
+	  "menubar menubar menubar"
+	  "navbar content content"
+	  "footer footer footer" ;
+
+    /*
+    justify-items: stretch;
+    align-items: stretch;
+    justify-content: start;
+    */
+  
+    /* row column*/
+    gap: 10px 15px;
+    /* the element in container can be placed at - start, end, space-around */
+    /*align-content: space-around;*/
+    /* possible values are column/row/dense */
+    grid-auto-flow: row;
+
+    /* place item horizontally and vertically within a cell - this combines both align-items & justify-items */
+    /*place-items: <align items> <justify items>;*/
+  
+    /* place-content is a short hand property of align-content (vertically) & justify-content(horizontally) */
+    /*place-content: ;*/
+    /* align item vertically within a cell */
+    align-items: stretch;
+    /* align item horizontallly within a cell*/
+    justify-items: stretch;
+  }
+
+  .item {
+    border: 1px solid #222222;
+    text-align:left;
+    box-shadow: 1px 2px 3px grey;
+    border-radius: 8px;
+    /*color: #2222;*/
+    color: black;
+    font-size: 1em;
+    font-family: arial, sans-serif;
+    /*background-color: #F9D423;*/
+    /*font-weight: bold;*/
+    
+  }
+
+  .topbar {
+    /*grid-row: row-one / row-two;
+    grid-column: col-one / col-end;*/
+    grid-area: topbar;
+    justify-self:start;
+    grid-auto-flow: row;
+    justify-self: stretch;
+  }
+
+  .menubar {
+    grid-area: menubar;
+    /*grid-column: col-one/col-end;
+    grid-row: row-two/ row-three;*/
+    /*grid-column-end: 4;*/
+    /*justify-self: stretch;*/
+    justify-self:stretch;
+  }
+
+  .menubar-container {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 50px;
+    grid-template-areas: "elm elm elm elm elm elm elm elm";
+    align-items: center;
+	justify-items: center;
+    grid-gap: 10px;
+  }
+
+.menubar-item {
+  grid-auto-flow: column;
+  grid-area: elm;
+  align-self: center;
+  
+}
+/*
+.elm {
+  grid-area: elm;
+  align-self: center;
+}
+
+*/
+
+.elm1 {
+  grid-column: 2/ 3;
+}
+
+.elm2 {
+  grid-column: 3 / 4;
+}
+
+.elm3 {
+  
+  grid-column: 4 / 5;
+  
+}
+
+.elm4 {
+  
+  grid-column: 5 / 6;
+  
+}
+
+.elm5 {
+  
+  grid-column: 6 / 7;
+  
+}
+
+.elm6 {
+  
+  grid-column: 7 / 8;
+  
+}
+
+.elm7 {
+  
+  grid-column: 8;
+  
+}
+
+/* #########################################################################
+ * navbar section 
+ *
+ * ########################################################################*/
+.navbar {
+  grid-area: navbar;
+  grid-auto-flow: row;
+  
+  background-color:rgb(255,255,255);
+  align-self: stretch;
+  /* align item vertically within a cell */
+  justify-self:stretch;
+  margin-left: 5px;
+  
+}
+
+.navbar-item {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: subgrid;
+  grid-template-columns: subgrid;
+  grid-gap: 10px;
+  margin: 5px;
+
+}
+
+/* applied to first child of class only.*/
+.navbar-item > *:first-child {
+  margin-top: 10px;
+}
+
+/* applied to last child of class only.*/
+.navbar-item > *:last-child {
+  margin-bottom: 10px;
+}
+
+input[type=button].navbar-item {
+  font-size: 1em;
+  font-family: arial, sans-serif;
+}
+
+/* #################################################################################################
+ *
+ * Main Content 
+ * ###############################################################################################*/
+/* content area - content item properties. */
+.content {
+  grid-area: content;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns:[col-start]0.5fr [col-2]1fr [col-3]0.5fr [col-4]1fr [col-end];
+  grid-template-rows: /*repeat(30, 1fr)*/ auto;
+  grid-gap:10px;
+  /*justify-items: center;*/
+  align-items: center;
+  
+}
+
+.heading {
+  grid-column: col-start/col-end;
+}
+.element {
+}
+
+.content-item {
+  /*grid-area: content-item-element1;*/
+  align-self: stretch start;
+  border: 1px solid #222222;
+  text-align:left;
+  box-shadow: 1px 2px 3px grey outline;
+  border-radius: 8px;
+  /*color: #2222;*/
+  color: black;
+  font-size: 1em;
+  font-family: arial, sans-serif;
+  /*background-color: #F9D423;*/
+  font-weight: bold;
+  
+}
+
+/* applied to last child of class only.*/
+.content-item > *:last-child {
+  margin-bottom: 40px;
+}
+
+.btn-default {
+  border: 0px solid #222222;
+  text-align:left;
+  box-shadow: none;
+  border-radius: 0px;
+  /*color: #2222;*/
+  color: black;
+  font-size: 1em;
+  font-family: arial, sans-serif;
+  /*background-color: #F9D423;*/
+  font-weight: normal;
+}
+
+.bg-color-yellow {
+  background-color: yellow;
+}
+
+.bg-color-red {
+  background-color: red;
+}
+
+.bg-color-pink {
+  background-color: pink;
+}
+
+.bg-color-indigo {
+  background-color: #3F51B5;
+}
+
+.bg-color-blue {
+  background-color: #2196F3;
+}
+
+.bg-color-blue-grey {
+  background-color: #B0BEC5;
+}
+
+.bg-color-white {
+  background-color: white;
+}
+
+.bg-color-lime {
+  background-color: #9E9D24;
+}
+
+.btn {
+  /*border: 1px solid #222222;*/
+  border:0px;
+  text-align:left;
+  /*box-shadow: 1px 2px 3px grey;*/
+  /*border-radius: 10px;*/
+  font-size: 1em;
+}
+
+.text-color-white {
+  color: white;
+}
+
+.footer {
+  grid-column: col-one/col-end;
+  grid-row: row-four/row-end;
+  grid-area: footer;
+  justify-self:stretch;
+}
+
+
+.address {
+  grid-column: 4/5;
+  grid-row: 3/span 5;
+}
+
+input[type=button],button {
+  width:100%;
+  height: 40px;
+  font-size: 1em;
+  font-family: arial, sans-serif;
+  
+  /*
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+ */
+}
+
+input[type=text], input[type=tel], input[type=email] {
+  width: 80%;
+  height: 40px;
+  /*margin-bottom: 10px;*/
+}
+
+select {
+  width: 80%;
+  height: 40px;
+  /*margin-bottom: 10px;*/
+}
+
+label {
+  margin-left: 10px;
+}
+
+input[type=checkbox] {
+  width: 10%;
+  height: 20px;
+}
+
+input[type=button].btn:hover {
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+input[type=button]:hover {
+  cursor: pointer;
+}
+
+input[type=button]:before {
+  content: 'arrow_right';
+  font-family: 'Material Icons';
+  font-size: 25px;
+  vertical-align: -30%;
+}
+
+hr {
+  height:30px;
+   background-color: #b7d0e2;
+}
+
+.button-x {
+  background-color: blue;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+}
+
+.button1 {border-radius: 2px;}
+.button2 {border-radius: 4px;}
+.button3 {border-radius: 8px;}
+.button4 {border-radius: 12px;}
+.button5 {border-radius: 50%;}
+
+/*
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+*/
+
+.w-50 {
+  width: 50%;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
