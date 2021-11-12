@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CountryName } from '../../../commonDS/DS'
+import { Currency, ServiceType, Events, Role } from '../../../commonDS/DS'
 
 @Component({
   selector: 'app-my-new-shipment',
@@ -7,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyNewShipmentComponent implements OnInit {
 
+  cntName = CountryName;
   constructor() { }
-
+  
   ngOnInit(): void {
   }
 
