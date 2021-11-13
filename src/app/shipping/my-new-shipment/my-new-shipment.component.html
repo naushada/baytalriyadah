@@ -1,3 +1,4 @@
+<form [formGroup]="shipmentForm" (ngSubmit)="onSubmit()" class="subcontainer">
 <div class="heading">
     <u><i><label>Shipment Bill Number</label></i></u>
 </div>
@@ -8,7 +9,7 @@
 <div><label>ALT REF Number </label></div>
 <div><input type="text" class="content-item " name="altRefNo" value="" required></div>
 <div><button name="altRefNo" value="Retrieve by ALTREF Number">Retrieve By ALT. REF</button></div>
-      
+
 <div class="heading">
     <u><i><label>Sender Information</label></i></u>
 </div>
@@ -18,7 +19,7 @@
 <div><input type="text" class="content-item bg-color-yellow" name="name" value=""></div>
 <div><label>Country </label></div>
 <div><select class="content-item bg-color-yellow" name="country">
-    <option *ngFor="let _country of CountryName" value="_country">{{_country}}</option>
+    <option *ngFor="let _country of CountryNames" [value]="_country">{{_country}}</option>
     </select></div>
 <div><label>Address </label></div>
 <div><textarea type="text" class="content-item bg-color-yellow" name="address" value=""></textarea></div>
@@ -41,7 +42,7 @@
 </div>
 <div><label>Service </label></div>
 <div><select class="content-item bg-color-yellow" name="service" value="">
-    <option *ngFor="let _svc of ServiceType" value="_svc">{{_svc}}</option>
+    <option *ngFor="let _svc of ServiceTypes" [value]="_svc">{{_svc}}</option>
     </select></div>
 <div><label>Number of Items </label></div>
 <div><input type="text" class="content-item bg-color-yellow" name="noOfItems" value=""></div>
@@ -62,7 +63,7 @@
 <div><input type="text" class="content-item " name="codAmount" value=""></div>
 <div><label>Currency </label></div>
 <div><select class="content-item bg-color-yellow" name="currency" value="">
-        <option *ngFor="let _currency of Currency" value="_currency">{{_currency}}</option>
+        <option *ngFor="let _currency of CurrencyList" [value]="_currency">{{_currency}}</option>
     </select></div>
 <div class="heading">
     <u><i><label>Receiver Information</label></i></u>
@@ -71,7 +72,7 @@
 <div><input type="text" class="content-item bg-color-yellow" name="name" value=""></div>
 <div><label>Country </label></div>
 <div><select class="content-item bg-color-yellow" name="country" value="">
-        <option *ngFor="let _country of CountryName" value="_country">{{_country}}</option>
+        <option *ngFor="let _country of CountryNames" [value]="_country">{{_country}}</option>
     </select></div>
 <div><label>Address </label></div>
 <div><textarea type="text" class="content-item bg-color-yellow" name="address" value=""></textarea></div>
@@ -94,3 +95,4 @@
 <div class="content-item btn-default w-50">
     <button type="reset">Clear Contents</button>
 </div>	
+</form>

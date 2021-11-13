@@ -216,14 +216,21 @@ input[type=button].navbar-item {
   grid-area: content;
   display: grid;
   grid-auto-flow: row;
-  grid-template-columns:[col-start]0.5fr [col-2]1fr [col-3]0.5fr [col-4]1fr [col-end];
+  grid-template-columns: auto;
   grid-template-rows: /*repeat(30, 1fr)*/ auto;
-  grid-gap:10px;
   /*justify-items: center;*/
   align-items: center;
   
 }
 
+.subcontainer {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns:[col-start]0.5fr [col-2]1fr [col-3]0.5fr [col-4]1fr [col-end];
+  grid-template-rows: /*repeat(30, 1fr)*/ auto;
+  grid-gap: 10px;
+
+}
 .heading {
   grid-column: col-start/col-end;
 }
