@@ -1,0 +1,69 @@
+<form [formGroup]="thirdpartyForm" (ngSubmit)="onSubmit()" class="subcontainer">
+<div class="heading">
+    <u><i><label>Third Party (FAST COO) Shipment</label></i></u>
+</div>
+<div><label >Customer ID </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="customerId" value="" required></div>
+<div><label>Secret Key </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="secretKey" value="" required></div>
+<div><label>Booking Mode </label></div>
+<div><select type="text" class="content-item bg-color-yellow" formControlName="bookingMode" value="" >
+    <option value="cc"> CC </option>
+    <option value="cod"> COD </option>
+    </select>
+</div>
+<div><label>COD Amount </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="codAmount" value=""></div>
+<div><label>ReferenceId </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="referenceId" value=""></div>
+<div><label>Origin </label></div>
+<div><select class="content-item bg-color-yellow" formControlName="origin">
+    <option *ngFor="let _country of CountryNames" [value]="_country">{{_country}}</option>
+    </select>
+</div>
+<div><label>Destination </label></div>
+<div><select class="content-item bg-color-yellow" formControlName="destination">
+    <option *ngFor="let _country of CountryNames" [value]="_country">{{_country}}</option>
+    </select>
+</div>
+
+<div><label>Service </label></div>
+<div><select class="content-item bg-color-yellow" formControlName="service" value="">
+    <option *ngFor="let _svc of ServiceTypes" [value]="_svc">{{_svc}}</option>
+    </select>
+</div>
+
+<div><label>Sender Name </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="senderName" value=""></div>
+<div><label>Sender Address </label></div>
+<div><textarea type="text" class="content-item bg-color-yellow" formControlName="senderAddress" value=""></textarea></div>
+<div><label>Sender Phone </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="senderPhone" value=""></div>
+<div><label>Sender E-Mail </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="senderEmail" value=""></div>
+<div><label>Receiver Name </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="receiverName" value=""></div>
+<div><label>Receiver Address </label></div>
+<div><textarea type="text" class="content-item bg-color-yellow" formControlName="receiverAddress" value=""></textarea></div>
+<div><label>Receiver Phone </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="receiverPhone" value=""></div>
+<div><label>Receiver E-Mail </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="receiverEmail" value=""></div>
+
+<div><label>Description </label></div>
+<div><textarea type="text" class="content-item bg-color-yellow" formControlName="description" value=""></textarea></div>
+
+<div><label>Product Type </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="productType" value=""></div>
+<div><label>Pieces </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="noOfItems" value=""></div>
+<div><label>Weight </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="weight" value=""></div>
+      
+<div class="content-item btn-default ml-10">
+    <button type="submit">Submit</button>
+</div>
+<div class="content-item btn-default w-50">
+    <button type="reset">Clear Contents</button>
+</div>	
+</form>

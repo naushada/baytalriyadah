@@ -3,91 +3,91 @@
     <u><i><label>Shipment Bill Number</label></i></u>
 </div>
 <div><label >Shipment Number </label></div>
-<div><input type="text" class="content-item bg-color-yellow" name="shipmentNo" value="" required></div>
-<div><label>Autogenerate </label><input type="checkbox" class="content-item " name="autogenerate" value=""></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="shipmentNo" value="" required></div>
+<div><label>Autogenerate </label><input type="checkbox" class="content-item " formControlName="autogenerate" value=""></div>
 <div></div>
 <div><label>ALT REF Number </label></div>
-<div><input type="text" class="content-item " name="altRefNo" value="" required></div>
+<div><input type="text" class="content-item " formControlName="altRefNo" value="" required></div>
 <div><button name="altRefNo" value="Retrieve by ALTREF Number">Retrieve By ALT. REF</button></div>
 
 <div class="heading">
     <u><i><label>Sender Information</label></i></u>
 </div>
 <div><label>BillTo </label></div>
-<div><input type="text" class="content-item bg-color-yellow" name="billTo" value="" required></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="billTo" value="" required></div>
 <div><label>Name </label></div>
-<div><input type="text" class="content-item bg-color-yellow" name="name" value=""></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="name" value=""></div>
 <div><label>Country </label></div>
-<div><select class="content-item bg-color-yellow" name="country">
+<div><select class="content-item bg-color-yellow" formControlName="country">
     <option *ngFor="let _country of CountryNames" [value]="_country">{{_country}}</option>
     </select></div>
 <div><label>Address </label></div>
-<div><textarea type="text" class="content-item bg-color-yellow" name="address" value=""></textarea></div>
+<div><textarea type="text" class="content-item bg-color-yellow" formControlName="address" value=""></textarea></div>
 <div><label>City/Town </label></div>
-<div><input type="text" class="content-item bg-color-yellow" name="city" value=""></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="city" value=""></div>
 <div><label>State </label></div>
-<div><input type="text" class="content-item " name="state" value=""></div>
+<div><input type="text" class="content-item " formControlName="state" value=""></div>
 <div><label>Postal Code </label></div>
-<div><input type="text" class="content-item " name="postalCode" value=""></div>
+<div><input type="text" class="content-item " formControlName="postalCode" value=""></div>
 <div><label>Contact </label></div>
-<div><input type="tel" class="content-item bg-color-yellow" name="contact" value=""></div>
+<div><input type="tel" class="content-item bg-color-yellow" formControlName="contact" value=""></div>
 <div><label>Phone </label></div>
-<div><input type="tel" class="content-item bg-color-yellow" name="phone" value=""></div>
+<div><input type="tel" class="content-item bg-color-yellow" formControlName="phone" value=""></div>
 <div><label>E-Mail </label></div>
-<div><input type="email" class="content-item " name="email" value=""></div>
+<div><input type="email" class="content-item " formControlName="email" value=""></div>
 <div><label>Receiving Country Tax ID </label></div>
-<div><input type="text" class="content-item " name="recvCountryTaxId" value=""></div>
+<div><input type="text" class="content-item " formControlName="recvCountryTaxId" value=""></div>
 <div class="heading">
     <u><i><label>Shipping Information</label></i></u>
 </div>
 <div><label>Service </label></div>
-<div><select class="content-item bg-color-yellow" name="service" value="">
+<div><select class="content-item bg-color-yellow" formControlName="service" value="">
     <option *ngFor="let _svc of ServiceTypes" [value]="_svc">{{_svc}}</option>
     </select></div>
 <div><label>Number of Items </label></div>
-<div><input type="text" class="content-item bg-color-yellow" name="noOfItems" value=""></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="noOfItems" value=""></div>
 <div><label>Description </label></div>
-<div><textarea type="text" class="content-item bg-color-yellow" name="description" value=""></textarea></div>
+<div><textarea type="text" class="content-item bg-color-yellow" formControlName="description" value=""></textarea></div>
 <div><label>Harmonized Code </label></div>
-<div><input type="text" class="content-item " name="harmonizedCode" value=""></div>
+<div><input type="text" class="content-item " formControlName="harmonizedCode" value=""></div>
 <div><label>Weight </label></div>
-<div><input type="text" class="content-item " name="weight" value=""></div>
+<div><input type="text" class="content-item " formControlName="weight" value=""></div>
 <div><label>Weight Unit </label></div>
-<div><select class="content-item bg-color-yellow" name="weightUnit" value="">
-        <option>KG</option>
-        <option>Gram</option>
+<div><select class="content-item bg-color-yellow" formControlName="weightUnit">
+        <option value="KG" selected>KG</option>
+        <option value="gram">Gram</option>
     </select></div>
 <div><label>Cubic Weight(LxBxW) in KG </label></div>
-<div><input type="text" class="content-item bg-color-yellow" name="cubicWeight" value=""></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="cubicWeight" value=""></div>
 <div><label>COD </label></div>
-<div><input type="text" class="content-item " name="codAmount" value=""></div>
+<div><input type="text" class="content-item " formControlName="codAmount" value=""></div>
 <div><label>Currency </label></div>
-<div><select class="content-item bg-color-yellow" name="currency" value="">
+<div><select class="content-item bg-color-yellow" formControlName="currency" value="">
         <option *ngFor="let _currency of CurrencyList" [value]="_currency">{{_currency}}</option>
     </select></div>
 <div class="heading">
     <u><i><label>Receiver Information</label></i></u>
 </div>
 <div><label>Name </label></div>
-<div><input type="text" class="content-item bg-color-yellow" name="name" value=""></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="receiverName" value=""></div>
 <div><label>Country </label></div>
-<div><select class="content-item bg-color-yellow" name="country" value="">
+<div><select class="content-item bg-color-yellow" formControlName="receiverCountry" value="">
         <option *ngFor="let _country of CountryNames" [value]="_country">{{_country}}</option>
     </select></div>
 <div><label>Address </label></div>
-<div><textarea type="text" class="content-item bg-color-yellow" name="address" value=""></textarea></div>
+<div><textarea type="text" class="content-item bg-color-yellow" formControlName="receiverAddress" value=""></textarea></div>
 <div><label>City/Town </label></div>
-<div><input type="text" class="content-item bg-color-yellow" name="city" value=""></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="receiverCity" value=""></div>
 <div><label>State </label></div>
-<div><input type="text" class="content-item " name="state" value=""></div>
+<div><input type="text" class="content-item " formControlName="receiverState" value=""></div>
 <div><label>Postal Code </label></div>
-<div><input type="text" class="content-item " name="postalCode" value=""></div>
+<div><input type="text" class="content-item " formControlName="receiverPostalCode" value=""></div>
 <div><label>Contact </label></div>
-<div><input type="tel" class="content-item bg-color-yellow" name="contact" value=""></div>
+<div><input type="tel" class="content-item bg-color-yellow" formControlName="receiverContact" value=""></div>
 <div><label>Phone </label></div>
-<div><input type="tel" class="content-item bg-color-yellow" name="phone" value=""></div>
+<div><input type="tel" class="content-item bg-color-yellow" formControlName="receiverPhone" value=""></div>
 <div><label>E-Mail </label></div>
-<div><input type="email" class="content-item " name="email" value=""></div>
+<div><input type="email" class="content-item " formControlName="receiverEmail" value=""></div>
        
 <div class="content-item btn-default">
     <button type="submit">Submit</button>

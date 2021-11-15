@@ -2,9 +2,25 @@
     <app-topbar class="item topbar bg-color-blue"></app-topbar>
 
     <app-menubar class="item menubar bg-color-indigo"></app-menubar>
-    <app-shipping-navbar class="item navbar"></app-shipping-navbar>
-    <app-my-new-shipment class="item content"></app-my-new-shipment> 
+    <div class="item navbar">
+        <div class="navbar-item">
+        <div><button (click)="navOptionSelected='createShipment'">Create shipment</button></div>
+        <div><button (click)="navOptionSelected='deleteShipment'">Delete Shipment</button></div>
+        <div><button (click)="navOptionSelected='thirdPartyCreateShipment'">Create 3rd Party Shipment</button></div>
+        <div><button (click)="navOptionSelected='thirdPartyDeleteShipment'">Delete 3rd Party Shipment</button></div>
+        <div><button (click)="navOptionSelected='shipmentList'">Shipment List</button></div>
+        <div><button (click)="navOptionSelected='shipmentBatchUpload'">Shipment Batch Upload</button></div>
+        <div><button (click)="navOptionSelected='updateShipment'">Update Shipment</button></div>
+        <div><button (click)="navOptionSelected='excelTemplate'">Download Template Excel (xls) </button></div>
+        </div>
+    </div>
 
+    <app-my-new-shipment class="item content" *ngIf="navOptionSelected === 'createShipment'"></app-my-new-shipment> 
+    <app-create-thirdrdparty-shipment class="item content" *ngIf="navOptionSelected === 'thirdPartyCreateShipment'"></app-create-thirdrdparty-shipment>
+    <app-shipment-list class="item content" *ngIf="navOptionSelected === 'shipmentList'"></app-shipment-list>
+    <app-shipment-batch-upload class="item content" *ngIf="navOptionSelected ==='shipmentBatchUpload'"></app-shipment-batch-upload>
+    <app-delete-thirdparty-shipment class="item content" *ngIf="navOptionSelected === 'thirdPartyDeleteShipment'"></app-delete-thirdparty-shipment>
+    <app-delete-shipment class="item content" *ngIf="navOptionSelected === 'deleteShipment'"></app-delete-shipment>
     <app-footer class="item footer bg-color-lime"></app-footer>
     
 </div>

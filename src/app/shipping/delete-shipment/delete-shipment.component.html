@@ -1,0 +1,19 @@
+<form [formGroup]="deleteShipmentForm" (ngSubmit)="onSubmit()" class="subcontainer">
+<div class="heading">
+    <u><i><label>Delete Shipment</label></i></u>
+</div>
+<div><label >Shipment No </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="shipmentNo" value="" required></div>
+<div><label>Account Code </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="accountCode" value="" required></div>
+<div><label>ALT. REF. No </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="altRefNo" value=""></div>
+<div></div>
+<div></div>
+<div class="content-item btn-default ml-10">
+    <button type="submit">Submit</button>
+</div>
+<div class="content-item btn-default w-50">
+    <button type="reset">Clear Contents</button>
+</div>	
+</form>

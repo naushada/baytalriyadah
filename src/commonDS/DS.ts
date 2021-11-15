@@ -113,3 +113,80 @@ export let Events:Array<string> =
 "Weight Variation",
 "User Initiated Shipment Cancellation"
 ];
+
+
+export class Shipment {
+    shipmentNo: string;
+    altRefNo:string;
+    /*! Sender Information */
+    billTo:string; /*! same as accountCode */
+    name:string;
+    country:string;
+    address:string;
+    city:string;
+    state:string;
+    postalCode:string;
+    contact:string;
+    phone:string;
+    email:string;
+    recvCountryTaxId:string;
+    /*! Shipment Information */
+    service: string;
+    noOfItems: string;
+    description: string;
+    harmonizedCode:string;
+    weight:string;
+    weightUnit:string;
+    cubicWeight:string;
+    codAmount:string;
+    currency:string;
+
+    /*! Receiver Information */
+    receiverName:string;
+    receiverCountry:string;
+    receiverAddress:string;
+    receiverCity:string;
+    receiverState:string
+    receiverPostalCode:string;
+    receiverContact:string;
+    receiverPhone:string;
+    receiverEmail: string;
+
+    constructor(_sp: Shipment ) {
+        this.shipmentNo = _sp.shipmentNo;
+        this.altRefNo = _sp.altRefNo;
+        /*! Sender Information */
+        this.billTo = _sp.billTo;
+        this.name = _sp.name;
+        this.country = _sp.country;
+        this.address = _sp.address;
+        this.city = _sp.city;
+        this.state = _sp.state;
+        this.postalCode = _sp.postalCode;
+        this.contact = _sp.contact;
+        this.phone = _sp.phone;
+        this.email = _sp.email;
+        this.recvCountryTaxId = _sp.recvCountryTaxId;
+        /*! Shipment Information */
+        this.service = _sp.service;
+        this.noOfItems = _sp.noOfItems;
+        this.description = _sp.description;
+        this.harmonizedCode = _sp.harmonizedCode;
+        this.weight = _sp.weight;
+        this.weightUnit = _sp.weightUnit;
+        this.cubicWeight = _sp.cubicWeight;
+        this.codAmount = _sp.codAmount;
+        this.currency = _sp.currency;
+
+        /*! Receiver Information */
+        this.receiverName = _sp.receiverName;
+        this.receiverCountry = _sp.receiverCountry;
+        this.receiverAddress = _sp.receiverAddress;
+        this.receiverCity = _sp.receiverCity;
+        this.receiverState = _sp.receiverState;
+        this.receiverPostalCode = _sp.receiverPostalCode;
+        this.receiverContact = _sp.receiverContact;
+        this.receiverPhone = _sp.receiverPhone;
+        this.receiverEmail = _sp.receiverEmail;
+      }
+}

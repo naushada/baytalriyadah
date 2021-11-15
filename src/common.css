@@ -214,12 +214,10 @@ input[type=button].navbar-item {
 /* content area - content item properties. */
 .content {
   grid-area: content;
-  display: grid;
   grid-auto-flow: row;
   grid-template-columns: auto;
   grid-template-rows: /*repeat(30, 1fr)*/ auto;
   /*justify-items: center;*/
-  align-items: center;
   
 }
 
@@ -229,6 +227,7 @@ input[type=button].navbar-item {
   grid-template-columns:[col-start]0.5fr [col-2]1fr [col-3]0.5fr [col-4]1fr [col-end];
   grid-template-rows: /*repeat(30, 1fr)*/ auto;
   grid-gap: 10px;
+  align-items:center;
 
 }
 .heading {
@@ -351,7 +350,7 @@ input[type=button],button {
  */
 }
 
-input[type=text], input[type=tel], input[type=email] {
+input[type=text], input[type=tel], input[type=email], [type=date], [type=file] {
   width: 80%;
   height: 40px;
   /*margin-bottom: 10px;*/
@@ -365,6 +364,10 @@ select {
 
 label {
   margin-left: 10px;
+}
+
+.ml-10 {
+  margin-left:10px;
 }
 
 input[type=checkbox] {

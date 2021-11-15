@@ -1,0 +1,16 @@
+<form [formGroup]="deleteThirdPartyShipmentForm" (ngSubmit)="onSubmit()" class="subcontainer">
+<div class="heading">
+    <u><i><label>Delete 3rd Party Shipment</label></i></u>
+</div>
+<div><label >Customer ID </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="customerId" value="" required></div>
+<div><label>Booking ID </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="bookingId" value="" required></div>
+     
+<div class="content-item btn-default ml-10">
+    <button type="submit">Submit</button>
+</div>
+<div class="content-item btn-default w-50">
+    <button type="reset">Clear Contents</button>
+</div>	
+</form>

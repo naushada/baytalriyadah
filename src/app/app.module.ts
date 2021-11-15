@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,11 @@ import { ShippingNavbarComponent } from './shipping/shipping-navbar/shipping-nav
 import { MenubarComponent } from './main-menu/menubar/menubar.component';
 import { TopbarComponent } from './main-menu/topbar/topbar.component';
 import { FooterComponent } from './main-menu/footer/footer.component';
+import { CreateThirdrdpartyShipmentComponent } from './shipping/create-thirdrdparty-shipment/create-thirdrdparty-shipment.component';
+import { ShipmentListComponent } from './shipping/shipment-list/shipment-list.component';
+import { ShipmentBatchUploadComponent } from './shipping/shipment-batch-upload/shipment-batch-upload.component';
+import { DeleteShipmentComponent } from './shipping/delete-shipment/delete-shipment.component';
+import { DeleteThirdpartyShipmentComponent } from './shipping/delete-thirdparty-shipment/delete-thirdparty-shipment.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +31,18 @@ import { FooterComponent } from './main-menu/footer/footer.component';
     ShippingNavbarComponent,
     MenubarComponent,
     TopbarComponent,
-    FooterComponent
+    FooterComponent,
+    CreateThirdrdpartyShipmentComponent,
+    ShipmentListComponent,
+    ShipmentBatchUploadComponent,
+    DeleteShipmentComponent,
+    DeleteThirdpartyShipmentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
