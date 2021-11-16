@@ -350,7 +350,7 @@ input[type=button],button {
  */
 }
 
-input[type=text], input[type=tel], input[type=email], [type=date], [type=file] {
+input[type=text], input[type=tel], input[type=email], [type=date], [type=file], [type=time] {
   width: 80%;
   height: 40px;
   /*margin-bottom: 10px;*/

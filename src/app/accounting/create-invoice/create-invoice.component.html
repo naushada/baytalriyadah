@@ -1,0 +1,17 @@
+<form [formGroup]="createInvoiceForm" (ngSubmit)="onSubmit()" class="subcontainer">
+<div class="heading">
+    <u><i><label>Invoice of Shipment</label></i></u>
+</div>
+<div><label >Status </label></div>
+<div><select class="content-item bg-color-yellow" formControlName="status">
+    <option *ngFor="let status of EventList" [value]="status">{{status}}</option>
+    </select></div>
+<div><label>AWB Bill </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="awbNo" value=""></div>
+<div class="content-item btn-default ml-10">
+    <button type="submit">Submit</button>
+</div>
+<div class="content-item btn-default w-50">
+    <button type="reset">Clear Contents</button>
+</div>	
+</form>

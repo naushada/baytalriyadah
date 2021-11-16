@@ -25,6 +25,11 @@ import { AccountingMainComponent } from './accounting/accounting-main/accounting
 import { SingleShipmentComponent } from './tracking/single-shipment/single-shipment.component';
 import { MultipleShipmentComponent } from './tracking/multiple-shipment/multiple-shipment.component';
 import { UpdateShipmentComponent } from './tracking/update-shipment/update-shipment.component';
+import { DetailedReportComponent } from './reporting/detailed-report/detailed-report.component';
+import { CreateAccountComponent } from './accounting/create-account/create-account.component';
+import { CreateInvoiceComponent } from './accounting/create-invoice/create-invoice.component';
+import { SuccessfulDeliveryComponent } from './accounting/successful-delivery/successful-delivery.component';
+import { DeliveredReportingComponent } from './reporting/delivered-reporting/delivered-reporting.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +53,12 @@ import { UpdateShipmentComponent } from './tracking/update-shipment/update-shipm
     AccountingMainComponent,
     SingleShipmentComponent,
     MultipleShipmentComponent,
-    UpdateShipmentComponent
+    UpdateShipmentComponent,
+    DetailedReportComponent,
+    CreateAccountComponent,
+    CreateInvoiceComponent,
+    SuccessfulDeliveryComponent,
+    DeliveredReportingComponent
   ],
   imports: [
     BrowserModule,

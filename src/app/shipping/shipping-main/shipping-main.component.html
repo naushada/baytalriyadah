@@ -38,7 +38,7 @@
     <app-shipment-batch-upload class="item content" *ngIf="navOptionSelected ==='shipmentBatchUpload'"></app-shipment-batch-upload>
     <app-delete-thirdparty-shipment class="item content" *ngIf="navOptionSelected === 'thirdPartyDeleteShipment'"></app-delete-thirdparty-shipment>
     <app-delete-shipment class="item content" *ngIf="navOptionSelected === 'deleteShipment'"></app-delete-shipment>
-    <app-footer class="item footer bg-color-lime"></app-footer>
+    <!--<app-footer class="item footer bg-color-lime"></app-footer>-->
     
     <!--
         ########################################################################################
@@ -68,6 +68,15 @@
         #
         ########################################################################################
     -->
+    <div class="item navbar" *ngIf="menuOptionSelected === 'reporting'">
+        <div class="navbar-item">
+            <div><button (click)="navOptionSelected='detailedReporting'">Detailed Report</button></div>
+            <div><button (click)="navOptionSelected='shipmentDeliveredReporting'">Shipment Delivered Reporting</button></div>
+        </div>
+    </div>
+
+    <app-detailed-report class="item content" *ngIf="navOptionSelected === 'detailedReporting'"></app-detailed-report> 
+    <app-delivered-reporting class="item content" *ngIf="navOptionSelected === 'shipmentDeliveredReporting'"></app-delivered-reporting> 
 
 
     <!--
@@ -79,5 +88,16 @@
         ########################################################################################
     -->
 
+    <div class="item navbar" *ngIf="menuOptionSelected === 'accounting'">
+        <div class="navbar-item">
+            <div><button (click)="navOptionSelected='createAccount'">Create Account</button></div>
+            <div><button (click)="navOptionSelected='generateInvoice'">Generate Invoice</button></div>
+            <div><button (click)="navOptionSelected='postDelivery'">Successfully Delivered</button></div>
+        </div>
+    </div>
+
+    <app-create-account class="item content" *ngIf="navOptionSelected === 'createAccount'"></app-create-account> 
+    <app-create-invoice class="item content" *ngIf="navOptionSelected === 'generateInvoice'"></app-create-invoice> 
+    <app-successful-delivery class="item content" *ngIf="navOptionSelected === 'postDelivery'"></app-successful-delivery> 
 </div>
   

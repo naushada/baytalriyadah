@@ -1,0 +1,21 @@
+<form [formGroup]="detailedReportingForm" (ngSubmit)="onSubmit()" class="subcontainer">
+<div class="heading">
+    <u><i><label>Detailed Reporting</label></i></u>
+</div>
+<div><label>From Date </label></div>
+<div><input type="date" class="content-item bg-color-yellow" formControlName="fromDate" value="" required></div>
+<div><label>To Date </label></div>
+<div><input type="date" class="content-item bg-color-yellow" formControlName="toDate" value="" required></div>
+<div><label>Receiver Country </label></div>
+<div><select class="content-item bg-color-yellow" formControlName="country">
+    <option *ngFor="let _country of CountryNames" [value]="_country">{{_country}}</option>
+    </select></div>
+<div><label>Account Code </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="accountCode" value=""></div>
+<div class="content-item btn-default ml-10">
+    <button type="submit">Submit</button>
+</div>
+<div class="content-item btn-default w-50">
+    <button type="reset">Clear Contents</button>
+</div>	
+</form>
