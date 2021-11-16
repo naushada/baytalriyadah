@@ -8,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class ShippingMainComponent implements OnInit {
 
   navOptionSelected: string = "";
+  menuOptionSelected: string = "";
 
   constructor() { }
 
   ngOnInit(): void {
+    this.navOptionSelected = "";
+    this.menuOptionSelected = "";
   }
 
 }

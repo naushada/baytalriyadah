@@ -19,6 +19,12 @@ import { ShipmentListComponent } from './shipping/shipment-list/shipment-list.co
 import { ShipmentBatchUploadComponent } from './shipping/shipment-batch-upload/shipment-batch-upload.component';
 import { DeleteShipmentComponent } from './shipping/delete-shipment/delete-shipment.component';
 import { DeleteThirdpartyShipmentComponent } from './shipping/delete-thirdparty-shipment/delete-thirdparty-shipment.component';
+import { TrackingMainComponent } from './tracking/tracking-main/tracking-main.component';
+import { ReportingMainComponent } from './reporting/reporting-main/reporting-main.component';
+import { AccountingMainComponent } from './accounting/accounting-main/accounting-main.component';
+import { SingleShipmentComponent } from './tracking/single-shipment/single-shipment.component';
+import { MultipleShipmentComponent } from './tracking/multiple-shipment/multiple-shipment.component';
+import { UpdateShipmentComponent } from './tracking/update-shipment/update-shipment.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +42,13 @@ import { DeleteThirdpartyShipmentComponent } from './shipping/delete-thirdparty-
     ShipmentListComponent,
     ShipmentBatchUploadComponent,
     DeleteShipmentComponent,
-    DeleteThirdpartyShipmentComponent
+    DeleteThirdpartyShipmentComponent,
+    TrackingMainComponent,
+    ReportingMainComponent,
+    AccountingMainComponent,
+    SingleShipmentComponent,
+    MultipleShipmentComponent,
+    UpdateShipmentComponent
   ],
   imports: [
     BrowserModule,

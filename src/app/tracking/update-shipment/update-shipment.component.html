@@ -1,0 +1,35 @@
+<form [formGroup]="updateShipmentStatusForm" (ngSubmit)="onSubmit()" class="subcontainer">
+<div class="heading">
+    <u><i><label>Update Shipment Status</label></i></u>
+</div>
+<div><label >Event </label></div>
+<div><select type="text" class="content-item bg-color-yellow" formControlName="event" value="">
+    <option *ngFor="let evt of EventList" [value]="evt">{{evt}}</option>
+</select></div>
+<div><label>Date </label></div>
+<div><input type="date" class="content-item bg-color-yellow" formControlName="date" value=""></div>
+<div><label>Time </label></div>
+<div><input type="time" class="content-item bg-color-yellow" formControlName="time" value=""> </div>
+
+<div><label>Notes </label></div>
+<div><textarea rows="5" type="text" class="content-item bg-color-yellow" formControlName="notes" value=""></textarea> </div>
+
+<div><label>Connote </label></div>
+<div><textarea rows="5" type="text" class="content-item bg-color-yellow" formControlName="connote" value=""></textarea> </div>
+
+
+<div><label>Driver </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="driverName" value=""> </div>
+
+<div><label>Updated By </label></div>
+<div><input type="text" class="content-item " formControlName="updatedBy" value="" readonly > </div>
+
+<div></div>
+<div></div>
+<div class="content-item btn-default ml-10">
+    <button type="submit">Submit</button>
+</div>
+<div class="content-item btn-default w-50">
+    <button type="reset">Clear Contents</button>
+</div>	
+</form>
