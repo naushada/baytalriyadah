@@ -13,6 +13,8 @@
 <div class="heading">
     <u><i><label>Sender Information</label></i></u>
 </div>
+<div><label>Reference Number </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="referenceNo" value="" required></div>
 <div><label>BillTo </label></div>
 <div><input type="text" class="content-item bg-color-yellow" formControlName="billTo" value="" required></div>
 <div><label>Name </label></div>
@@ -48,8 +50,8 @@
 <div><input type="text" class="content-item bg-color-yellow" formControlName="noOfItems" value=""></div>
 <div><label>Description </label></div>
 <div><textarea rows="5" type="text" class="content-item bg-color-yellow" formControlName="description" value=""></textarea></div>
-<div><label>Harmonized Code </label></div>
-<div><input type="text" class="content-item " formControlName="harmonizedCode" value=""></div>
+<div><label>Goods Value </label></div>
+<div><input type="text" class="content-item " formControlName="goodsValue" value=""></div>
 <div><label>Weight </label></div>
 <div><input type="text" class="content-item " formControlName="weight" value=""></div>
 <div><label>Weight Unit </label></div>
@@ -57,7 +59,7 @@
         <option value="KG" selected>KG</option>
         <option value="gram">Gram</option>
     </select></div>
-<div><label>Cubic Weight(LxBxW) in KG </label></div>
+<div><label>Cubic Weight(LxWxB) </label></div>
 <div><input type="text" class="content-item bg-color-yellow" formControlName="cubicWeight" value=""></div>
 <div><label>COD </label></div>
 <div><input type="text" class="content-item " formControlName="codAmount" value=""></div>
@@ -68,6 +70,8 @@
 <div class="heading">
     <u><i><label>Receiver Information</label></i></u>
 </div>
+<div><label>SKU </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="sku" value=""></div>
 <div><label>Name </label></div>
 <div><input type="text" class="content-item bg-color-yellow" formControlName="receiverName" value=""></div>
 <div><label>Country </label></div>
@@ -89,7 +93,7 @@
 <div><label>E-Mail </label></div>
 <div><input type="email" class="content-item " formControlName="receiverEmail" value=""></div>
        
-<div class="content-item btn-default">
+<div class="content-item btn-default ml-10">
     <button type="submit">Submit</button>
 </div>
 <div class="content-item btn-default w-50">

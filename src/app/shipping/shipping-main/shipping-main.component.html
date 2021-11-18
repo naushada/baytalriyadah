@@ -7,6 +7,7 @@
             <div> <input type="button" class="btn bg-color-indigo text-color-white" value="Tracking" (click)="menuOptionSelected = 'tracking'"></div>
             <div> <input type="button" class="btn bg-color-indigo text-color-white" value="Reporting" (click)="menuOptionSelected = 'reporting'"></div>
             <div> <input type="button" class="btn bg-color-indigo text-color-white" value="Accounting" (click)="menuOptionSelected = 'accounting'"></div>
+            <div> <input type="button" class="btn bg-color-indigo text-color-white" value="Inventory" (click)="menuOptionSelected = 'inventory'"></div>
             <div> <input type="button" class="btn bg-color-indigo text-color-white" value="Contact Us" (click)="menuOptionSelected = 'contactUs'"></div>
         </div>
     </div>
@@ -71,12 +72,10 @@
     <div class="item navbar" *ngIf="menuOptionSelected === 'reporting'">
         <div class="navbar-item">
             <div><button (click)="navOptionSelected='detailedReporting'">Detailed Report</button></div>
-            <div><button (click)="navOptionSelected='shipmentDeliveredReporting'">Shipment Delivered Reporting</button></div>
         </div>
     </div>
 
     <app-detailed-report class="item content" *ngIf="navOptionSelected === 'detailedReporting'"></app-detailed-report> 
-    <app-delivered-reporting class="item content" *ngIf="navOptionSelected === 'shipmentDeliveredReporting'"></app-delivered-reporting> 
 
 
     <!--
@@ -92,12 +91,37 @@
         <div class="navbar-item">
             <div><button (click)="navOptionSelected='createAccount'">Create Account</button></div>
             <div><button (click)="navOptionSelected='generateInvoice'">Generate Invoice</button></div>
-            <div><button (click)="navOptionSelected='postDelivery'">Successfully Delivered</button></div>
+            <!--<div><button (click)="navOptionSelected='postDelivery'">Successfully Delivered</button></div>-->
+            <div><button (click)="navOptionSelected='shipmentDeliveredReporting'">Shipment Delivered Reporting</button></div>
         </div>
     </div>
 
     <app-create-account class="item content" *ngIf="navOptionSelected === 'createAccount'"></app-create-account> 
     <app-create-invoice class="item content" *ngIf="navOptionSelected === 'generateInvoice'"></app-create-invoice> 
-    <app-successful-delivery class="item content" *ngIf="navOptionSelected === 'postDelivery'"></app-successful-delivery> 
+    <!--<app-successful-delivery class="item content" *ngIf="navOptionSelected === 'postDelivery'"></app-successful-delivery> -->
+    <app-delivered-reporting class="item content" *ngIf="navOptionSelected === 'shipmentDeliveredReporting'"></app-delivered-reporting> 
+
+
+    <!--
+        ########################################################################################
+        #
+        #   Inventory navBar & its respective Component.
+        #
+        #
+        ########################################################################################
+    -->
+
+    <div class="item navbar" *ngIf="menuOptionSelected === 'inventory'">
+        <div class="navbar-item">
+            <div><button (click)="navOptionSelected='createInventory'">Add Goods To Inventory</button></div>
+            <div><button (click)="navOptionSelected='outFromInventory'">Goods Out From Inventory</button></div>
+        </div>
+    </div>
+
+    <app-create-inventory class="item content" *ngIf="navOptionSelected === 'createInventory'"></app-create-inventory> 
+    <app-out-from-inventory class="item content" *ngIf="navOptionSelected === 'outFromInventory'"></app-out-from-inventory> 
+
+
+
 </div>
   

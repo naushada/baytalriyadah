@@ -30,6 +30,8 @@ import { CreateAccountComponent } from './accounting/create-account/create-accou
 import { CreateInvoiceComponent } from './accounting/create-invoice/create-invoice.component';
 import { SuccessfulDeliveryComponent } from './accounting/successful-delivery/successful-delivery.component';
 import { DeliveredReportingComponent } from './reporting/delivered-reporting/delivered-reporting.component';
+import { CreateInventoryComponent } from './inventory/create-inventory/create-inventory.component';
+import { OutFromInventoryComponent } from './inventory/out-from-inventory/out-from-inventory.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { DeliveredReportingComponent } from './reporting/delivered-reporting/del
     CreateAccountComponent,
     CreateInvoiceComponent,
     SuccessfulDeliveryComponent,
-    DeliveredReportingComponent
+    DeliveredReportingComponent,
+    CreateInventoryComponent,
+    OutFromInventoryComponent
   ],
   imports: [
     BrowserModule,

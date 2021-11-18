@@ -1,0 +1,31 @@
+<form [formGroup]="outFromInventoryForm" (ngSubmit)="onSubmit()" class="subcontainer">
+<div class="heading">
+    <u><i><label>Out From Inventory</label></i></u>
+</div>
+<div><label>Item/Product Name </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="productName" value="" required></div>
+<div><label>Product Serial No. </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="productId" value="" required></div>
+<div><label>Quantity </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="quantity" value="" required></div>
+<div><label>Remaining Quantity </label></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="remainingQuantity" value="" required></div>
+<div><label>Out On </label></div>
+<div><input type="date" class="content-item bg-color-yellow" formControlName="createdOn" value=""></div>
+
+<div class="heading">
+    <u><i><label>Out Inventory In Batch</label></i></u>
+    </div>
+
+<div><label>Out Inventory Bulk </label></div>
+<div><input type="file" class="content-item bg-color-yellow" formControlName="bulkOut" value=""></div>
+
+<div></div>
+<div></div>
+<div class="content-item btn-default ml-10">
+    <button type="submit">Submit</button>
+</div>
+<div class="content-item btn-default w-50">
+    <button type="reset">Clear Contents</button>
+</div>	
+</form>

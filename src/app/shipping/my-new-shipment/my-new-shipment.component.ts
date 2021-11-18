@@ -30,6 +30,7 @@ export class MyNewShipmentComponent implements OnInit {
       autogenerate:'',
       altRefNo:'',
       /*! Sender Information */
+      referenceNo:'',
       billTo:'',
       name:'',
       country: CountryName[0],
@@ -45,7 +46,7 @@ export class MyNewShipmentComponent implements OnInit {
       service:ServiceType[0],
       noOfItems:'',
       description:'',
-      harmonizedCode:'',
+      goodsValue:'',
       weight:'',
       weightUnit:'',
       cubicWeight:'',
@@ -53,6 +54,7 @@ export class MyNewShipmentComponent implements OnInit {
       currency:Currency[0],
 
       /*! Receiver Information */
+      sku:'',
       receiverName:'',
       receiverCountry:CountryName[0],
       receiverAddress:'',

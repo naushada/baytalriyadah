@@ -20,6 +20,7 @@ export class CreateAccountComponent implements OnInit {
   constructor(private fb: FormBuilder) { 
     this.accountForm = this.fb.group({
       accountCode:'',
+      accountPassword:'password',
       companyName:'',
       role:Role[0],
       name:'',
