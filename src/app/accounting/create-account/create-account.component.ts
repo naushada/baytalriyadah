@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { CountryName, Shipment } from '../../../commonDS/DS'
+import { CrudService } from 'src/rest-api/crud.service';
+import { Account, CountryName} from '../../../commonDS/DS'
 import { Currency, ServiceType, Events, Role} from '../../../commonDS/DS'
 
 @Component({
@@ -17,7 +19,7 @@ export class CreateAccountComponent implements OnInit {
   Roles = Role;
 
   accountForm: FormGroup;
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private httpc: HttpClient, private crudOperation: CrudService) { 
     this.accountForm = this.fb.group({
       accountCode:'',
       accountPassword:'password',
@@ -44,6 +46,8 @@ export class CreateAccountComponent implements OnInit {
   }
 
   onSubmit() {
+    let newAccount = new Account(this.accountForm.value);
+    this.crudOperation.createAccount(newAccount).subscribe((data) => {console.log(data);});
 
   }
 }

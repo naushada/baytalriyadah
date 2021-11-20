@@ -27,11 +27,11 @@ export class MyNewShipmentComponent implements OnInit {
   constructor(private fb: FormBuilder, private httpc: HttpClient, private crudOperation: CrudService) { 
     this.shipmentForm = this.fb.group({
       shipmentNo:'',
-      autogenerate:'',
+      autogenerate:'true',
       altRefNo:'',
       /*! Sender Information */
       referenceNo:'',
-      billTo:'',
+      accountCode:'',
       name:'',
       country: CountryName[0],
       address:'',
@@ -47,6 +47,7 @@ export class MyNewShipmentComponent implements OnInit {
       noOfItems:'',
       description:'',
       goodsValue:'',
+      customValue:'',
       weight:'',
       weightUnit:'',
       cubicWeight:'',

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { Shipment } from 'src/commonDS/DS';
+import { Shipment, Account } from 'src/commonDS/DS';
 import { map, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -16,8 +16,8 @@ export class CrudService {
     })
   } 
 
-  //apiURL = 'http://localhost:8080';
-  apiURL = 'https://logistics-sw.herokuapp.com'
+  apiURL = 'http://localhost:8080';
+  //apiURL = 'https://logistics-sw.herokuapp.com'
 
   constructor(private http: HttpClient) { }
 
@@ -64,9 +64,16 @@ export class CrudService {
 
   }
 
-  createAccount() {
+  createAccount(newAccount:Account) : Observable<Account> {
+    console.log(JSON.stringify(newAccount));
 
+    return this.http.post<Account>(this.apiURL + '/api/account', JSON.stringify(newAccount), this.httpOptions)
+    .pipe(
+      retry(0),
+      catchError(this.handleError)
+    );
   }
+
 
   updateAccount() {
 

@@ -116,10 +116,12 @@ export let Events:Array<string> =
 
 
 export class Shipment {
+    autogenerate: string;
     shipmentNo: string;
     altRefNo:string;
     /*! Sender Information */
-    billTo:string; /*! same as accountCode */
+    accountCode:string; /*! same as accountCode */
+    referenceNo:string; /*! same as accountCode */
     name:string;
     country:string;
     address:string;
@@ -134,7 +136,8 @@ export class Shipment {
     service: string;
     noOfItems: string;
     description: string;
-    harmonizedCode:string;
+    goodsValue:string;
+    customValue:string;
     weight:string;
     weightUnit:string;
     cubicWeight:string;
@@ -153,10 +156,12 @@ export class Shipment {
     receiverEmail: string;
 
     constructor(_sp: Shipment ) {
+        this.referenceNo = _sp.referenceNo;
+        this.autogenerate = _sp.autogenerate;
         this.shipmentNo = _sp.shipmentNo;
         this.altRefNo = _sp.altRefNo;
         /*! Sender Information */
-        this.billTo = _sp.billTo;
+        this.accountCode = _sp.accountCode;
         this.name = _sp.name;
         this.country = _sp.country;
         this.address = _sp.address;
@@ -171,7 +176,8 @@ export class Shipment {
         this.service = _sp.service;
         this.noOfItems = _sp.noOfItems;
         this.description = _sp.description;
-        this.harmonizedCode = _sp.harmonizedCode;
+        this.goodsValue = _sp.goodsValue;
+        this.customValue = _sp.customValue;
         this.weight = _sp.weight;
         this.weightUnit = _sp.weightUnit;
         this.cubicWeight = _sp.cubicWeight;
@@ -188,5 +194,97 @@ export class Shipment {
         this.receiverContact = _sp.receiverContact;
         this.receiverPhone = _sp.receiverPhone;
         this.receiverEmail = _sp.receiverEmail;
+      }
+}
+
+
+export class Account {
+      accountCode:string;
+      accountPassword:string;
+      companyName:string;
+      role: string;
+      name:string;
+      address: string;
+      city:string;
+      state: string;
+      postalCode:string;
+      country: string;
+      contact:string;
+      email:string;
+      quotedAmount:string;
+      currency:string;
+      vat:string;
+      tradingLicense:string;
+      bankAccountNo:string;
+      ibnNo:string;
+      autogenerate: string;
+
+      constructor(_ac: Account) {
+        this.autogenerate = "true";
+        this.accountCode = _ac.accountCode;
+        this.accountPassword = _ac.accountPassword;
+        this.companyName = _ac.companyName;
+        this.role = _ac.role;
+        this.name = _ac.name;
+        this.address = _ac.address;
+        this.city = _ac.city;
+        this.state = _ac.state;
+        this.postalCode = _ac.postalCode;
+        this.country = _ac.country;
+        this.contact = _ac.contact;
+        this.email = _ac.email;
+        this.quotedAmount = _ac.quotedAmount;
+        this.currency = _ac.currency;
+        this.vat = _ac.vat;
+        this.tradingLicense = _ac.tradingLicense;
+        this.bankAccountNo = _ac.bankAccountNo;
+        this.ibnNo = _ac.ibnNo;
+      }
+}
+
+
+export class SenderInformation {
+    /*! Sender Information */
+    accountCode:string; /*! same as accountCode */
+    referenceNo:string; /*! same as accountCode */
+    name:string;
+    country:string;
+    address:string;
+    city:string;
+    state:string;
+    postalCode:string;
+    contact:string;
+    phone:string;
+    email:string;
+    recvCountryTaxId:string;
+    companyName: string;
+    quotedAmount:string;
+    currency:string;
+    vat:string;
+    tradingLicense:string;
+    bankAccountNo:string;
+    ibnNo:string;
+    
+    constructor(_sp: SenderInformation ) {
+        /*! Sender Information */
+        this.companyName = _sp.companyName;
+        this.referenceNo = _sp.referenceNo;
+        this.accountCode = _sp.accountCode;
+        this.name = _sp.name;
+        this.country = _sp.country;
+        this.address = _sp.address;
+        this.city = _sp.city;
+        this.state = _sp.state;
+        this.postalCode = _sp.postalCode;
+        this.contact = _sp.contact;
+        this.phone = _sp.phone;
+        this.email = _sp.email;
+        this.recvCountryTaxId = _sp.recvCountryTaxId;
+        this.quotedAmount = _sp.quotedAmount;
+        this.currency = _sp.currency;
+        this.vat = _sp.vat;
+        this.tradingLicense = _sp.tradingLicense;
+        this.bankAccountNo = _sp.bankAccountNo;
+        this.ibnNo = _sp.ibnNo;
       }
 }
