@@ -75,6 +75,19 @@ export class CrudService {
   }
 
 
+  onLogin(userId: string, password: string) : Observable<Account> {
+
+    let param = `userId=${userId}&password=${password}`;
+
+    const options = {params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/login';
+    return this.http.get<Account>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+  }
+
   updateAccount() {
 
   }

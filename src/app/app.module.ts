@@ -32,6 +32,7 @@ import { SuccessfulDeliveryComponent } from './accounting/successful-delivery/su
 import { DeliveredReportingComponent } from './reporting/delivered-reporting/delivered-reporting.component';
 import { CreateInventoryComponent } from './inventory/create-inventory/create-inventory.component';
 import { OutFromInventoryComponent } from './inventory/out-from-inventory/out-from-inventory.component';
+import { LoginComponent } from './view/login/login.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { OutFromInventoryComponent } from './inventory/out-from-inventory/out-fr
     SuccessfulDeliveryComponent,
     DeliveredReportingComponent,
     CreateInventoryComponent,
-    OutFromInventoryComponent
+    OutFromInventoryComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

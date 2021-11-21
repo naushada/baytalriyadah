@@ -1,0 +1,23 @@
+<div class="container app-name" >
+    <div class="item login-logo">
+        <img src="../assets/bayt_logo.jpg" class="logo-image-sm" alt="Bayt Control logo">
+    <div>
+    <div class="app-name elm">
+        <label >Bayt Al Riyadah Management System</label>
+    </div>
+    <div class="elm">
+        Enter your user id or username and password.
+    </div>
+    <form [formGroup]="loginForm" class="text-center " (ngSubmit)="onSubmit()">
+        <div class="elm">
+            <input type="text" class="form-control" formControlName="userId" placeholder="Uer ID" id="userId">
+        </div>
+        <div class="elm">
+            <input type="password" class="form-control" formControlName="password" placeholder="Password" id="password">
+        </div>
+
+        <div class="elm" >
+            <button type="submit"> Sign In</button>
+        </div>
+    </form>
+  </div>

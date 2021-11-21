@@ -3,11 +3,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
-import { CountryName, Shipment } from '../../../commonDS/DS'
+import { CountryName, Shipment, Account } from '../../../commonDS/DS'
 import { Currency, ServiceType, Events, Role} from '../../../commonDS/DS'
 
 import { CrudService } from 'src/rest-api/crud.service';
+import { DataService } from 'src/app/data.service';
 
 @Component({
   selector: 'app-my-new-shipment',
@@ -15,6 +17,10 @@ import { CrudService } from 'src/rest-api/crud.service';
   styleUrls: ['./my-new-shipment.component.scss']
 })
 export class MyNewShipmentComponent implements OnInit {
+
+  _accountInfo!:Account;
+  subscription!: Subscription;
+
 
   /* These are the Global Properties defined in DS.ts file. */
   CountryNames = CountryName;
@@ -24,24 +30,26 @@ export class MyNewShipmentComponent implements OnInit {
   Roles = Role;
 
   shipmentForm: FormGroup;
-  constructor(private fb: FormBuilder, private httpc: HttpClient, private crudOperation: CrudService) { 
+  constructor(private fb: FormBuilder, private httpc: HttpClient, private crudOperation: CrudService, private data: DataService) { 
+    this.subscription = this.data.currentAccountInfo.subscribe((message: Account) => this._accountInfo = message);
+
     this.shipmentForm = this.fb.group({
       shipmentNo:'',
       autogenerate:'true',
       altRefNo:'',
       /*! Sender Information */
       referenceNo:'',
-      accountCode:'',
-      name:'',
-      country: CountryName[0],
-      address:'',
-      city:'',
-      state:'',
-      postalCode:'',
-      contact:'',
-      phone:'',
-      email:'',
-      recvCountryTaxId:'',
+      accountCode: this._accountInfo &&  this._accountInfo.accountCode || "" ,
+      name: this._accountInfo && this._accountInfo.name || "",
+      country: this._accountInfo && this._accountInfo.country || "",
+      address:this._accountInfo && this._accountInfo.address || "",
+      city: this._accountInfo && this._accountInfo.city || "",
+      state: this._accountInfo && this._accountInfo.state || "",
+      postalCode: this._accountInfo && this._accountInfo.postalCode || "",
+      contact: this._accountInfo && this._accountInfo.contact || "",
+      phone:this._accountInfo && this._accountInfo.phone || "",
+      email: this._accountInfo && this._accountInfo.email || "",
+      recvCountryTaxId: this._accountInfo && this._accountInfo.recvCountryTaxId,
       /*! Shipment Information */
       service:ServiceType[0],
       noOfItems:'',
@@ -70,6 +78,9 @@ export class MyNewShipmentComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    this.subscription = this.data.currentAccountInfo.subscribe((message: Account) => this._accountInfo = message);
+    console.log(this._accountInfo);
+    //this.shipmentForm.controls.accountCode.setValue(this._accountInfo.accountCode);
   }
 
   onSubmit()  {

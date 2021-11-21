@@ -218,28 +218,35 @@ export class Account {
       bankAccountNo:string;
       ibnNo:string;
       autogenerate: string;
+      phone: string;
+      recvCountryTaxId: string;
 
-      constructor(_ac: Account) {
+      constructor();
+      constructor(_ac: Account);
+      constructor(_ac?: Account) {
         this.autogenerate = "true";
-        this.accountCode = _ac.accountCode;
-        this.accountPassword = _ac.accountPassword;
-        this.companyName = _ac.companyName;
-        this.role = _ac.role;
-        this.name = _ac.name;
-        this.address = _ac.address;
-        this.city = _ac.city;
-        this.state = _ac.state;
-        this.postalCode = _ac.postalCode;
-        this.country = _ac.country;
-        this.contact = _ac.contact;
-        this.email = _ac.email;
-        this.quotedAmount = _ac.quotedAmount;
-        this.currency = _ac.currency;
-        this.vat = _ac.vat;
-        this.tradingLicense = _ac.tradingLicense;
-        this.bankAccountNo = _ac.bankAccountNo;
-        this.ibnNo = _ac.ibnNo;
+        this.accountCode = _ac && _ac.accountCode || "";
+        this.accountPassword = _ac && _ac.accountPassword || "";
+        this.companyName = _ac && _ac.companyName || "";
+        this.role = _ac && _ac.role || "";
+        this.name = _ac && _ac.name || "";
+        this.address = _ac && _ac.address || "";
+        this.city = _ac && _ac.city || "";
+        this.state = _ac && _ac.state || "";
+        this.postalCode = _ac && _ac.postalCode || "";
+        this.country = _ac && _ac.country || "";
+        this.contact = _ac && _ac.contact || "";
+        this.phone = _ac && _ac.phone || "";
+        this.email = _ac && _ac.email || "";
+        this.recvCountryTaxId = _ac && _ac.recvCountryTaxId || "";
+        this.quotedAmount = _ac && _ac.quotedAmount || "";
+        this.currency = _ac && _ac.currency || "";
+        this.vat = _ac && _ac.vat || "";
+        this.tradingLicense = _ac && _ac.tradingLicense || "";
+        this.bankAccountNo = _ac && _ac.bankAccountNo || "";
+        this.ibnNo = _ac && _ac.ibnNo || "";
       }
+      
 }
 
 
