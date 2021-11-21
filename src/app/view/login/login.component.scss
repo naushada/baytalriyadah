@@ -2,7 +2,7 @@
 .container {
     display: grid;
     /* value shall be track size */
-    grid-template-columns: [col-asie] 500px [col-middle] auto [col-right] 1fr [col-end];
+    grid-template-columns: [col-asie] 500px [col-middle] 400px [col-right] 1fr [col-end];
     /* First & second row will be 100px height and remaining row height will be auto. */
     grid-template-rows:500px;
 

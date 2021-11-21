@@ -116,6 +116,8 @@ export let Events:Array<string> =
 
 
 export class Shipment {
+    status:Array<string>;
+    createdOn:Date;
     autogenerate: string;
     shipmentNo: string;
     altRefNo:string;
@@ -156,6 +158,8 @@ export class Shipment {
     receiverEmail: string;
 
     constructor(_sp: Shipment ) {
+        this.status = _sp.status;
+        this.createdOn= _sp.createdOn;
         this.referenceNo = _sp.referenceNo;
         this.autogenerate = _sp.autogenerate;
         this.shipmentNo = _sp.shipmentNo;

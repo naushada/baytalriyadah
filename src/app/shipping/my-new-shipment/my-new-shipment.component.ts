@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import {formatDate} from '@angular/common';
 
 import { CountryName, Shipment, Account } from '../../../commonDS/DS'
 import { Currency, ServiceType, Events, Role} from '../../../commonDS/DS'
@@ -34,6 +35,8 @@ export class MyNewShipmentComponent implements OnInit {
     this.subscription = this.data.currentAccountInfo.subscribe((message: Account) => this._accountInfo = message);
 
     this.shipmentForm = this.fb.group({
+      status: ["Created"],
+      createdOn: formatDate(new Date(), 'dd/MM/yyy', 'en'),
       shipmentNo:'',
       autogenerate:'true',
       altRefNo:'',
