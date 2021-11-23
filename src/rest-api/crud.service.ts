@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { Shipment, Account } from 'src/commonDS/DS';
+import { Shipment, Account, SenderInformation } from 'src/commonDS/DS';
 import { map, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -44,19 +44,31 @@ export class CrudService {
     );
   }
 
-  updateShipment() {
+  updateShipment(awbNo: string, accountCode: string, data: string) : Observable<any> {
+    let param = `accountCode=${accountCode}&shipmentNo=${awbNo}`;
+    const options = {params: new HttpParams({fromString: param}),
+                     headers: new HttpHeaders({
+                              'Content-Type': 'application/json'
+                      })
+                    };
+    let uri: string = this.apiURL + '/api/shipment';
+    return this.http.put<any>(uri, JSON.stringify(data), options)
+    .pipe(
+      retry(0),
+      catchError(this.handleError)
+    );
 
   }
 
-  getSingleShipment(awb:string, accountCode: string): Observable<Shipment> {
-    let param = `accountCode=${accountCode}&shipmentNo=${awb}`;
+  getSingleShipment(awb:string, altRefNo: string, accountCode: string): Observable<Shipment> {
+    let param = `accountCode=${accountCode}&shipmentNo=${awb}&altRefNo=${altRefNo}`;
 
     const options = {params: new HttpParams({fromString: param})};
 
     let uri: string = this.apiURL + '/api/shipment';
     return this.http.get<Shipment>(uri, options)
       .pipe(
-        retry(1),
+        retry(0),
         catchError(this.handleError));
   }
 
@@ -90,5 +102,31 @@ export class CrudService {
 
   updateAccount() {
 
+  }
+
+  getCustomerInfo(accountCode: string): Observable<SenderInformation> {
+
+    let param = `accountCode=${accountCode}`;
+
+    const options = {params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/account';
+    return this.http.get<SenderInformation>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+  }
+
+  getShipmentInfoByAltRefNo(altRefNo: string): Observable<Shipment> {
+
+    let param = `altRefNo=${altRefNo}`;
+
+    const options = {params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/altref';
+    return this.http.get<Shipment>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
   }
 }

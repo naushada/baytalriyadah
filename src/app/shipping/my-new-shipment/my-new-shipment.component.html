@@ -4,11 +4,10 @@
 </div>
 <div><label >Shipment Number </label></div>
 <div><input type="text" class="content-item bg-color-yellow" formControlName="shipmentNo" value="" required></div>
-<div><label>Autogenerate </label><input type="checkbox" class="content-item " formControlName="autogenerate" value=""></div>
+<div><label>Autogenerate </label><input type="checkbox" class="content-item " formControlName="autogenerate" value="" (click)= "onCheckboxSelect()"></div>
 <div></div>
 <div><label>ALT REF Number </label></div>
-<div><input type="text" class="content-item " formControlName="altRefNo" value="" required></div>
-<div><button name="altRefNo" value="Retrieve by ALTREF Number">Retrieve By ALT. REF</button></div>
+<div><input type="text" class="content-item " style="width:50%" formControlName="altRefNo" value="" required><a class="ml-10" (click)="getShipmentInfoByAltRefNo()"> Retrieve</a></div>
 
 <div class="heading">
     <u><i><label>Sender Information</label></i></u>
@@ -16,7 +15,7 @@
 <div><label>Reference Number </label></div>
 <div><input type="text" class="content-item bg-color-yellow" formControlName="referenceNo" value="" required></div>
 <div><label>Account Code </label></div>
-<div><input type="text" class="content-item bg-color-yellow" formControlName="accountCode" value="" required></div>
+<div><input type="text" class="content-item bg-color-yellow " style="width:50%" formControlName="accountCode" value="" required><a class="ml-10" (click)="getSenderInfo()" >Retrieve</a></div>
 <div><label>Name </label></div>
 <div><input type="text" class="content-item bg-color-yellow" formControlName="name" value=""></div>
 <div><label>Country </label></div>
@@ -24,7 +23,7 @@
     <option *ngFor="let _country of CountryNames" [value]="_country">{{_country}}</option>
     </select></div>
 <div><label>Address </label></div>
-<div><textarea rows="5" type="text" class="content-item bg-color-yellow" formControlName="address" value=""></textarea></div>
+<div><textarea rows="2" type="text" class="content-item bg-color-yellow" formControlName="address" value=""></textarea></div>
 <div><label>City/Town </label></div>
 <div><input type="text" class="content-item bg-color-yellow" formControlName="city" value=""></div>
 <div><label>State </label></div>
@@ -49,7 +48,7 @@
 <div><label>Number of Items </label></div>
 <div><input type="text" class="content-item bg-color-yellow" formControlName="noOfItems" value=""></div>
 <div><label>Description </label></div>
-<div><textarea rows="5" type="text" class="content-item bg-color-yellow" formControlName="description" value=""></textarea></div>
+<div><textarea rows="2" type="text" class="content-item bg-color-yellow" formControlName="description" value=""></textarea></div>
 <div><label>Goods Value </label></div>
 <div><input type="text" class="content-item " formControlName="goodsValue" value=""></div>
 <div><label>Custom Value </label></div>
@@ -61,8 +60,8 @@
         <option value="KG" selected>KG</option>
         <option value="gram">Gram</option>
     </select></div>
-<div><label>Cubic Weight(LxWxB) </label></div>
-<div><input type="text" class="content-item bg-color-yellow" formControlName="cubicWeight" value=""></div>
+<div><label>Cubic Weight(LxWxH) </label></div>
+<div><input type="text" class="content-item " formControlName="cubicWeight" value=""></div>
 <div><label>COD </label></div>
 <div><input type="text" class="content-item " formControlName="codAmount" value=""></div>
 <div><label>Currency </label></div>
@@ -81,7 +80,7 @@
         <option *ngFor="let _country of CountryNames" [value]="_country">{{_country}}</option>
     </select></div>
 <div><label>Address </label></div>
-<div><textarea rows="5" type="text" class="content-item bg-color-yellow" formControlName="receiverAddress" value=""></textarea></div>
+<div><textarea rows="2" type="text" class="content-item bg-color-yellow" formControlName="receiverAddress" value=""></textarea></div>
 <div><label>City/Town </label></div>
 <div><input type="text" class="content-item bg-color-yellow" formControlName="receiverCity" value=""></div>
 <div><label>State </label></div>

@@ -114,9 +114,31 @@ export let Events:Array<string> =
 "User Initiated Shipment Cancellation"
 ];
 
+export class ActivityOnShipment {
+  date: string;
+  status: string;
+  time: string;
+  notes: string;
+  connote: string;
+  driver:string;
+  updatedBy: string;
+
+  constructor()
+  constructor(_ac: ActivityOnShipment)
+  constructor(_ac?: ActivityOnShipment) {
+    this.date = _ac && _ac.date || "";
+    this.status = _ac && _ac.status || "";
+    this.time = _ac && _ac.time || "";
+    this.notes = _ac && _ac.notes || "";
+    this.connote = _ac && _ac.connote || "";
+    this.driver = _ac && _ac.driver || "";
+    this.updatedBy = _ac && _ac.updatedBy || "";
+  }
+
+}
 
 export class Shipment {
-    status:Array<string>;
+    activity: Array<ActivityOnShipment>;
     createdOn:Date;
     autogenerate: string;
     shipmentNo: string;
@@ -147,6 +169,7 @@ export class Shipment {
     currency:string;
 
     /*! Receiver Information */
+    sku: string;
     receiverName:string;
     receiverCountry:string;
     receiverAddress:string;
@@ -158,7 +181,7 @@ export class Shipment {
     receiverEmail: string;
 
     constructor(_sp: Shipment ) {
-        this.status = _sp.status;
+        this.activity = _sp.activity;
         this.createdOn= _sp.createdOn;
         this.referenceNo = _sp.referenceNo;
         this.autogenerate = _sp.autogenerate;
@@ -189,6 +212,7 @@ export class Shipment {
         this.currency = _sp.currency;
 
         /*! Receiver Information */
+        this.sku = _sp.sku;
         this.receiverName = _sp.receiverName;
         this.receiverCountry = _sp.receiverCountry;
         this.receiverAddress = _sp.receiverAddress;

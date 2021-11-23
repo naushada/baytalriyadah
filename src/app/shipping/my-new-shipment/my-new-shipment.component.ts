@@ -6,7 +6,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import {formatDate} from '@angular/common';
 
-import { CountryName, Shipment, Account } from '../../../commonDS/DS'
+import { CountryName, Shipment, Account, SenderInformation } from '../../../commonDS/DS'
 import { Currency, ServiceType, Events, Role} from '../../../commonDS/DS'
 
 import { CrudService } from 'src/rest-api/crud.service';
@@ -21,6 +21,8 @@ export class MyNewShipmentComponent implements OnInit {
 
   _accountInfo!:Account;
   subscription!: Subscription;
+  _customerInfo!: SenderInformation;
+  _shipmentInfo!: Shipment;
 
 
   /* These are the Global Properties defined in DS.ts file. */
@@ -35,24 +37,24 @@ export class MyNewShipmentComponent implements OnInit {
     this.subscription = this.data.currentAccountInfo.subscribe((message: Account) => this._accountInfo = message);
 
     this.shipmentForm = this.fb.group({
-      status: ["Created"],
+      activity: [{"Event": "", "Date": "", "Time": "", "Notes": "", "Connote": "", "Driver": "", "Updated By" : ""}],
       createdOn: formatDate(new Date(), 'dd/MM/yyy', 'en'),
       shipmentNo:'',
-      autogenerate:'true',
+      autogenerate:"true",
       altRefNo:'',
       /*! Sender Information */
       referenceNo:'',
-      accountCode: this._accountInfo &&  this._accountInfo.accountCode || "" ,
-      name: this._accountInfo && this._accountInfo.name || "",
-      country: this._accountInfo && this._accountInfo.country || "",
-      address:this._accountInfo && this._accountInfo.address || "",
-      city: this._accountInfo && this._accountInfo.city || "",
-      state: this._accountInfo && this._accountInfo.state || "",
-      postalCode: this._accountInfo && this._accountInfo.postalCode || "",
-      contact: this._accountInfo && this._accountInfo.contact || "",
-      phone:this._accountInfo && this._accountInfo.phone || "",
-      email: this._accountInfo && this._accountInfo.email || "",
-      recvCountryTaxId: this._accountInfo && this._accountInfo.recvCountryTaxId,
+      accountCode: this._customerInfo &&  this._customerInfo.accountCode || "" ,
+      name: this._customerInfo && this._customerInfo.name || "",
+      country: this._customerInfo && this._customerInfo.country || "",
+      address:this._customerInfo && this._customerInfo.address || "",
+      city: this._customerInfo && this._customerInfo.city || "",
+      state: this._customerInfo && this._customerInfo.state || "",
+      postalCode: this._customerInfo && this._customerInfo.postalCode || "",
+      contact: this._customerInfo && this._customerInfo.contact || "",
+      phone:this._customerInfo && this._customerInfo.phone || "",
+      email: this._customerInfo && this._customerInfo.email || "",
+      recvCountryTaxId: this._customerInfo && this._customerInfo.recvCountryTaxId,
       /*! Shipment Information */
       service:ServiceType[0],
       noOfItems:'',
@@ -90,5 +92,82 @@ export class MyNewShipmentComponent implements OnInit {
     console.log(this.shipmentForm.value);
     let newShipment = new Shipment(this.shipmentForm.value);
     this.crudOperation.createShipment(newShipment).subscribe((data) => {console.log(data);});
+  }
+
+  onCheckboxSelect() {
+    let status: boolean = false;
+    status = this.shipmentForm.controls['autogenerate'].value;
+    if(true == status) {
+      this.shipmentForm.controls['shipmentNo'].setValue("");
+    } else {
+      this.shipmentForm.controls['shipmentNo'].setValue("[System Generated]");
+    }
+  }
+
+  fillSenderInfo(_sInfo: SenderInformation) {
+      /*! Sender Information */
+      this.shipmentForm.controls['referenceNo'].setValue(_sInfo.referenceNo);
+      this.shipmentForm.controls['accountCode'].setValue(_sInfo.accountCode);
+      this.shipmentForm.controls['name'].setValue(_sInfo.name);
+      this.shipmentForm.controls['country'].setValue(_sInfo.country);
+      this.shipmentForm.controls['address'].setValue(_sInfo.address);
+      this.shipmentForm.controls['city'].setValue(_sInfo.city);
+      this.shipmentForm.controls['state'].setValue(_sInfo.state);
+      this.shipmentForm.controls['postalCode'].setValue(_sInfo.postalCode);
+      this.shipmentForm.controls['contact'].setValue(_sInfo.contact);
+      this.shipmentForm.controls['phone'].setValue(_sInfo.phone);
+      this.shipmentForm.controls['email'].setValue(_sInfo.email);
+      this.shipmentForm.controls['recvCountryTaxId'].setValue(_sInfo.recvCountryTaxId);
+  }
+
+  fillShipmentInfo(_sInfo: Shipment) {
+
+      this.shipmentForm.controls['shipmentNo'].setValue(_sInfo.shipmentNo);
+      this.shipmentForm.controls['altRefNo'].setValue(_sInfo.altRefNo);
+      this.shipmentForm.controls['referenceNo'].setValue(_sInfo.referenceNo);
+      this.shipmentForm.controls['accountCode'].setValue(_sInfo.accountCode);
+      this.shipmentForm.controls['name'].setValue(_sInfo.name);
+      this.shipmentForm.controls['country'].setValue(_sInfo.country);
+      this.shipmentForm.controls['address'].setValue(_sInfo.address);
+      this.shipmentForm.controls['city'].setValue(_sInfo.city);
+      this.shipmentForm.controls['state'].setValue(_sInfo.state);
+      this.shipmentForm.controls['postalCode'].setValue(_sInfo.postalCode);
+      this.shipmentForm.controls['contact'].setValue(_sInfo.contact);
+      this.shipmentForm.controls['phone'].setValue(_sInfo.phone);
+      this.shipmentForm.controls['email'].setValue(_sInfo.email);
+      this.shipmentForm.controls['recvCountryTaxId'].setValue(_sInfo.recvCountryTaxId);
+      this.shipmentForm.controls['service'].setValue(_sInfo.service);
+      this.shipmentForm.controls['noOfItems'].setValue(_sInfo.noOfItems);
+      this.shipmentForm.controls['description'].setValue(_sInfo.description);
+      this.shipmentForm.controls['goodsValue'].setValue(_sInfo.goodsValue);
+      this.shipmentForm.controls['customValue'].setValue(_sInfo.customValue);
+      this.shipmentForm.controls['weight'].setValue(_sInfo.weight);
+      this.shipmentForm.controls['weightUnit'].setValue(_sInfo.weightUnit);
+      this.shipmentForm.controls['cubicWeight'].setValue(_sInfo.cubicWeight);
+      this.shipmentForm.controls['codAmount'].setValue(_sInfo.codAmount);
+      this.shipmentForm.controls['currency'].setValue(_sInfo.currency);
+      this.shipmentForm.controls['sku'].setValue(_sInfo.sku);
+      this.shipmentForm.controls['receiverName'].setValue(_sInfo.receiverName);
+      this.shipmentForm.controls['receiverCountry'].setValue(_sInfo.receiverCountry);
+      this.shipmentForm.controls['receiverAddress'].setValue(_sInfo.receiverAddress);
+      this.shipmentForm.controls['receiverCity'].setValue(_sInfo.receiverCity);
+      this.shipmentForm.controls['receiverState'].setValue(_sInfo.receiverState);
+      this.shipmentForm.controls['receiverPostalCode'].setValue(_sInfo.receiverPostalCode);
+      this.shipmentForm.controls['receiverContact'].setValue(_sInfo.receiverContact);
+      this.shipmentForm.controls['receiverPhone'].setValue(_sInfo.receiverPhone);
+      this.shipmentForm.controls['receiverEmail'].setValue(_sInfo.receiverEmail);
+  }
+
+  getSenderInfo() {
+    let accountCode: string = "";
+    accountCode = this.shipmentForm.controls['accountCode'].value;
+    this.crudOperation.getCustomerInfo(accountCode).subscribe((data) => {console.log(data); this._customerInfo= data; this.fillSenderInfo(this._customerInfo)});
+  }
+
+  getShipmentInfoByAltRefNo() {
+
+    let altRefNo: string = "";
+    altRefNo = this.shipmentForm.controls['altRefNo'].value;
+    this.crudOperation.getShipmentInfoByAltRefNo(altRefNo).subscribe((data) => {console.log(data); this._shipmentInfo= data; this.fillShipmentInfo(this._shipmentInfo)});
   }
 }

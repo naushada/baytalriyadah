@@ -380,6 +380,11 @@ label {
 .ml-10 {
   margin-left:10px;
 }
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: blue;
+}
 
 input[type=checkbox] {
   width: 10%;
@@ -400,6 +405,9 @@ input[type=button]:before {
   font-family: 'Material Icons';
   font-size: 25px;
   vertical-align: -30%;
+}
+textarea {
+  width: 80%;
 }
 
 hr {

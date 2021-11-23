@@ -11,8 +11,8 @@ export class MultipleShipmentComponent implements OnInit {
   multipleTrackingShipmentForm: FormGroup;
   constructor(private fb:FormBuilder) { 
     this.multipleTrackingShipmentForm = this.fb.group({
-      trackingNo:'',
-      altRefNo:''
+      trackingNo:''
+      /*altRefNo:''*/
     });
   }
 

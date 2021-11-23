@@ -1,4 +1,4 @@
-<form [formGroup]="updateShipmentStatusForm" (ngSubmit)="onSubmit()" class="subcontainer">
+<form [formGroup]="updateShipmentStatusForm" (ngSubmit)="onSubmit()" class="subcontainer" >
 <div class="heading">
     <u><i><label>Update Shipment Status</label></i></u>
 </div>
@@ -18,14 +18,16 @@
 <div><textarea rows="5" type="text" class="content-item bg-color-yellow" formControlName="connote" value=""></textarea> </div>
 
 
+<div><label>event Location </label></div>
+<div><select rows="5" type="text" class="content-item bg-color-yellow" formControlName="eventLocation" value="">
+    <option></option>
+</select> </div>
 <div><label>Driver </label></div>
 <div><input type="text" class="content-item bg-color-yellow" formControlName="driverName" value=""> </div>
 
 <div><label>Updated By </label></div>
 <div><input type="text" class="content-item " formControlName="updatedBy" value="" readonly > </div>
 
-<div></div>
-<div></div>
 <div class="content-item btn-default ml-10">
     <button type="submit">Submit</button>
 </div>

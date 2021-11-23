@@ -2,10 +2,14 @@
 <div class="heading">
     <u><i><label>Single Tracking Shipment</label></i></u>
 </div>
-<div><label >Tracking No. </label></div>
+<div><label >Tracking / ALT REF No. </label></div>
 <div><input type="text" class="content-item bg-color-yellow" formControlName="trackingNo" value=""></div>
+<!--
 <div><label>ALT. REF. No </label></div>
 <div><input type="text" class="content-item bg-color-yellow" formControlName="altRefNo" value=""></div>
+-->
+<div></div>
+<div></div>
 <div class="content-item btn-default ml-10">
     <button type="submit">Submit</button>
 </div>
@@ -13,3 +17,6 @@
     <button type="reset">Clear Contents</button>
 </div>	
 </form>
+
+
+<app-display-result *ngIf="displayResult === 'True'"></app-display-result>
