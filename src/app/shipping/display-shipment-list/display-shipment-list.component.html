@@ -1,0 +1,60 @@
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Shipment No</th>
+            <th>ALT REF No</th>
+            <th>Reference No</th>
+            <th>Account Code</th>
+            <!--
+            <th>Sender Name</th>
+            <th>Sender Country</th>
+            <th>Sender Address</th>
+            <th>Sender City</th>
+            <th>Sender State</th>
+            <th>Sender Postal Code</th>
+            <th>Sender Contact</th>
+            <th>Sender Phone</th>
+            <th>Sender email</th>-->
+
+            <th>Service</th>
+            <th>No Of Items</th>
+            <th>Description</th>
+            <th>Goods Value</th>
+            <th>Custom Value</th>
+            <th>Weight</th>
+            <th>Weight Unit</th>
+            <th>Cubic Weight(LxWxH)</th>
+            <th>COD Amount</th>
+            <th>Currency</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let s of shInfo">
+            <td>{{s.shipmentNo}}</td>
+            <td>{{s.altRefNo}}</td>
+            <td>{{s.referenceNo}}</td>
+            <td>{{s.accountCode}}</td>
+            <!--
+            <td>{{s.name}}</td>
+            <td>{{s.country}}</td>
+            <td>{{s.address}}</td>
+            <td>{{s.city}}</td>
+            <td>{{s.state}}</td>
+            <td>{{s.postalCode}}</td>
+            <td>{{s.contact}}</td>
+            <td>{{s.phone}}</td>
+            <td>{{s.email}}</td>-->
+            <td>{{s.service}}</td>
+            <td>{{s.noOfItems}}</td>
+            <td>{{s.description}}</td>
+            <td>{{s.goodsValue}}</td>
+            <td>{{s.customValue}}</td>
+            <td>{{s.weight}}</td>
+            <td>{{s.weightUnit}}</td>
+            <td>{{s.cubicWeight}}</td>
+            <td>{{s.codAmount}}</td>
+            <td>{{s.currency}}</td>
+        </tr>
+        <!-- and so on... -->
+    </tbody>
+</table>

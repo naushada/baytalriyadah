@@ -225,6 +225,22 @@ export class Shipment {
       }
 }
 
+export class ShipmentList {
+  m_length: number;
+  m_elm: Shipment[];
+  constructor(_sl?: ShipmentList) {
+    this.m_length = _sl && _sl.m_length || 0;
+    this.m_elm = _sl && _sl.m_elm || [];
+  }
+
+  public set_length(ln: number): void {
+    this.m_length = ln;
+  }
+
+  public set_elm(_sh: Shipment[]): void {
+    this.m_elm = _sh;
+  }
+}
 
 export class Account {
       accountCode:string;

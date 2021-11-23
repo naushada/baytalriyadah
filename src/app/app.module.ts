@@ -34,6 +34,7 @@ import { CreateInventoryComponent } from './inventory/create-inventory/create-in
 import { OutFromInventoryComponent } from './inventory/out-from-inventory/out-from-inventory.component';
 import { LoginComponent } from './view/login/login.component';
 import { DisplayResultComponent } from './tracking/display-result/display-result.component';
+import { DisplayShipmentListComponent } from './shipping/display-shipment-list/display-shipment-list.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { DisplayResultComponent } from './tracking/display-result/display-result
     CreateInventoryComponent,
     OutFromInventoryComponent,
     LoginComponent,
-    DisplayResultComponent
+    DisplayResultComponent,
+    DisplayShipmentListComponent
   ],
   imports: [
     BrowserModule,

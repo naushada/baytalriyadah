@@ -72,7 +72,16 @@ export class CrudService {
         catchError(this.handleError));
   }
 
-  getShipmentList() {
+  getShipmentList(fromDate:string, toDate: string): Observable<Shipment[]> {
+    let param = `fromDate=${fromDate}&toDate=${toDate}`;
+
+    const options = {params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/shipmentlist';
+    return this.http.get<Shipment[]>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
 
   }
 
@@ -123,7 +132,20 @@ export class CrudService {
 
     const options = {params: new HttpParams({fromString: param})};
 
-    let uri: string = this.apiURL + '/api/altref';
+    let uri: string = this.apiURL + '/api/altrefno';
+    return this.http.get<Shipment>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+  }
+
+  getShipmentInfoByShipmentNo(awbNo: string): Observable<Shipment> {
+
+    let param = `shipmentNo=${awbNo}`;
+
+    const options = {params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/awbno';
     return this.http.get<Shipment>(uri, options)
       .pipe(
         retry(0),

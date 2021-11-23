@@ -40,7 +40,7 @@ export class MyNewShipmentComponent implements OnInit {
       activity: [{"Event": "", "Date": "", "Time": "", "Notes": "", "Connote": "", "Driver": "", "Updated By" : ""}],
       createdOn: formatDate(new Date(), 'dd/MM/yyy', 'en'),
       shipmentNo:'',
-      autogenerate:"true",
+      autogenerate: false,
       altRefNo:'',
       /*! Sender Information */
       referenceNo:'',

@@ -3,10 +3,14 @@
     <u><i><label>Shipment List</label></i></u>
 </div>
 <div><label >From Date </label></div>
-<div><input type="date" class="content-item bg-color-yellow" formControlName="fromDate" value="" required></div>
+<div><input type="date" class="content-item " formControlName="fromDate" value="" required></div>
+<div></div>
+<div></div>
 <div><label>To Date </label></div>
-<div><input type="date" class="content-item bg-color-yellow" formControlName="toDate" value="" required></div>
+<div><input type="date" class="content-item " formControlName="toDate" value="" required></div>
       
+<div></div>
+<div></div>
 <div class="content-item btn-default ml-10">
     <button type="submit">Submit</button>
 </div>
@@ -14,3 +18,5 @@
     <button type="reset">Clear Contents</button>
 </div>	
 </form>
+
+<app-display-shipment-list *ngIf="m_displayList === 'true'"></app-display-shipment-list>
