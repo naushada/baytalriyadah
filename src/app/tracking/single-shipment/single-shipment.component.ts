@@ -33,16 +33,67 @@ export class SingleShipmentComponent implements OnInit {
 
   onSubmit() {
 
-    this.crudOperation.getSingleShipment(this.singleTrackingShipmentForm.controls['trackingNo'].value, 
-                              this.singleTrackingShipmentForm.controls['altRefNo'].value, this._accountInfo.accountCode).subscribe(
-                              (rsp : Shipment) => {console.log(rsp); this.shipmentInfo = new Shipment(rsp); console.log(this.shipmentInfo);
+    let awbNo: string = this.singleTrackingShipmentForm.controls['trackingNo'].value;
+    if(this._accountInfo.role == "Employee") {
+      if(awbNo.startsWith("05497") == true) {
+        this.crudOperation.getShipmentInfoByShipmentNo(awbNo) 
+                              .subscribe(
+                              (rsp : Shipment) => {
+                                this.shipmentInfo = new Shipment(rsp);
                                 this.sharedShipmentInfo.setShipmentInfo(this.shipmentInfo);
                                 this.displayResult = "True";
                               },
                               error => {
-                                console.log("Error retrieving expenses");
-                                console.error(error);
-                              });
+                                alert("Invalid Shipment Number " + awbNo);
+                              },
+                              /**Operation is executed successfully */
+                              () => {});
+      } else {
+        this.crudOperation.getShipmentInfoByAltRefNo(awbNo) 
+                              .subscribe(
+                              (rsp : Shipment) => {
+                                this.shipmentInfo = new Shipment(rsp);
+                                this.sharedShipmentInfo.setShipmentInfo(this.shipmentInfo);
+                                this.displayResult = "True";
+                              },
+                              error => {
+                                alert("Invalid ALT REF NO Number " + awbNo);
+                              },
+                              /**Operation is executed successfully */
+                              () => {});
 
-  }
+      }
+      
+    } else {
+      let acCode: string = this._accountInfo.accountCode;
+      if(awbNo.startsWith("09457") == true) {
+        this.crudOperation.getShipmentInfoByShipmentNoForCustomer(awbNo, acCode) 
+                              .subscribe(
+                              (rsp : Shipment) => {
+                                this.shipmentInfo = new Shipment(rsp);
+                                this.sharedShipmentInfo.setShipmentInfo(this.shipmentInfo);
+                                this.displayResult = "True";
+                              },
+                              error => {
+                                alert("Invalid Shipment Number " + awbNo);
+                              },
+                              /**Operation is executed successfully */
+                              () => {});
+      } else {
+        this.crudOperation.getShipmentInfoByAltRefNoForCustomer(awbNo, acCode) 
+                              .subscribe(
+                              (rsp : Shipment) => {
+                                this.shipmentInfo = new Shipment(rsp);
+                                this.sharedShipmentInfo.setShipmentInfo(this.shipmentInfo);
+                                this.displayResult = "True";
+                              },
+                              error => {
+                                alert("Invalid ALT REF NO Number " + awbNo);
+                              },
+                              /**Operation is executed successfully */
+                              () => {});
+
+      }
+    }
+  } /** end of onSubmit */
 }

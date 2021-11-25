@@ -38,24 +38,25 @@ export class MyNewShipmentComponent implements OnInit {
     this.subscription = this.data.currentAccountInfo.subscribe((message: Account) => this._accountInfo = message);
 
     this.shipmentForm = this.fb.group({
-      activity: [{"Event": "", "Date": "", "Time": "", "Notes": "", "Connote": "", "Driver": "", "Updated By" : ""}],
+      activity: this.fb.array([{"Event": "", "Date": "", "Time": "", "Notes": "", "Connote": "", "Driver": "", "Updated By" : ""}]),
       createdOn: formatDate(new Date(), 'dd/MM/yyy', 'en'),
+      createdBy: this._accountInfo.name,
       shipmentNo:'',
       autogenerate: false,
       altRefNo:'',
       /*! Sender Information */
       referenceNo:'',
-      accountCode: this._customerInfo &&  this._customerInfo.accountCode || "" ,
-      name: this._customerInfo && this._customerInfo.name || "",
-      country: this._customerInfo && this._customerInfo.country || "",
-      address:this._customerInfo && this._customerInfo.address || "",
-      city: this._customerInfo && this._customerInfo.city || "",
-      state: this._customerInfo && this._customerInfo.state || "",
-      postalCode: this._customerInfo && this._customerInfo.postalCode || "",
-      contact: this._customerInfo && this._customerInfo.contact || "",
-      phone:this._customerInfo && this._customerInfo.phone || "",
-      email: this._customerInfo && this._customerInfo.email || "",
-      recvCountryTaxId: this._customerInfo && this._customerInfo.recvCountryTaxId,
+      accountCode: '' ,
+      name: '',
+      country: '',
+      address:'',
+      city: '',
+      state: '',
+      postalCode: '',
+      contact: '',
+      phone:'',
+      email: '',
+      recvCountryTaxId: '',
       /*! Shipment Information */
       service:ServiceType[0],
       noOfItems:'',
@@ -92,7 +93,6 @@ export class MyNewShipmentComponent implements OnInit {
   
   ngOnInit(): void {
     this.subscription = this.data.currentAccountInfo.subscribe((message: Account) => this._accountInfo = message);
-    console.log(this._accountInfo);
     //this.shipmentForm.controls.accountCode.setValue(this._accountInfo.accountCode);
     //this.crudOperation.getAccountCodeList().subscribe((data : Account[]) => {console.log(data); this.accountCodeList = data; this.fillAccountCode(this.accountCodeList);});
   }
@@ -100,7 +100,7 @@ export class MyNewShipmentComponent implements OnInit {
   onSubmit()  {
     console.log(this.shipmentForm.value);
     let newShipment = new Shipment(this.shipmentForm.value);
-    this.crudOperation.createShipment(newShipment).subscribe((data) => {console.log(data);alert("Shipment is created successfully")}, (error: any)=> {}, () =>{});
+    this.crudOperation.createShipment(newShipment).subscribe((data) => {alert("Shipment is created successfully")}, (error: any)=> {alert("Shipment Creation is Failed");}, () =>{});
   }
 
   onCheckboxSelect() {
@@ -170,13 +170,13 @@ export class MyNewShipmentComponent implements OnInit {
   getSenderInfo() {
     let accountCode: string = "";
     accountCode = this.shipmentForm.controls['accountCode'].value;
-    this.crudOperation.getCustomerInfo(accountCode).subscribe((data) => {console.log(data); this._customerInfo= data; this.fillSenderInfo(this._customerInfo)});
+    this.crudOperation.getCustomerInfo(accountCode).subscribe((data) => {this._customerInfo= data; this.fillSenderInfo(this._customerInfo)});
   }
 
   getShipmentInfoByAltRefNo() {
 
     let altRefNo: string = "";
     altRefNo = this.shipmentForm.controls['altRefNo'].value;
-    this.crudOperation.getShipmentInfoByAltRefNo(altRefNo).subscribe((data) => {console.log(data); this._shipmentInfo= data; this.fillShipmentInfo(this._shipmentInfo)});
+    this.crudOperation.getShipmentInfoByAltRefNo(altRefNo).subscribe((data) => {this._shipmentInfo= data; this.fillShipmentInfo(this._shipmentInfo)});
   }
 }

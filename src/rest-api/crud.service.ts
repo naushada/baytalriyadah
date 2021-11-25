@@ -60,8 +60,8 @@ export class CrudService {
 
   }
 
-  getSingleShipment(awb:string, altRefNo: string, accountCode: string): Observable<Shipment> {
-    let param = `accountCode=${accountCode}&shipmentNo=${awb}&altRefNo=${altRefNo}`;
+  getSingleShipment(awb:string): Observable<Shipment> {
+    let param = `shipmentNo=${awb}`;
 
     const options = {params: new HttpParams({fromString: param})};
 
@@ -161,4 +161,62 @@ export class CrudService {
         retry(0),
         catchError(this.handleError));
   }
+
+  /************************************************************************************************** 
+   * 
+   * For Customer  
+   * 
+   **************************************************************************************************/
+  getSingleShipmentForCustomer(awb:string, altRefNo: string, accountCode: string): Observable<Shipment> {
+    let param = `accountCode=${accountCode}&shipmentNo=${awb}&altRefNo=${altRefNo}`;
+
+    const options = {params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/shipment';
+    return this.http.get<Shipment>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+  }
+
+  getShipmentListForCustomer(fromDate:string, toDate: string, accountCode: string): Observable<Shipment[]> {
+    let param = `fromDate=${fromDate}&toDate=${toDate}&accountCode=${accountCode}`;
+
+    const options = {params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/shipmentlist';
+    return this.http.get<Shipment[]>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+
+  }
+
+  getShipmentInfoByAltRefNoForCustomer(altRefNo: string, accountCode: string): Observable<Shipment> {
+
+    let param = `altRefNo=${altRefNo}&accountCode=${accountCode}`;
+
+    const options = {params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/altrefno';
+    return this.http.get<Shipment>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+  }
+
+  getShipmentInfoByShipmentNoForCustomer(awbNo: string, accountCode:string): Observable<Shipment> {
+
+    let param = `shipmentNo=${awbNo}&accountCode=${accountCode}`;
+
+    const options = {params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/awbno';
+    return this.http.get<Shipment>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+  }
+
+
 }

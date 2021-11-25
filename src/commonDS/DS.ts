@@ -116,23 +116,25 @@ export let Events:Array<string> =
 
 export class ActivityOnShipment {
   date: string;
-  status: string;
+  event: string;
   time: string;
   notes: string;
   connote: string;
   driver:string;
   updatedBy: string;
+  eventLocation: string;
 
   constructor()
   constructor(_ac: ActivityOnShipment)
   constructor(_ac?: ActivityOnShipment) {
     this.date = _ac && _ac.date || "";
-    this.status = _ac && _ac.status || "";
+    this.event = _ac && _ac.event || "";
     this.time = _ac && _ac.time || "";
     this.notes = _ac && _ac.notes || "";
     this.connote = _ac && _ac.connote || "";
     this.driver = _ac && _ac.driver || "";
     this.updatedBy = _ac && _ac.updatedBy || "";
+    this.eventLocation = _ac && _ac.eventLocation || "";
   }
 
 }
@@ -140,6 +142,7 @@ export class ActivityOnShipment {
 export class Shipment {
     activity: Array<ActivityOnShipment>;
     createdOn:Date;
+    createdBy: string;
     autogenerate: string;
     shipmentNo: string;
     altRefNo:string;
@@ -183,6 +186,7 @@ export class Shipment {
     constructor(_sp: Shipment ) {
         this.activity = _sp.activity;
         this.createdOn= _sp.createdOn;
+        this.createdBy = _sp.createdBy;
         this.referenceNo = _sp.referenceNo;
         this.autogenerate = _sp.autogenerate;
         this.shipmentNo = _sp.shipmentNo;
