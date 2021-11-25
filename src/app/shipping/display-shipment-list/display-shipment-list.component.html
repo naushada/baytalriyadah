@@ -1,6 +1,7 @@
 <table class="styled-table">
     <thead>
         <tr>
+            <th>Serial No.</th>
             <th>Shipment No</th>
             <th>ALT REF No</th>
             <th>Sender Reference No</th>
@@ -35,7 +36,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let s of shInfo">
+        <tr *ngFor="let s of shInfo; let idx = index;">
+            <td>{{idx}}</td>
             <td>{{s.shipmentNo}}</td>
             <td>{{s.altRefNo}}</td>
             <td>{{s.referenceNo}}</td>
