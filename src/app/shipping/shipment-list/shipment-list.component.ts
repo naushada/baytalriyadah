@@ -30,7 +30,7 @@ export class ShipmentListComponent implements OnInit {
   onSubmit() {
     
     console.log(this.shipmentListForm.value);
-    let fromDate: string = formatDate(this.shipmentListForm.controls['fromDate'].value, 'dd/MM/yyyy/', 'en');
+    let fromDate: string = formatDate(this.shipmentListForm.controls['fromDate'].value, 'dd/MM/yyyy', 'en');
     //let fromDate: string = this.shipmentListForm.controls['fromDate'].value;
     let toDate: string = formatDate(this.shipmentListForm.controls['toDate'].value, 'dd/MM/yyyy', 'en');
 

@@ -261,14 +261,14 @@ export class Account {
       tradingLicense:string;
       bankAccountNo:string;
       ibnNo:string;
-      autogenerate: string;
+      autogenerate: boolean;
       phone: string;
       recvCountryTaxId: string;
 
       constructor();
       constructor(_ac: Account);
       constructor(_ac?: Account) {
-        this.autogenerate = "true";
+        this.autogenerate = _ac && _ac.autogenerate || false;
         this.accountCode = _ac && _ac.accountCode || "";
         this.accountPassword = _ac && _ac.accountPassword || "";
         this.companyName = _ac && _ac.companyName || "";

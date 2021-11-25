@@ -24,6 +24,7 @@ export class MyNewShipmentComponent implements OnInit {
   _customerInfo!: SenderInformation;
   _shipmentInfo!: Shipment;
 
+  accountCodeList: Account[] = [];
 
   /* These are the Global Properties defined in DS.ts file. */
   CountryNames = CountryName;
@@ -81,17 +82,25 @@ export class MyNewShipmentComponent implements OnInit {
   });
 
   }
+ 
+  fillAccountCode(_ac: Account[]) {
+    for(let idx: number = 0; idx < _ac.length; ++idx) {
+      //this.shipmentForm.controls['accountCode'].setValue(_ac[idx].accountCode);
+      console.log(_ac[idx].accountCode);
+    }
+  }
   
   ngOnInit(): void {
     this.subscription = this.data.currentAccountInfo.subscribe((message: Account) => this._accountInfo = message);
     console.log(this._accountInfo);
     //this.shipmentForm.controls.accountCode.setValue(this._accountInfo.accountCode);
+    //this.crudOperation.getAccountCodeList().subscribe((data : Account[]) => {console.log(data); this.accountCodeList = data; this.fillAccountCode(this.accountCodeList);});
   }
 
   onSubmit()  {
     console.log(this.shipmentForm.value);
     let newShipment = new Shipment(this.shipmentForm.value);
-    this.crudOperation.createShipment(newShipment).subscribe((data) => {console.log(data);});
+    this.crudOperation.createShipment(newShipment).subscribe((data) => {console.log(data);alert("Shipment is created successfully")}, (error: any)=> {}, () =>{});
   }
 
   onCheckboxSelect() {

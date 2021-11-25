@@ -16,8 +16,8 @@ export class CrudService {
     })
   } 
 
-  //apiURL = 'http://localhost:8080';
-  apiURL = 'https://logistics-sw.herokuapp.com'
+  apiURL = 'http://localhost:8080';
+  //apiURL = 'https://logistics-sw.herokuapp.com'
 
   constructor(private http: HttpClient) { }
 
@@ -125,6 +125,16 @@ export class CrudService {
         retry(0),
         catchError(this.handleError));
   }
+
+  getAccountCodeList(): Observable<Account[]> {
+
+    let uri: string = this.apiURL + '/api/accountlist';
+    return this.http.get<Account[]>(uri)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+  }
+
 
   getShipmentInfoByAltRefNo(altRefNo: string): Observable<Shipment> {
 

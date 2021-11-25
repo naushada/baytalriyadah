@@ -22,6 +22,7 @@ export class CreateAccountComponent implements OnInit {
   constructor(private fb: FormBuilder, private httpc: HttpClient, private crudOperation: CrudService) { 
     this.accountForm = this.fb.group({
       accountCode:'',
+      autogenerate:false,
       accountPassword:'password',
       companyName:'',
       role:Role[0],
@@ -47,7 +48,17 @@ export class CreateAccountComponent implements OnInit {
 
   onSubmit() {
     let newAccount = new Account(this.accountForm.value);
-    this.crudOperation.createAccount(newAccount).subscribe((data) => {console.log(data);});
+    this.crudOperation.createAccount(newAccount).subscribe((data) => {console.log(data);}, (error: any) => {}, () => {alert("Account is created successfully");});
 
+  }
+
+  onCheckboxSelect() {
+    let status: boolean = false;
+    status = this.accountForm.controls['autogenerate'].value;
+    if(true == status) {
+      this.accountForm.controls['accountCode'].setValue("");
+    } else {
+      this.accountForm.controls['accountCode'].setValue("[System Generated]");
+    }
   }
 }
