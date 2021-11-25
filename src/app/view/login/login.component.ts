@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
                                   this.router.navigate(["/bayt"]);
                                 } else {
                                   //this.router.navigate(["shipping/shipping-main/ShippingMainComponent"]);
+                                  this.router.navigate(["/bayt"]);
                                 }
                               },
                               error => {
