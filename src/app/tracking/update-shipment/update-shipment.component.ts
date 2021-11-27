@@ -55,8 +55,8 @@ export class UpdateShipmentComponent implements OnInit {
     activity._eventLocation = this.updateShipmentStatusForm.controls['eventLocation'].value;
 
     console.log(activity);
-    //let newShipment = new Shipment(this.updateShipmentStatusForm.value);
-    //console.log(JSON.stringify(newShipment));
-    this.crudOperation.updateShipment(awbNo, activity).subscribe((data) => {console.log(data);});
+    this.crudOperation.updateShipment(awbNo, activity).subscribe((data) => {alert("Sipment Status is Updated Successfully");},
+              (error) => {alert("Shipment Status Update is Failed")},
+              () => {});
   }
 }

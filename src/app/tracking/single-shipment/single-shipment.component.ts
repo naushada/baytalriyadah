@@ -66,7 +66,7 @@ export class SingleShipmentComponent implements OnInit {
       
     } else {
       let acCode: string = this._accountInfo.accountCode;
-      if(awbNo.startsWith("09457") == true) {
+      if(awbNo.startsWith("05497") == true) {
         this.crudOperation.getShipmentInfoByShipmentNoForCustomer(awbNo, acCode) 
                               .subscribe(
                               (rsp : Shipment) => {
