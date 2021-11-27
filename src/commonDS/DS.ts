@@ -32,7 +32,6 @@ export let ServiceType:Array<string>=
 "Heavy Shipment"
 ];
 
-export let ShipmentStatus:Array<string> = [];
 export let Role:Array<string> = 
 [
 "Employee",
@@ -114,51 +113,73 @@ export let Events:Array<string> =
 "User Initiated Shipment Cancellation"
 ];
 
-export class ActivityOnShipment {
+export class ShipmentStatus {
   date: string;
   event: string;
   time: string;
   notes: string;
-  connote: string;
   driver:string;
   updatedBy: string;
   eventLocation: string;
 
   constructor()
-  constructor(_ac: ActivityOnShipment)
-  constructor(_ac?: ActivityOnShipment) {
+  constructor(_ac: ShipmentStatus)
+  constructor(_ac?: ShipmentStatus) {
     this.date = _ac && _ac.date || "";
     this.event = _ac && _ac.event || "";
     this.time = _ac && _ac.time || "";
     this.notes = _ac && _ac.notes || "";
-    this.connote = _ac && _ac.connote || "";
     this.driver = _ac && _ac.driver || "";
     this.updatedBy = _ac && _ac.updatedBy || "";
     this.eventLocation = _ac && _ac.eventLocation || "";
   }
 
+  set _date(d: string) {
+    this.date = d;
+  }
+
+  set _evt(d: string) {
+    this.event = d;
+  }
+  set _time(d: string) {
+    this.time = d;
+  }
+  set _notes(d: string) {
+    this.notes = d;
+  }
+  set _driver(d: string) {
+    this.driver = d;
+  }
+  set _updatedBy(d: string) {
+    this.updatedBy = d;
+  }
+  set _eventLocation(d: string) {
+    this.eventLocation = d;
+  }
 }
 
 export class Shipment {
-    activity: Array<ActivityOnShipment>;
+    activity: Array<ShipmentStatus>;
     createdOn:Date;
     createdBy: string;
     autogenerate: string;
     shipmentNo: string;
     altRefNo:string;
+
     /*! Sender Information */
-    accountCode:string; /*! same as accountCode */
-    referenceNo:string; /*! same as accountCode */
+    referenceNo:string;
+    accountCode:string;
     name:string;
-    country:string;
-    address:string;
+    country: string;
+    address: string;
     city:string;
-    state:string;
+    state: string;
     postalCode:string;
     contact:string;
     phone:string;
     email:string;
     recvCountryTaxId:string;
+
     /*! Shipment Information */
     service: string;
     noOfItems: string;
@@ -170,6 +191,7 @@ export class Shipment {
     cubicWeight:string;
     codAmount:string;
     currency:string;
+
 
     /*! Receiver Information */
     sku: string;
@@ -184,70 +206,54 @@ export class Shipment {
     receiverEmail: string;
 
     constructor(_sp: Shipment ) {
-        this.activity = _sp.activity;
-        this.createdOn= _sp.createdOn;
-        this.createdBy = _sp.createdBy;
-        this.referenceNo = _sp.referenceNo;
-        this.autogenerate = _sp.autogenerate;
-        this.shipmentNo = _sp.shipmentNo;
-        this.altRefNo = _sp.altRefNo;
-        /*! Sender Information */
-        this.accountCode = _sp.accountCode;
-        this.name = _sp.name;
-        this.country = _sp.country;
-        this.address = _sp.address;
-        this.city = _sp.city;
-        this.state = _sp.state;
-        this.postalCode = _sp.postalCode;
-        this.contact = _sp.contact;
-        this.phone = _sp.phone;
-        this.email = _sp.email;
-        this.recvCountryTaxId = _sp.recvCountryTaxId;
-        /*! Shipment Information */
-        this.service = _sp.service;
-        this.noOfItems = _sp.noOfItems;
-        this.description = _sp.description;
-        this.goodsValue = _sp.goodsValue;
-        this.customValue = _sp.customValue;
-        this.weight = _sp.weight;
-        this.weightUnit = _sp.weightUnit;
-        this.cubicWeight = _sp.cubicWeight;
-        this.codAmount = _sp.codAmount;
-        this.currency = _sp.currency;
 
-        /*! Receiver Information */
-        this.sku = _sp.sku;
-        this.receiverName = _sp.receiverName;
-        this.receiverCountry = _sp.receiverCountry;
-        this.receiverAddress = _sp.receiverAddress;
-        this.receiverCity = _sp.receiverCity;
-        this.receiverState = _sp.receiverState;
-        this.receiverPostalCode = _sp.receiverPostalCode;
-        this.receiverContact = _sp.receiverContact;
-        this.receiverPhone = _sp.receiverPhone;
-        this.receiverEmail = _sp.receiverEmail;
-      }
-}
+    this.activity = _sp.activity;
+    this.createdOn= _sp.createdOn;
+    this.createdBy = _sp.createdBy;
+    this.shipmentNo = _sp.shipmentNo;
+    this.autogenerate = _sp.autogenerate;
+    this.altRefNo = _sp.altRefNo;
+    /*! Sender Information */
+    this.referenceNo = _sp.referenceNo;
+    this.accountCode = _sp.accountCode;
+    this.name = _sp.name;
+    this.country = _sp.country;
+    this.address = _sp.address;
+    this.city = _sp.city;
+    this.state = _sp.state;
+    this.postalCode = _sp.postalCode;
+    this.contact = _sp.contact;
+    this.phone = _sp.phone;
+    this.email = _sp.email;
+    this.recvCountryTaxId = _sp.recvCountryTaxId;
 
-export class ShipmentList {
-  m_length: number;
-  m_elm: Shipment[];
-  constructor(_sl?: ShipmentList) {
-    this.m_length = _sl && _sl.m_length || 0;
-    this.m_elm = _sl && _sl.m_elm || [];
-  }
-
-  public set_length(ln: number): void {
-    this.m_length = ln;
-  }
-
-  public set_elm(_sh: Shipment[]): void {
-    this.m_elm = _sh;
+    /*! Shipment Information */
+    this.service = _sp.service;
+    this.noOfItems = _sp.noOfItems;
+    this.description = _sp.description;
+    this.goodsValue = _sp.goodsValue;
+    this.customValue = _sp.customValue;
+    this.weight = _sp.weight;
+    this.weightUnit = _sp.weightUnit;
+    this.cubicWeight = _sp.cubicWeight;
+    this.codAmount = _sp.codAmount;
+    this.currency = _sp.currency;
+      /*! Receiver Information */
+    this.sku = _sp.sku;
+    this.receiverName = _sp.receiverName;
+    this.receiverCountry = _sp.receiverCountry;
+    this.receiverAddress = _sp.receiverAddress;
+    this.receiverCity = _sp.receiverCity;
+    this.receiverState = _sp.receiverState;
+    this.receiverPostalCode = _sp.receiverPostalCode;
+    this.receiverContact = _sp.receiverContact;
+    this.receiverPhone = _sp.receiverPhone;
+    this.receiverEmail = _sp.receiverEmail;
   }
 }
-
 export class Account {
       accountCode:string;
+      autogenerate: boolean;
       accountPassword:string;
       companyName:string;
       role: string;
@@ -265,9 +271,6 @@ export class Account {
       tradingLicense:string;
       bankAccountNo:string;
       ibnNo:string;
-      autogenerate: boolean;
-      phone: string;
-      recvCountryTaxId: string;
 
       constructor();
       constructor(_ac: Account);
@@ -284,9 +287,7 @@ export class Account {
         this.postalCode = _ac && _ac.postalCode || "";
         this.country = _ac && _ac.country || "";
         this.contact = _ac && _ac.contact || "";
-        this.phone = _ac && _ac.phone || "";
         this.email = _ac && _ac.email || "";
-        this.recvCountryTaxId = _ac && _ac.recvCountryTaxId || "";
         this.quotedAmount = _ac && _ac.quotedAmount || "";
         this.currency = _ac && _ac.currency || "";
         this.vat = _ac && _ac.vat || "";
@@ -294,52 +295,183 @@ export class Account {
         this.bankAccountNo = _ac && _ac.bankAccountNo || "";
         this.ibnNo = _ac && _ac.ibnNo || "";
       }
-      
 }
 
-
 export class SenderInformation {
+  /*! Sender Information */
+  m_referenceNo:string;
+  aInfo: Account;
+  m_recvCountryTaxId:string;
+  m_phone:string;
+   
+  constructor(_sp: Account) {
     /*! Sender Information */
-    accountCode:string; /*! same as accountCode */
-    referenceNo:string; /*! same as accountCode */
-    name:string;
-    country:string;
-    address:string;
-    city:string;
-    state:string;
-    postalCode:string;
-    contact:string;
-    phone:string;
-    email:string;
-    recvCountryTaxId:string;
-    companyName: string;
-    quotedAmount:string;
-    currency:string;
-    vat:string;
-    tradingLicense:string;
-    bankAccountNo:string;
-    ibnNo:string;
-    
-    constructor(_sp: SenderInformation ) {
-        /*! Sender Information */
-        this.companyName = _sp.companyName;
-        this.referenceNo = _sp.referenceNo;
-        this.accountCode = _sp.accountCode;
-        this.name = _sp.name;
-        this.country = _sp.country;
-        this.address = _sp.address;
-        this.city = _sp.city;
-        this.state = _sp.state;
-        this.postalCode = _sp.postalCode;
-        this.contact = _sp.contact;
-        this.phone = _sp.phone;
-        this.email = _sp.email;
-        this.recvCountryTaxId = _sp.recvCountryTaxId;
-        this.quotedAmount = _sp.quotedAmount;
-        this.currency = _sp.currency;
-        this.vat = _sp.vat;
-        this.tradingLicense = _sp.tradingLicense;
-        this.bankAccountNo = _sp.bankAccountNo;
-        this.ibnNo = _sp.ibnNo;
-      }
+    this.aInfo = _sp;
+    this.m_referenceNo = "";
+    this.m_recvCountryTaxId = "";
+    this.m_phone = "";
+  }
+
+  get referenceNo(): string {
+    return(this.m_referenceNo);
+  }
+
+  set referenceNo(refNo: string) {
+    this.m_referenceNo = refNo;
+  }
+
+  get recvCountryTaxId(): string {
+    return(this.m_recvCountryTaxId);
+  }
+
+  set recvCountryTaxId(recvCnt: string) {
+    this.m_recvCountryTaxId = recvCnt;
+  }
+
+  get phone(): string {
+    return(this.m_phone);
+  }
+
+  set phone(p: string) {
+    this.m_phone = p;
+  }
+
+}
+
+export class ShipmentInformation {
+  /*! Shipment Information */
+  service: string;
+  noOfItems: string;
+  description: string;
+  goodsValue:string;
+  customValue:string;
+  weight:string;
+  weightUnit:string;
+  cubicWeight:string;
+  codAmount:string;
+  currency:string;
+
+  constructor()
+  constructor(si: ShipmentInformation)
+  constructor(si?: ShipmentInformation) {
+    /*! Shipment Information */
+    this.service = si && si.service || "";
+    this.noOfItems = si && si.noOfItems || "";
+    this.description = si && si.description || "";
+    this.goodsValue = si && si.goodsValue || "";
+    this.customValue = si && si.customValue ||"";
+    this.weight = si && si.weight || "";
+    this.weightUnit = si && si.weightUnit || "";
+    this.cubicWeight = si && si.cubicWeight || "";
+    this.codAmount = si && si.codAmount || "";
+    this.currency = si && si.currency || "";
+
+  }
+}
+
+export class ReceiverInformation {
+    sku: string;
+    receiverName:string;
+    receiverCountry:string;
+    receiverAddress:string;
+    receiverCity:string;
+    receiverState:string
+    receiverPostalCode:string;
+    receiverContact:string;
+    receiverPhone:string;
+    receiverEmail: string;
+
+  constructor()
+  constructor(ri: ReceiverInformation)
+  constructor(ri?: ReceiverInformation) {
+    /*! Receiver Information */
+    this.sku = ri && ri.sku || "";
+    this.receiverName = ri && ri.receiverName || "";
+    this.receiverCountry = ri && ri.receiverCountry || "";
+    this.receiverAddress = ri && ri.receiverAddress || "";
+    this.receiverCity = ri && ri.receiverCity || "";
+    this.receiverState = ri && ri.receiverState || "";
+    this.receiverPostalCode = ri && ri.receiverPostalCode || "";
+    this.receiverContact = ri && ri.receiverContact || "";
+    this.receiverPhone = ri && ri.receiverPhone || "";
+    this.receiverEmail = ri && ri.receiverEmail || "";
+  }
+}
+
+export class ShipmentList {
+  m_length: number;
+  m_shipmentArray: Array<Shipment>;
+
+  constructor(data: Array<Shipment>, len: number) {
+    this.m_length = len;
+    this.m_shipmentArray = data;
+  }
+
+  set length(ln: number) {
+    this.m_length = ln;
+  }
+
+  get length(): number {
+    return(this.m_length);
+  }
+
+  push(_sh: Shipment): void {
+    this.m_shipmentArray.push(_sh);
+  }
+
+  pop() {
+    return(this.m_shipmentArray.pop());
+  }
+}
+
+export class ShipmentStatusList {
+  m_length: number;
+  m_shipmentStatusArray: Array<ShipmentStatus>;
+
+  constructor() {
+    this.m_length = 0;
+    this.m_shipmentStatusArray = new Array<ShipmentStatus>();
+  }
+
+  set length(ln: number) {
+    this.m_length = ln;
+  }
+
+  get length(): number {
+    return(this.m_length);
+  }
+
+  push(_ss: ShipmentStatus): void {
+    this.m_shipmentStatusArray.push(_ss);
+  }
+
+  pop() {
+    return(this.m_shipmentStatusArray.pop());
+  }
+}
+
+export class AccountList {
+    m_accountArray: Array<Account>;
+    m_length: number;
+
+    constructor() {
+      this.m_accountArray = new Array<Account>();
+      this.m_length = 0;
+    }
+
+    push(aInfo: Account): void {
+      this.m_accountArray.push(aInfo);
+    }
+
+    pop() {
+      return(this.m_accountArray.pop());
+    }
+
+    get length(): number {
+      return(this.m_accountArray.length);
+    }
+
+    set length(len: number) {
+      this.length = len;
+    }
 }

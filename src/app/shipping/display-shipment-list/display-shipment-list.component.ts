@@ -15,14 +15,16 @@ export class DisplayShipmentListComponent implements OnInit {
 
   shInfo: any = [];
   constructor(private data: DataService) { 
-    this.subscription = this.data.currentShipmentListInfo.subscribe((message: ShipmentList) => {this._shipmentListInfo = message;});
+    this.subscription = this.data.currentShipmentListInfo.subscribe(
+          (message: ShipmentList) => {this._shipmentListInfo = message;});
   }
 
   ngOnInit(): void {
-
-    for(let idx = 0; idx < this._shipmentListInfo.m_elm.length; ++idx) {
+    /*
+    for(let idx = 0; idx < this._shipmentListInfo.length; ++idx) {
       this.shInfo.push(this._shipmentListInfo.m_elm[idx]);
     }
+    */
   }
 
 }

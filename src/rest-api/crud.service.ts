@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { Shipment, Account, SenderInformation } from 'src/commonDS/DS';
+import { Shipment, Account, SenderInformation, ShipmentStatus } from 'src/commonDS/DS';
 import { map, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -16,8 +16,8 @@ export class CrudService {
     })
   } 
 
-  //apiURL = 'http://localhost:8080';
-  apiURL = 'https://logistics-sw.herokuapp.com'
+  apiURL = 'http://localhost:8080';
+  //apiURL = 'https://logistics-sw.herokuapp.com'
 
   constructor(private http: HttpClient) { }
 
@@ -44,7 +44,22 @@ export class CrudService {
     );
   }
 
-  updateShipment(awbNo: string, accountCode: string, data: string) : Observable<any> {
+  updateShipment(awbNo: string, data: ShipmentStatus) : Observable<any> {
+    let param = `shipmentNo=${awbNo}`;
+    const options = {params: new HttpParams({fromString: param}),
+                     headers: new HttpHeaders({
+                              'Content-Type': 'application/json'
+                      })
+                    };
+    let uri: string = this.apiURL + '/api/shipment';
+    return this.http.put<any>(uri, JSON.stringify(data), options)
+    .pipe(
+      retry(0),
+      catchError(this.handleError)
+    );
+  }
+
+  updateShipmentCustomer(awbNo: string, accountCode: string, data: ShipmentStatus) : Observable<any> {
     let param = `accountCode=${accountCode}&shipmentNo=${awbNo}`;
     const options = {params: new HttpParams({fromString: param}),
                      headers: new HttpHeaders({
@@ -59,7 +74,6 @@ export class CrudService {
     );
 
   }
-
   getSingleShipment(awb:string): Observable<Shipment> {
     let param = `shipmentNo=${awb}`;
 
@@ -113,14 +127,14 @@ export class CrudService {
 
   }
 
-  getCustomerInfo(accountCode: string): Observable<SenderInformation> {
+  getCustomerInfo(accountCode: string): Observable<Account> {
 
     let param = `accountCode=${accountCode}`;
 
     const options = {params: new HttpParams({fromString: param})};
 
     let uri: string = this.apiURL + '/api/account';
-    return this.http.get<SenderInformation>(uri, options)
+    return this.http.get<Account>(uri, options)
       .pipe(
         retry(0),
         catchError(this.handleError));
@@ -140,7 +154,8 @@ export class CrudService {
 
     let param = `altRefNo=${altRefNo}`;
 
-    const options = {params: new HttpParams({fromString: param})};
+    const options = {params: new HttpParams({fromString: param}),
+                    };
 
     let uri: string = this.apiURL + '/api/altrefno';
     return this.http.get<Shipment>(uri, options)
@@ -153,7 +168,7 @@ export class CrudService {
 
     let param = `shipmentNo=${awbNo}`;
 
-    const options = {params: new HttpParams({fromString: param})};
+    const options = { params: new HttpParams({fromString: param})};
 
     let uri: string = this.apiURL + '/api/awbno';
     return this.http.get<Shipment>(uri, options)

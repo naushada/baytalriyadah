@@ -44,7 +44,7 @@ export class DataService {
   setShipmentListInfo(_shipmentListInfo: ShipmentList) {
     this.shipmentListInfoSource.next(_shipmentListInfo);
     console.log("Naushad " + JSON.stringify(_shipmentListInfo));
-    this.shipmentListInfo = new ShipmentList(_shipmentListInfo);
+    this.shipmentListInfo = new ShipmentList(_shipmentListInfo.m_shipmentArray, _shipmentListInfo.m_length);
     console.log(this.shipmentListInfo);
   }
 }

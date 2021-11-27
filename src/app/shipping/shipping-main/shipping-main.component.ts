@@ -17,7 +17,8 @@ export class ShippingMainComponent implements OnInit, OnDestroy {
   _accountInfo!:Account;
   subscription!: Subscription;
 
-  constructor(private data: DataService) { }
+  constructor(private data: DataService) { 
+  }
 
   ngOnInit() {
     this.navOptionSelected = "";

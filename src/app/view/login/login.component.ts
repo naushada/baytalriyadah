@@ -28,19 +28,24 @@ export class LoginComponent implements OnInit {
 
     this.crudOperation.onLogin(this.loginForm.controls['userId'].value, 
                               this.loginForm.controls['password'].value).subscribe(
-                              (rsp : Account) => {console.log(rsp); this.accountInfo = new Account(rsp); console.log(this.accountInfo);
-                                this.sharedAccountInfo.setAccountInfo(this.accountInfo);
-                                if (this.accountInfo.role == "Employee") {
-                                  console.log("I am employee");
-                                  this.router.navigate(["/bayt"]);
+                              (rsp : Account) => {
+                                if(rsp) {
+                                  console.log(rsp); this.accountInfo = new Account(rsp); console.log(this.accountInfo);
+                                  this.sharedAccountInfo.setAccountInfo(this.accountInfo);
+                                  if (this.accountInfo.role == "Employee") {
+                                    console.log("I am employee");
+                                    this.router.navigate(["/bayt"]);
+                                  } else {
+                                    this.router.navigate(["/guest"]);
+                                  }
                                 } else {
-                                  //this.router.navigate(["shipping/shipping-main/ShippingMainComponent"]);
-                                  this.router.navigate(["/bayt"]);
+                                  alert("Invalid Credntials")
                                 }
                               },
-                              error => {
+                              (error ) => {
                                 console.log("Error retrieving expenses");
                                 console.error(error);
-                              });
+                              },
+                              () => {});
   }
 }

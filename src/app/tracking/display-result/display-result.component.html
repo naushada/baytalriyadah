@@ -1,24 +1,26 @@
 <table class="styled-table">
     <thead>
         <tr>
-            <th>Serial No.</th>
             <th>Date</th>
             <th>Time</th>
-            <th>Status</th>
-            <th>Updated By</th>
-            <th>Notes </th>
             <th>Location</th>
+            <th>Activity</th>
+            <th>Notes </th>
+            <th>Entered By</th>
+            <th>Received (UTC)</th>
+            <th>Sent (UTC)</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let item of _shipmentInfo.activity; let idx = index;">
-            <td>{{idx}}</td>
             <td>{{item.date}}</td>
             <td>{{item.time}}</td>
-            <td>{{item.event}}</td>
-            <td>{{item.updatedBy}}</td>
-            <td>{{item.notes}}</td>
             <td>{{item.eventLocation}}</td>
+            <td>{{item.event}}</td>
+            <td>{{item.notes}}</td>
+            <td>{{item.updatedBy}}</td>
+            <td>To Be Updated</td>
+            <td>To Be Updated</td>
         </tr>
         
         <!-- and so on... -->

@@ -1,1 +1,122 @@
-<p>basic-view works!</p>
+<div class="container">
+    <app-topbar class="item topbar bg-color-blue"></app-topbar>
+
+    <div class="item menubar bg-color-indigo">
+        <div class="menubar-container">
+            <div class="elm1"> <input type="button" class="btn bg-color-indigo text-color-white" value="Shipping" (click)="menuOptionSelected = 'shipping'"> </div>
+            <div> <input type="button" class="btn bg-color-indigo text-color-white" value="Tracking" (click)="menuOptionSelected = 'tracking'"></div>
+            <div> <input type="button" class="btn bg-color-indigo text-color-white" value="Reporting" (click)="menuOptionSelected = 'reporting'"></div>
+            <div> <input type="button" class="btn bg-color-indigo text-color-white" value="Contact Us" (click)="menuOptionSelected = 'contactUs'"></div>
+        </div>
+    </div>
+
+    <!--
+        ########################################################################################
+        #
+        #   Shipping navBar & its respective Component.
+        #
+        #
+        ########################################################################################
+    -->
+    <div class="item navbar" *ngIf="menuOptionSelected === 'shipping'">
+        <div class="navbar-item">
+            <div><button (click)="navOptionSelected='createShipment'">Create shipment</button></div>
+            <div><button (click)="navOptionSelected='deleteShipment'">Delete Shipment</button></div>
+            <div><button (click)="navOptionSelected='shipmentList'">Shipment List</button></div>
+            <div><button (click)="navOptionSelected='shipmentBatchUpload'">Shipment Batch Upload</button></div>
+            <div><button (click)="navOptionSelected='updateShipment'">Update Shipment</button></div>
+            <div><button (click)="navOptionSelected='excelTemplate'">Download Template Excel (xls) </button></div>
+        </div>
+    </div>
+
+    <app-my-new-shipment class="item content" *ngIf="navOptionSelected === 'createShipment'"></app-my-new-shipment> 
+    <app-create-thirdrdparty-shipment class="item content" *ngIf="navOptionSelected === 'thirdPartyCreateShipment'"></app-create-thirdrdparty-shipment>
+    <app-shipment-list class="item content" *ngIf="navOptionSelected === 'shipmentList'"></app-shipment-list>
+    <app-shipment-batch-upload class="item content" *ngIf="navOptionSelected ==='shipmentBatchUpload'"></app-shipment-batch-upload>
+    <app-delete-thirdparty-shipment class="item content" *ngIf="navOptionSelected === 'thirdPartyDeleteShipment'"></app-delete-thirdparty-shipment>
+    <app-delete-shipment class="item content" *ngIf="navOptionSelected === 'deleteShipment'"></app-delete-shipment>
+    <!--<app-footer class="item footer bg-color-lime"></app-footer>-->
+    
+    <!--
+        ########################################################################################
+        #
+        #   Tracking navBar & its respective Component.
+        #
+        #
+        ########################################################################################
+    -->
+
+    <div class="item navbar" *ngIf="menuOptionSelected === 'tracking'">
+        <div class="navbar-item">
+            <div><button (click)="navOptionSelected='singleShipment'">Single shipment</button></div>
+            <div><button (click)="navOptionSelected='multipleShipment'">Multiple Shipment</button></div>
+        </div>
+    </div>
+
+    <app-single-shipment class="item content" *ngIf="navOptionSelected === 'singleShipment'"></app-single-shipment> 
+    <app-multiple-shipment class="item content" *ngIf="navOptionSelected === 'multipleShipment'"></app-multiple-shipment> 
+    <app-update-shipment class="item content" *ngIf="navOptionSelected === 'updateShipmentStatus'"></app-update-shipment> 
+    <!--
+        ########################################################################################
+        #
+        #   Reporting navBar & its respective Component.
+        #
+        #
+        ########################################################################################
+    -->
+    <div class="item navbar" *ngIf="menuOptionSelected === 'reporting'">
+        <div class="navbar-item">
+            <div><button (click)="navOptionSelected='detailedReporting'">Detailed Report</button></div>
+        </div>
+    </div>
+
+    <app-detailed-report class="item content" *ngIf="navOptionSelected === 'detailedReporting'"></app-detailed-report> 
+
+
+    <!--
+        ########################################################################################
+        #
+        #   Accounting navBar & its respective Component.
+        #
+        #
+        ########################################################################################
+    -->
+
+    <div class="item navbar" *ngIf="menuOptionSelected === 'accounting'">
+        <div class="navbar-item">
+            <div><button (click)="navOptionSelected='createAccount'">Create Account</button></div>
+            <div><button (click)="navOptionSelected='generateInvoice'">Generate Invoice</button></div>
+            <!--<div><button (click)="navOptionSelected='postDelivery'">Successfully Delivered</button></div>-->
+            <div><button (click)="navOptionSelected='shipmentDeliveredReporting'">Shipment Delivered Reporting</button></div>
+        </div>
+    </div>
+
+    <app-create-account class="item content" *ngIf="navOptionSelected === 'createAccount'"></app-create-account> 
+    <app-create-invoice class="item content" *ngIf="navOptionSelected === 'generateInvoice'"></app-create-invoice> 
+    <!--<app-successful-delivery class="item content" *ngIf="navOptionSelected === 'postDelivery'"></app-successful-delivery> -->
+    <app-delivered-reporting class="item content" *ngIf="navOptionSelected === 'shipmentDeliveredReporting'"></app-delivered-reporting> 
+
+
+    <!--
+        ########################################################################################
+        #
+        #   Inventory navBar & its respective Component.
+        #
+        #
+        ########################################################################################
+    -->
+
+    <div class="item navbar" *ngIf="menuOptionSelected === 'inventory'">
+        <div class="navbar-item">
+            <div><button (click)="navOptionSelected='createInventory'">Add Goods To Inventory</button></div>
+            <div><button (click)="navOptionSelected='outFromInventory'">Goods Out From Inventory</button></div>
+        </div>
+    </div>
+
+    <app-create-inventory class="item content" *ngIf="navOptionSelected === 'createInventory'"></app-create-inventory> 
+    <app-out-from-inventory class="item content" *ngIf="navOptionSelected === 'outFromInventory'"></app-out-from-inventory> 
+
+
+
+</div>
+ 

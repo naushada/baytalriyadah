@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import {formatDate} from '@angular/common';
 import { DataService } from 'src/app/data.service';
 import { CrudService } from 'src/rest-api/crud.service';
-import { Account, CountryName, Shipment } from '../../../commonDS/DS'
+import { Account, CountryName, Shipment, ShipmentStatus } from '../../../commonDS/DS'
 import { Currency, ServiceType, Events, Role} from '../../../commonDS/DS'
 
 @Component({
@@ -28,14 +29,14 @@ export class UpdateShipmentComponent implements OnInit {
 
     this.subscription = this.data.currentAccountInfo.subscribe((message: Account) => this._accountInfo = message);
     this.updateShipmentStatusForm = this.fb.group({
-      event:this.EventList[0],
       date:'',
+      event:this.EventList[0],
       time:'',
       notes:'',
-      connote: '',
-      eventLocation:'',
       driverName:'',
-      updatedBy: this._accountInfo.name
+      updatedBy: this._accountInfo.name,
+      eventLocation:'',
+      connote:''
     });
   }
 
@@ -43,10 +44,19 @@ export class UpdateShipmentComponent implements OnInit {
   }
 
   onSubmit() {
-    let awbNo: string = this.updateShipmentStatusForm.controls['connote'].value ;
-    console.log(this.updateShipmentStatusForm.value);
+    let awbNo: string = this.updateShipmentStatusForm.controls['connote'].value;
+    let activity: ShipmentStatus = new ShipmentStatus();
+    activity._date = formatDate(this.updateShipmentStatusForm.controls['date'].value, 'dd/MM/yyy', 'en');
+    activity._evt = this.updateShipmentStatusForm.controls['event'].value;
+    activity._time = this.updateShipmentStatusForm.controls['time'].value;
+    activity._notes = this.updateShipmentStatusForm.controls['notes'].value;
+    activity._driver = this.updateShipmentStatusForm.controls['driverName'].value;
+    activity._updatedBy = this.updateShipmentStatusForm.controls['updatedBy'].value;
+    activity._eventLocation = this.updateShipmentStatusForm.controls['eventLocation'].value;
+
+    console.log(activity);
     //let newShipment = new Shipment(this.updateShipmentStatusForm.value);
     //console.log(JSON.stringify(newShipment));
-    this.crudOperation.updateShipment(awbNo, this._accountInfo.accountCode, this.updateShipmentStatusForm.value).subscribe((data) => {console.log(data);});
+    this.crudOperation.updateShipment(awbNo, activity).subscribe((data) => {console.log(data);});
   }
 }

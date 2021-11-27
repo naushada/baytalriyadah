@@ -15,7 +15,7 @@ export class DisplayResultComponent implements OnInit {
 
   constructor(private data: DataService) { 
 
-    this.subscription = this.data.currentShipmentInfo.subscribe((_shInfo: Shipment) => this._shipmentInfo = _shInfo);
+    this.subscription = this.data.currentShipmentInfo.subscribe((_shInfo: Shipment) => this._shipmentInfo = new Shipment(_shInfo));
   }
 
   ngOnInit(): void {

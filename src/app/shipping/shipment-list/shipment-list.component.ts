@@ -15,6 +15,7 @@ export class ShipmentListComponent implements OnInit {
 
   shipmentListForm: FormGroup;
   _shipmentList!: ShipmentList;
+
   //_shipmentList!: Shipment[];
   m_displayList: string = "";
   _accountInfo!:Account;
@@ -39,18 +40,36 @@ export class ShipmentListComponent implements OnInit {
     let who: string =this._accountInfo.role;
     if(who == "Employee") {
       this.crudOperation.getShipmentList(fromDate, toDate).subscribe((data: Shipment[]) => {
-          this._shipmentList = new ShipmentList(); this._shipmentList.set_elm(data); this._shipmentList.set_length(length);
+          //this._shipmentList = new ShipmentList(); 
+          /** invoke the setter of ShipmentList class  */
+          this._shipmentList = new ShipmentList(data, data.length);
+
+          /*
+          for(let idx: number = 0; idx < data.length; ++idx) {
+            this._shipmentList.push(data[idx]);
+          }
+          */
+          //this._shipmentList.set_elm(data); this._shipmentList.set_length(length);
           /*! Make shipmentList available to other component who subscribe for it. */
           this.data.setShipmentListInfo(this._shipmentList);
           this.m_displayList = "true";
+          console.log("data: " + data);
+          console.log("Var: " + this._shipmentList);
       },
       (error: any) => { this.m_displayList = "false";},
       () => {console.log("End of list");});
     } else {
       let accountCode: string = this._accountInfo.accountCode;
-      this.crudOperation.getShipmentListForCustomer(fromDate, toDate, accountCode).subscribe((data: Shipment[]) => {
-          this._shipmentList = new ShipmentList(); this._shipmentList.set_elm(data); this._shipmentList.set_length(length);
+      this.crudOperation.getShipmentListForCustomer(fromDate, toDate, accountCode).subscribe((data: Array<Shipment>) => {
+          //this._shipmentList = new ShipmentList(); this._shipmentList.set_elm(data); this._shipmentList.set_length(length);
           /*! Make shipmentList available to other component who subscribe for it. */
+          /*
+          this._shipmentList.length = data.length;
+          for(let idx: number = 0; idx < data.length; ++idx) {
+            this._shipmentList.push(data[idx]);
+          }*/
+
+          this._shipmentList = new ShipmentList(data, data.length);
           this.data.setShipmentListInfo(this._shipmentList);
           this.m_displayList = "true";
       },
