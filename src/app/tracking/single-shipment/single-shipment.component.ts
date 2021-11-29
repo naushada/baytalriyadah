@@ -22,9 +22,8 @@ export class SingleShipmentComponent implements OnInit {
     this.subscription = this.sharedShipmentInfo.currentAccountInfo.subscribe((message: Account) => this._accountInfo = message);
 
     this.singleTrackingShipmentForm = this.fb.group({
-      trackingNo:''
-      /*
-      altRefNo:''*/
+      trackingNo:'',
+      senderRefNo:''
     });
   }
 

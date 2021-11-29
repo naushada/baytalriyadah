@@ -47,6 +47,7 @@ export class MyNewShipmentComponent implements OnInit {
       /*! Sender Information */
       referenceNo:'',
       accountCode: '',
+      coName:'',
       name: '',
       country: '',
       address:'',
@@ -67,6 +68,7 @@ export class MyNewShipmentComponent implements OnInit {
       weightUnit:'',
       cubicWeight:'',
       codAmount:'',
+      vat:'',
       currency:Currency[0],
 
       /*! Receiver Information */
@@ -104,6 +106,7 @@ export class MyNewShipmentComponent implements OnInit {
      /*! Sender Information */
     this.shipmentForm.controls['referenceNo'].setValue(0);
     this.shipmentForm.controls['accountCode'].setValue(this._accountInfo.accountCode);
+    this.shipmentForm.controls['coName'].setValue(this._accountInfo.companyName);
     this.shipmentForm.controls['name'].setValue(this._accountInfo.name);
     this.shipmentForm.controls['country'].setValue(this._accountInfo.country);
     this.shipmentForm.controls['address'].setValue(this._accountInfo.address);
@@ -139,6 +142,7 @@ export class MyNewShipmentComponent implements OnInit {
       /*! Sender Information */
       this.shipmentForm.controls['referenceNo'].setValue(_sInfo.referenceNo);
       this.shipmentForm.controls['accountCode'].setValue(_sInfo.aInfo.accountCode);
+      this.shipmentForm.controls['coName'].setValue(_sInfo.aInfo.companyName);
       this.shipmentForm.controls['name'].setValue(_sInfo.aInfo.name);
       this.shipmentForm.controls['country'].setValue(_sInfo.aInfo.country);
       this.shipmentForm.controls['address'].setValue(_sInfo.aInfo.address);

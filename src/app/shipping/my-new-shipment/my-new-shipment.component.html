@@ -16,6 +16,8 @@
 <div><input type="text" class="content-item bg-color-yellow" formControlName="referenceNo" value="" required></div>
 <div><label>Account Code </label></div>
 <div><input type="text" class="content-item bg-color-yellow " style="width:50%" formControlName="accountCode" value="" required><a class="ml-10" (click)="getSenderInfo()" >Retrieve</a></div>
+<div><label>Company/Corporate Name </label></div>
+<div><input type="text" class="content-item " formControlName="coName" value=""></div>
 <div><label>Name </label></div>
 <div><input type="text" class="content-item bg-color-yellow" formControlName="name" value=""></div>
 <div><label>Country </label></div>
@@ -39,7 +41,7 @@
 <div><label>Receiving Country Tax ID </label></div>
 <div><input type="text" class="content-item " formControlName="recvCountryTaxId" value=""></div>
 <div class="heading">
-    <u><i><label>Shipping Information</label></i></u>
+    <u><i><label>Shipment Information</label></i></u>
 </div>
 <div><label>Service </label></div>
 <div><select class="content-item bg-color-yellow" formControlName="service" value="">
@@ -54,7 +56,7 @@
 <div><label>Custom Value </label></div>
 <div><input type="text" class="content-item " formControlName="customValue" value=""></div>
 <div><label>Weight </label></div>
-<div><input type="text" class="content-item " formControlName="weight" value=""></div>
+<div><input type="text" class="content-item bg-color-yellow" formControlName="weight" value=""></div>
 <div><label>Weight Unit </label></div>
 <div><select class="content-item bg-color-yellow" formControlName="weightUnit">
         <option value="KG" selected>KG</option>
@@ -64,6 +66,8 @@
 <div><input type="text" class="content-item " formControlName="cubicWeight" value=""></div>
 <div><label>COD </label></div>
 <div><input type="text" class="content-item " formControlName="codAmount" value=""></div>
+<div><label>VAT. </label></div>
+<div><input type="text" class="content-item " formControlName="vat" value=""></div>
 <div><label>Currency </label></div>
 <div><select class="content-item bg-color-yellow" formControlName="currency" value="">
         <option *ngFor="let _currency of CurrencyList" [value]="_currency">{{_currency}}</option>
@@ -72,7 +76,7 @@
     <u><i><label>Receiver Information</label></i></u>
 </div>
 <div><label>SKU </label></div>
-<div><input type="text" class="content-item bg-color-yellow" formControlName="sku" value=""></div>
+<div><input type="text" class="content-item " formControlName="sku" value=""></div>
 <div><label>Name </label></div>
 <div><input type="text" class="content-item bg-color-yellow" formControlName="receiverName" value=""></div>
 <div><label>Country </label></div>

@@ -29,5 +29,39 @@ export class BasicViewComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  onClickShipping(): void {
+    this.navOptionSelected = "createShipment";
+    this.menuOptionSelected = "shipping";
+  }
+
+  onClickTracking() {
+    this.navOptionSelected = "singleShipment";
+    this.menuOptionSelected = "tracking";
+
+  }
+
+  onClickReporting(): void {
+    this.navOptionSelected = "detailedReporting";
+    this.menuOptionSelected = "reporting";
+
+  }
+
+  onClickAccounting(): void {
+    this.navOptionSelected = "createShipment";
+    this.menuOptionSelected = "accounting";
+
+  }
+
+  onClickInventory(): void {
+    this.navOptionSelected = "createInventory";
+    this.menuOptionSelected = "inventory";
+
+  }
+
+  onClickContackUs(): void {
+    this.navOptionSelected = "createShipment";
+    this.menuOptionSelected = "contactUs";
+
+  }
 
 }
