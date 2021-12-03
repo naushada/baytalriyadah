@@ -1,3 +1,4 @@
+
 export let CountryName:Array<string> =
 [
 "UAE",
@@ -205,6 +206,7 @@ export class Shipment {
     receiverPhone:string;
     receiverEmail: string;
 
+    
     constructor(_sp: Shipment ) {
 
     this.activity = _sp.activity;
@@ -402,7 +404,7 @@ export class ShipmentList {
   m_length: number;
   m_shipmentArray: Array<Shipment>;
 
-  constructor(data: Array<Shipment>, len: number) {
+  constructor(data: Array<Shipment>,  len:number) {
     this.m_length = len;
     this.m_shipmentArray = data;
   }
@@ -474,4 +476,84 @@ export class AccountList {
     set length(len: number) {
       this.length = len;
     }
+}
+
+export class ExcelDataForShipment {
+  private m_accountCode: string;
+  private m_shipment: string;
+
+  constructor(acc:string, sh: string) {
+    this.m_accountCode = acc ;
+    this.m_shipment = sh ;
+  }
+
+  get accountCode(): string {
+    return(this.m_accountCode);
+  }
+
+  set accountCode(acc: string) {
+    this.m_accountCode = acc;
+  }
+
+  get shipment(): string {
+    return(this.m_shipment);
+  }
+
+  set shipment(sh: string) {
+    this.m_shipment = sh;
+  }
+}
+
+export class ExcelDataFormat {
+  referenceNo: string;
+  accountCode: string;
+  phone: string;
+  serviceType: string;
+  noOfItems: string;
+  description: string;
+  goodsValue: string;
+  customValue: string;
+  weight:string;
+  weightUnit: string;
+  cubicWeight: string;
+  codAmount: string;
+  vat: string;
+  currency: string;
+  sku: string;
+  receiverName: string;
+  receiverCountry: string;
+  receiverAddress:string;
+  receiverCity:string;
+  receiverState:string;
+  receiverPostalCode: string;
+  receiverContact: string;
+  receiverPhone:string;
+  receiverEmail: string;
+
+  constructor(exl: ExcelDataFormat) {
+    this.referenceNo = exl.referenceNo;
+    this.accountCode = exl.accountCode;
+    this.phone = exl.phone;
+    this.serviceType = exl.serviceType;
+    this.noOfItems = exl.noOfItems;
+    this.description=exl.description;
+    this.goodsValue=exl.goodsValue;
+    this.customValue=exl.customValue;
+    this.weight = exl.weight;
+    this.weightUnit = exl.weightUnit;
+    this.cubicWeight=exl.cubicWeight;
+    this.codAmount = exl.codAmount;
+    this.vat = exl.vat;
+    this.currency = exl.currency;
+    this.sku=exl.sku;
+    this.receiverName=exl.receiverName;
+    this.receiverCountry=exl.receiverCountry;
+    this.receiverAddress = exl.receiverAddress;
+    this.receiverCity = exl.receiverCity;
+    this.receiverState = exl.receiverState;
+    this.receiverPostalCode = exl.receiverPostalCode;
+    this.receiverContact = exl.receiverContact;
+    this.receiverPhone = exl.receiverPhone;
+    this.receiverEmail = exl.receiverEmail;
+  }
 }

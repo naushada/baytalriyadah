@@ -3,11 +3,11 @@
     <u><i><label>Shipment Batch Upload</label></i></u>
 </div>
 <div><label >Select File to be Uploaded </label></div>
-<div><input type="file" class="content-item bg-color-yellow" formControlName="batchUpload" value="" required></div>
+<div><input type="file" class="content-item bg-color-yellow" formControlName="batchUpload" value="" required (change)="excelFileUpload($event)"></div>
 <div></div>      
 <div></div>      
 <div class="content-item btn-default ml-10">
-    <button type="submit">Submit</button>
+    <button type="submit" [disabled]="!isBtnEnabled">Submit</button>
 </div>
 <div class="content-item btn-default w-50">
     <button type="reset">Clear Contents</button>

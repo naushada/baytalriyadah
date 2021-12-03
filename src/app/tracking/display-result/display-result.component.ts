@@ -19,6 +19,7 @@ export class DisplayResultComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this._shipmentInfo);
   }
 
 }

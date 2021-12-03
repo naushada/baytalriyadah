@@ -44,6 +44,17 @@ export class CrudService {
     );
   }
 
+  createBulkShipment(newShipment:string) : Observable<any> {
+    //console.log(JSON.stringify(newShipment));
+
+    return this.http.post<Shipment>(this.apiURL + '/api/bulk/shipping', newShipment, this.httpOptions)
+    .pipe(
+      retry(0),
+      catchError(this.handleError)
+    );
+  }
+
+
   updateShipment(awbNo: string, data: ShipmentStatus) : Observable<any> {
     let param = `shipmentNo=${awbNo}`;
     const options = {params: new HttpParams({fromString: param}),

@@ -38,7 +38,8 @@ export class MyNewShipmentComponent implements OnInit {
     this.subscription = this.data.currentAccountInfo.subscribe((message: Account) => this._accountInfo = message);
 
     this.shipmentForm = this.fb.group({
-      activity: this.fb.array([{"Date": "", "Event": "", "Time": "", "Notes": "", "Driver": "", "Updated By" : "", "EventLocation": ""}]),
+      //activity: this.fb.array([{"Date": "", "Event": "", "Time": "", "Notes": "", "Driver": "", "Updated By" : "", "EventLocation": ""}]),
+      activity: this.fb.array([{date:formatDate(new Date(), 'dd/MM/yyyy', 'en'), event:'Document Created', time: new Date().getHours() +':' + new Date().getMinutes(), notes: "", driver: "", updatedBy : this._accountInfo.name, eventLocation: ''}]),
       createdOn: '',
       createdBy: '',
       shipmentNo:'',
@@ -104,7 +105,7 @@ export class MyNewShipmentComponent implements OnInit {
 
   fillCustomerInfo() {
      /*! Sender Information */
-    this.shipmentForm.controls['referenceNo'].setValue(0);
+    this.shipmentForm.controls['referenceNo'].setValue("");
     this.shipmentForm.controls['accountCode'].setValue(this._accountInfo.accountCode);
     this.shipmentForm.controls['coName'].setValue(this._accountInfo.companyName);
     this.shipmentForm.controls['name'].setValue(this._accountInfo.name);
@@ -114,9 +115,9 @@ export class MyNewShipmentComponent implements OnInit {
     this.shipmentForm.controls['state'].setValue(this._accountInfo.state);
     this.shipmentForm.controls['postalCode'].setValue(this._accountInfo.postalCode);
     this.shipmentForm.controls['contact'].setValue(this._accountInfo.contact);
-    this.shipmentForm.controls['phone'].setValue(0);
+    this.shipmentForm.controls['phone'].setValue("");
     this.shipmentForm.controls['email'].setValue(this._accountInfo.email);
-    this.shipmentForm.controls['recvCountryTaxId'].setValue(0);
+    this.shipmentForm.controls['recvCountryTaxId'].setValue("");
 
   }
 
