@@ -113,6 +113,32 @@ export let Events:Array<string> =
 "Weight Variation",
 "User Initiated Shipment Cancellation"
 ];
+export let ExcelHeading: Array<string> = [
+  "referenceNo",
+  "accountCode",
+  "phone",
+  "serviceType",
+  "noOfItems",
+  "description",
+  "goodsValue",
+  "customValue",
+  "weight",
+  "weightUnit",
+  "cubicWeight",
+  "codAmount",
+  "vat",
+  "currency",
+  "sku",
+  "receiverName",
+  "receiverCountry",
+  "receiverAddress",
+  "receiverCity",
+  "receiverState",
+  "receiverPostalCode",
+  "receiverContact",
+  "receiverPhone",
+  "receiverEmail"
+];
 
 export class ShipmentStatus {
   date: string;

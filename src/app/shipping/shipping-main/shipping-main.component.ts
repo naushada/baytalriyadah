@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from 'src/app/data.service';
 import { Subscription } from 'rxjs';
 import { Account } from 'src/commonDS/DS';
+import { ExcelService } from 'src/app/upload/excel.service';
 
 @Component({
   selector: 'app-shipping-main',
@@ -17,7 +18,7 @@ export class ShippingMainComponent implements OnInit, OnDestroy {
   _accountInfo!:Account;
   subscription!: Subscription;
 
-  constructor(private data: DataService) { 
+  constructor(private data: DataService, private xl: ExcelService) { 
   }
 
   ngOnInit() {
@@ -63,5 +64,9 @@ export class ShippingMainComponent implements OnInit, OnDestroy {
     this.navOptionSelected = "createShipment";
     this.menuOptionSelected = "contactUs";
 
+  }
+
+  onCreateShipmentTemplate(): void {
+    this.xl.createShipmentTemplate();
   }
 }

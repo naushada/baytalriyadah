@@ -6,6 +6,7 @@ import { DataService } from 'src/app/data.service';
 import { Account, ExcelDataFormat, ExcelDataForShipment, SenderInformation, Shipment, ShipmentList } from 'src/commonDS/DS';
 import { CrudService } from 'src/rest-api/crud.service';
 import * as XLSX from 'xlsx';
+import { ExcelService } from 'src/app/upload/excel.service';
 
 
 @Component({
@@ -17,23 +18,19 @@ export class ShipmentBatchUploadComponent implements OnInit {
   convertedData: string;
   _accountInfo!: Account;
   _subscription!: Subscription;
-  _shipmentInfo!:Shipment;
-  _shipmentList!: ShipmentList;
   _customerInfo!: SenderInformation;
   _excelDataList: Array<ExcelDataFormat> = new Array<ExcelDataFormat>();
 
   isBtnEnabled: boolean = false;
 
-  tmp!:any;
-  shipmentBatching: Array<string> = [];
   shipmentBatchUploadForm: FormGroup;
-  public excel: Array<ExcelDataForShipment> = [];
   private accCode: string ;
 
   file!: File;
   constructor(private fb: FormBuilder, 
               private crudOperation: CrudService,
-              private data: DataService) {
+              private data: DataService,
+              private xl: ExcelService) {
               
     
     this._subscription = this.data.currentAccountInfo.subscribe((aInfo: Account) => this._accountInfo = aInfo);
@@ -57,7 +54,6 @@ export class ShipmentBatchUploadComponent implements OnInit {
 
       let arrStr = JSON.stringify(listOfObj);
       this.crudOperation.createBulkShipment(arrStr).subscribe(()=> {alert("created successfully");}); 
-      //console.log("Array of shipment " + arrStr);
     }
 
     fillShipmentInfo(from: any): string {
@@ -122,55 +118,28 @@ export class ShipmentBatchUploadComponent implements OnInit {
     }
 
     getAccountCode(event: any) : void {
-      let aCode: string = '';
       let rows: ExcelDataFormat[] = [];
       const selectedFile = event.target.files[0];
+      console.log(selectedFile);
       const fileReader = new FileReader();
       fileReader.readAsBinaryString(selectedFile);
-      //fileReader.readAsArrayBuffer(selectedFile);
+
       fileReader.onload = (event) => {
         let binaryData = event.target?.result;
         /** wb -- workBook of excel sheet */
         let wb = XLSX.read(binaryData, {type:'binary'});
-        this.tmp = fileReader.result;
         wb.SheetNames.forEach(sheet => {
 
           let data = XLSX.utils.sheet_to_json(wb.Sheets[sheet]);
           rows = <ExcelDataFormat[]>data;
-          //console.log("data :" + rows.length);
-          //console.log("contents: " + rows[0].accountCode);
-          //this.convertedData = JSON.stringify(data);
-          //console.log(JSON.stringify(data));
 
           for(let idx:number = 0; idx < rows.length; ++idx) {
-            //console.log("contents: " + rows[idx].accountCode);
-            //console.log("contents: " + rows[idx].referenceNo);
             this._excelDataList[idx] = new ExcelDataFormat(rows[idx]);
           }
-
-          /*
-          for(let idx: number =0; idx < rows.length; ++idx) {
-            console.log("excelDataFormat " + this._excelDataList[idx].referenceNo);
-          }
-          */
-
         });
       }
 
       fileReader.onloadend = (event) => {
-        //console.log("As Text: " + fileReader.result);
-        //let rec = this.excel.pop();
-        //console.log("file is loaded : " + rec?.accountCode);
-        //console.log("file is loaded : " + rec?.shipment);
-        //let arr: string[] = rec?.shipment;
-
-        //let arr: any = JSON.parse(JSON.stringify(rec?.shipment));
-
-        //for(let elm of arr) {
-          //console.log("elm " + elm);
-        //}
-
-        
         if(this._accountInfo.role == "Employee") {
 
           this.crudOperation.getCustomerInfo(this._excelDataList[0].accountCode).subscribe(
@@ -221,4 +190,8 @@ export class ShipmentBatchUploadComponent implements OnInit {
     excelFileUpload(event: any) {
       this.getAccountCode(event);
     }
+
+  onCreateShipmentTemplate(): void {
+    this.xl.createShipmentTemplate();
+  }
 }

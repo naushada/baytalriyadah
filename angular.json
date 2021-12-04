@@ -101,7 +101,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": ["../node_modules/file-saver/FileSaver.js"]
           }
         }
       }

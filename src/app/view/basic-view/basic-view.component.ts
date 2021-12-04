@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/data.service';
+import { ExcelService } from 'src/app/upload/excel.service';
 import { Account } from 'src/commonDS/DS';
 
 @Component({
@@ -16,7 +17,7 @@ export class BasicViewComponent implements OnInit, OnDestroy {
   _accountInfo!:Account;
   subscription!: Subscription;
 
-  constructor(private data: DataService) { 
+  constructor(private data: DataService, private xl: ExcelService) { 
   }
 
   ngOnInit() {
@@ -64,4 +65,7 @@ export class BasicViewComponent implements OnInit, OnDestroy {
 
   }
 
+  onCreateShipmentTemplate(): void {
+    this.xl.createShipmentTemplate();
+  }
 }
