@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/data.service';
-import { Shipment } from 'src/commonDS/DS';
+import { Shipment, ShipmentStatus } from 'src/commonDS/DS';
 
 @Component({
   selector: 'app-display-result',
@@ -12,6 +12,7 @@ export class DisplayResultComponent implements OnInit {
 
   _shipmentInfo!:Shipment;
   subscription!: Subscription;
+  _status: Array<ShipmentStatus> = new Array<ShipmentStatus>();
 
   constructor(private data: DataService) { 
 
@@ -20,6 +21,9 @@ export class DisplayResultComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this._shipmentInfo);
+    this._status = this._shipmentInfo.activity.reverse();
   }
+
+
 
 }

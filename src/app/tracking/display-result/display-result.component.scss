@@ -52,28 +52,38 @@
     place-items:start;
     
   }
-.subcontainer {
+
+.subcontainer-left {
+    //position: relative;
     display: grid;
-    grid-auto-flow: column;
+    gap:5px;
+    //grid-auto-flow: column;
+    grid-column: col-one/col-three;
+    grid-template-columns: [col-one] 150px [col-two] 300px ;
+    //grid-template-rows: [row-one] 500px;
+}
+.subcontainer-right {
+    display: grid;
+    //grid-auto-flow: column;
+    grid-column: col-three/col-four;
     grid-template-columns: [col-one] 250px [col-two] 300px ;
 }
   .item {
+      
     box-shadow: 1px 2px 3px grey;
-    border-radius: 8px;
+    border-radius: 50px;
   }
   .item-col1 {
       grid-column: col-one/col-two;
-      background-color: antiquewhite;
   }
   .item-col2 {
       grid-column: col-two/col-three;
-      background-color: antiquewhite;
   }
   .item-col3 {
-      grid-column: col-three/col-four;
+      grid-column: col-one/col-two;
       background-color: antiquewhite;
   }
   .item-col4 {
-      grid-column: col-four/col-end;
+      grid-column: col-two/col-three;
       background-color: antiquewhite;
   }

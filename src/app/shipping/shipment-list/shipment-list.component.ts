@@ -24,12 +24,14 @@ export class ShipmentListComponent implements OnInit {
   constructor(private fb:FormBuilder, private crudOperation: CrudService, private data: DataService) { 
     this.subscription = this.data.currentAccountInfo.subscribe((message: Account) => this._accountInfo = message);
     this.shipmentListForm = this.fb.group({
-      fromDate: new Date(),
-      toDate: new Date()
+      fromDate: formatDate(new Date(), 'dd/MM/yyyy', 'en'),
+      toDate: formatDate(new Date(), 'dd/MM/yyyy', 'en')
     });
   }
 
   ngOnInit(): void {
+    this.shipmentListForm.controls['fromDate'].setValue(formatDate(new Date(), 'dd/MM/yyyy', 'en'));
+    this.shipmentListForm.controls['toDate'].setValue(formatDate(new Date(), 'dd/MM/yyyy', 'en'));
   }
 
   onSubmit() {
