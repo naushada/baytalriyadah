@@ -64,8 +64,8 @@
 }
 .subcontainer-right {
     display: grid;
-    //grid-auto-flow: column;
-    grid-column: col-three/col-four;
+    grid-auto-flow: column;
+    grid-column: col-three/col-end;
     //grid-template-columns: [col-one] 250px [col-two] 300px ;
     grid-template-columns: subgrid ;
 }
