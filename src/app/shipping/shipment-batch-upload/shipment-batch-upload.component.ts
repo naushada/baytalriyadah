@@ -53,7 +53,10 @@ export class ShipmentBatchUploadComponent implements OnInit {
       }
 
       let arrStr = JSON.stringify(listOfObj);
-      this.crudOperation.createBulkShipment(arrStr).subscribe(()=> {alert("created successfully");}); 
+      this.crudOperation.createBulkShipment(arrStr).subscribe((rsp:any) => { 
+        let record: any; 
+        let jObj = JSON.stringify(rsp);
+        record = JSON.parse(jObj); alert("Shipments Create are: " + record.createdShipments);}); 
     }
 
     fillShipmentInfo(from: any): string {
