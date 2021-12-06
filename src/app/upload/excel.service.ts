@@ -64,6 +64,14 @@ templateToExcel:string[][] = [ExcelHeading,[]];
     }
 
     ws["!cols"] = wscols;
+    /*
+    ws.eachCell((cell:any, number:any) => {
+      cell.fill = {
+        type: 'text',
+        fgColor: {argb:'FFFFFF00'},
+        bgColor: {argb:'FF0000FF'}
+      }
+    });*/
 
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Shipment');

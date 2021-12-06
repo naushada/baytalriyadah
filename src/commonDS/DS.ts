@@ -114,30 +114,32 @@ export let Events:Array<string> =
 "User Initiated Shipment Cancellation"
 ];
 export let ExcelHeading: Array<string> = [
-  "referenceNo",
-  "accountCode",
+  "AccountCode",
+  "ReferenceNo",
+  "Weight",
+  "ReceiverCity",
+  "ReceiverName",
+  "ReceiverAddress",
+  "ReceiverPhoneNo",
+  "ReceiverAlternatePhoneNo",
+  "GoodsDescription",
+  "CodAmount",
+  "AlternameReferenceNo",
+  "CustomsValue",
+  "CustomsCurrency"
+  /*
   "phone",
   "serviceType",
   "noOfItems",
-  "description",
   "goodsValue",
-  "customValue",
-  "weight",
   "weightUnit",
   "cubicWeight",
-  "codAmount",
   "vat",
-  "currency",
   "sku",
-  "receiverName",
   "receiverCountry",
-  "receiverAddress",
-  "receiverCity",
   "receiverState",
   "receiverPostalCode",
-  "receiverContact",
-  "receiverPhone",
-  "receiverEmail"
+  "receiverEmail"*/
 ];
 
 export class ShipmentStatus {
@@ -531,6 +533,7 @@ export class ExcelDataForShipment {
 }
 
 export class ExcelDataFormat {
+  altRefNo: string;
   referenceNo: string;
   accountCode: string;
   phone: string;
@@ -556,30 +559,31 @@ export class ExcelDataFormat {
   receiverPhone:string;
   receiverEmail: string;
 
-  constructor(exl: ExcelDataFormat) {
-    this.referenceNo = exl.referenceNo;
-    this.accountCode = exl.accountCode;
-    this.phone = exl.phone;
-    this.serviceType = exl.serviceType;
-    this.noOfItems = exl.noOfItems;
-    this.description=exl.description;
-    this.goodsValue=exl.goodsValue;
-    this.customValue=exl.customValue;
-    this.weight = exl.weight;
-    this.weightUnit = exl.weightUnit;
-    this.cubicWeight=exl.cubicWeight;
-    this.codAmount = exl.codAmount;
-    this.vat = exl.vat;
-    this.currency = exl.currency;
-    this.sku=exl.sku;
-    this.receiverName=exl.receiverName;
-    this.receiverCountry=exl.receiverCountry;
-    this.receiverAddress = exl.receiverAddress;
-    this.receiverCity = exl.receiverCity;
-    this.receiverState = exl.receiverState;
-    this.receiverPostalCode = exl.receiverPostalCode;
-    this.receiverContact = exl.receiverContact;
-    this.receiverPhone = exl.receiverPhone;
-    this.receiverEmail = exl.receiverEmail;
+  constructor(exl: any) {
+    this.altRefNo = exl.AlternameReferenceNo;
+    this.referenceNo = exl.ReferenceNo;
+    this.accountCode = exl.AccountCode;
+    this.phone = "";
+    this.serviceType = "Document";
+    this.noOfItems = "";
+    this.description=exl.GoodsDescription;
+    this.goodsValue=exl.GoodsValue;
+    this.customValue=exl.CustomsValue;
+    this.weight = exl.Weight;
+    this.weightUnit = "KG";
+    this.cubicWeight="";
+    this.codAmount = exl.CodAmount;
+    this.vat = "";
+    this.currency = exl.CustomsCurrency;
+    this.sku= "";
+    this.receiverName=exl.ReceiverName;
+    this.receiverCountry="";
+    this.receiverAddress = exl.ReceiverAddress;
+    this.receiverCity = exl.ReceiverCity;
+    this.receiverState = "";
+    this.receiverPostalCode = "";
+    this.receiverContact = exl.ReceiverAlternatePhoneNo;
+    this.receiverPhone = exl.ReceiverPhoneNo;
+    this.receiverEmail = "";
   }
 }

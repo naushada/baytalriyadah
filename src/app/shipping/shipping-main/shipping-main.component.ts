@@ -49,7 +49,7 @@ export class ShippingMainComponent implements OnInit, OnDestroy {
   }
 
   onClickAccounting(): void {
-    this.navOptionSelected = "createShipment";
+    this.navOptionSelected = "createAccount";
     this.menuOptionSelected = "accounting";
 
   }

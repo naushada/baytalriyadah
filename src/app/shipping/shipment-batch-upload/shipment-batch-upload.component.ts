@@ -118,7 +118,7 @@ export class ShipmentBatchUploadComponent implements OnInit {
     }
 
     getAccountCode(event: any) : void {
-      let rows: ExcelDataFormat[] = [];
+      let rows: any[] = [];
       const selectedFile = event.target.files[0];
       console.log(selectedFile);
       const fileReader = new FileReader();
@@ -131,8 +131,8 @@ export class ShipmentBatchUploadComponent implements OnInit {
         wb.SheetNames.forEach(sheet => {
 
           let data = XLSX.utils.sheet_to_json(wb.Sheets[sheet]);
-          rows = <ExcelDataFormat[]>data;
-
+          rows = <any[]>data;
+          console.log(rows);
           for(let idx:number = 0; idx < rows.length; ++idx) {
             this._excelDataList[idx] = new ExcelDataFormat(rows[idx]);
           }

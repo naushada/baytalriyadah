@@ -24,8 +24,8 @@ export class ShipmentListComponent implements OnInit {
   constructor(private fb:FormBuilder, private crudOperation: CrudService, private data: DataService) { 
     this.subscription = this.data.currentAccountInfo.subscribe((message: Account) => this._accountInfo = message);
     this.shipmentListForm = this.fb.group({
-      fromDate: formatDate(new Date(), 'dd/MM/yyyy', 'en'),
-      toDate: formatDate(new Date(), 'dd/MM/yyyy', 'en')
+      fromDate: [formatDate(new Date(), 'dd/MM/yyyy', 'en')],
+      toDate: [formatDate(new Date(), 'dd/MM/yyyy', 'en')]
     });
   }
 

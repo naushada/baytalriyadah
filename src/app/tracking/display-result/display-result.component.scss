@@ -130,4 +130,14 @@
   .active ~ li::before {
     background: lightblue;
   }
-  
+ 
+  .table-container {
+    border: 2px solid black;
+    width: 500px;
+    margin-bottom:10px;
+    inset:auto;
+}
+
+td {
+    border: none;
+}
