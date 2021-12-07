@@ -35,6 +35,7 @@ import { OutFromInventoryComponent } from './inventory/out-from-inventory/out-fr
 import { LoginComponent } from './view/login/login.component';
 import { DisplayResultComponent } from './tracking/display-result/display-result.component';
 import { DisplayShipmentListComponent } from './shipping/display-shipment-list/display-shipment-list.component';
+import { DisplayMultipleAwbComponent } from './tracking/display-multiple-awb/display-multiple-awb.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { DisplayShipmentListComponent } from './shipping/display-shipment-list/d
     OutFromInventoryComponent,
     LoginComponent,
     DisplayResultComponent,
-    DisplayShipmentListComponent
+    DisplayShipmentListComponent,
+    DisplayMultipleAwbComponent
   ],
   imports: [
     BrowserModule,

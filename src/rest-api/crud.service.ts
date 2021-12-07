@@ -16,8 +16,8 @@ export class CrudService {
     })
   } 
 
-  //apiURL = 'http://localhost:8080';
-  apiURL = 'https://logistics-sw.herokuapp.com'
+  apiURL = 'http://localhost:8080';
+  //apiURL = 'https://logistics-sw.herokuapp.com'
 
   constructor(private http: HttpClient) { }
 
@@ -183,6 +183,30 @@ export class CrudService {
 
     let uri: string = this.apiURL + '/api/awbno';
     return this.http.get<Shipment>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+  }
+
+  getShipmentInfoByAwbList(awb:Array<string>): Observable<Shipment[]> {
+
+    let param = `shipmentNo=${awb}`;
+    console.log("param" + param);
+    const options = { params: new HttpParams({fromString: param})};
+    let uri: string = this.apiURL + '/api/awbnolist';
+    return this.http.get<Shipment[]>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+  }
+
+  getShipmentInfoByAltRefList(awb:Array<string>): Observable<Shipment[]> {
+    let param = `shipmentNo=${awb}`;
+
+    const options = { params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/altrefnolist';
+    return this.http.get<Shipment[]>(uri, options)
       .pipe(
         retry(0),
         catchError(this.handleError));

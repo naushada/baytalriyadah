@@ -72,7 +72,7 @@ export let Events:Array<string> =
 "Attempted - Pickup from Branch",
 "Attempted - Money not ready",
 "Out for Delivery",
-"Proof-of Delivery",
+"Proof of Delivery",
 "Held From Uplift-Pending Customs",
 "Held in Branch- No-Service", 
 "Collection",

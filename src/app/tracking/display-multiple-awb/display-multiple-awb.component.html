@@ -1,35 +1,38 @@
-
 <div class="table-container">
 <table class="styled-table">
     <thead>
         <tr>
-            <th>Serial No.</th>
-            <th>Shipment No</th>
-            <th>ALT REF No</th>
-            <th>Sender Reference No</th>
-            <th>Created By</th>
-            <th>Created On</th>
-            <th>Service</th>
-            <th>Recipient</th>
-            <th>Location</th>
-            <th>Country</th>
-            
+            <th>Tracking Number</th>
+            <th>Status</th>
+            <th>Delivery Information</th>
+            <th>Details</th>
         </tr>
     </thead>
 
     <tbody>
-        <tr *ngFor="let s of _shipmentListInfo.m_shipmentArray; let idx = index;">
-            <td>{{idx}}</td>
+        <tr *ngFor="let s of _shipmentList.m_shipmentArray; let idx = index;">
             <td>{{s.shipmentNo}}</td>
-            <td>{{s.altRefNo}}</td>
-            <td>{{s.referenceNo}}</td>
-            <td>{{s.createdBy}}</td>
+            <ng-container *ngIf="get_lastStatus(s.activity) === 'Proof of Delivery'">
+                <td>{{status}}</td>
+                <td>Delivered On: {{deliveredOn}}<br>
+                    Destination: {{s.receiverCity}} - {{s.receiverCountry}}<br>
+                    Signed By: {{notes}} <br>
+                    ServiceType: {{s.service}}</td>
+
+            </ng-container>
+            <ng-container *ngIf="!(status === 'Proof of Delivery')">
+                <td>{{status}}</td>
+                <td>Destination: {{s.receiverCity}} - {{s.receiverCountry}}<br>
+                    ServiceType: {{s.service}}</td>
+
+            </ng-container>
+            <td>To be Updated</td>
+            <!--
             <td>{{s.createdOn}}</td>
             <td>{{s.service}}</td>
             <td>{{s.receiverName}}</td>
             <td>location to be updated</td>
             <td>{{s.receiverCountry}}</td>
-            <!--
             <td>{{s.accountCode}}</td>
             <td>{{s.name}}</td>
             <td>{{s.country}}</td>
