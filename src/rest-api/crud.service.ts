@@ -281,5 +281,28 @@ export class CrudService {
         catchError(this.handleError));
   }
 
+  getShipmentInfoByAwbListForCustomer(awb:Array<string>, accCode: string): Observable<Shipment[]> {
+
+    let param = `shipmentNo=${awb}&accountCode=${accCode}`;
+    console.log("param" + param);
+    const options = { params: new HttpParams({fromString: param})};
+    let uri: string = this.apiURL + '/api/awbnolist';
+    return this.http.get<Shipment[]>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+  }
+
+  getShipmentInfoByAltRefListForCustomer(awb:Array<string>, accCode: string): Observable<Shipment[]> {
+    let param = `shipmentNo=${awb}&accountCode=${accCode}`;
+
+    const options = { params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/altrefnolist';
+    return this.http.get<Shipment[]>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+  }
 
 }

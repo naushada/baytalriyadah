@@ -74,10 +74,10 @@ export class MultipleShipmentComponent implements OnInit {
       }
       
     } else {
-      /*
+      
       let acCode: string = this._accountInfo.accountCode;
-      if(awbNo.startsWith("05497") == true) {
-        this.crudOperation.getShipmentInfoByShipmentNoForCustomer(awbNo, acCode) 
+      if(awbList[0].startsWith("05497") == true) {
+        this.crudOperation.getShipmentInfoByAwbListForCustomer(awbList, acCode) 
                               .subscribe(
                               (rsp : Shipment[]) => {
                                 this.shipmentInfoList = new ShipmentList(rsp, rsp.length);
@@ -89,20 +89,19 @@ export class MultipleShipmentComponent implements OnInit {
                               },
                               () => {});
       } else {
-        this.crudOperation.getShipmentInfoByAltRefNoForCustomer(awbNo, acCode) 
+        this.crudOperation.getShipmentInfoByAltRefListForCustomer(awbList, acCode) 
                               .subscribe(
                               (rsp : Shipment[]) => {
-                                this.shipmentInfo = new Shipment(rsp);
-                                this.sharedInfo.setShipmentInfo(this.shipmentInfo);
+                                this.shipmentInfoList = new ShipmentList(rsp, rsp.length);
+                                this.sharedInfo.setShipmentListInfo(this.shipmentInfoList);
                                 this.showComponent = true;
                               },
                               error => {
-                                alert("Invalid ALT REF NO Number " + awbNo);
+                                alert("Invalid ALT REF NO Number " + awbList);
                               },
                               () => {});
 
       }
-      */
     }
   }
 }
