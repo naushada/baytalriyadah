@@ -39,7 +39,7 @@ export class ShipmentListComponent implements OnInit {
     
     let fromDate: string = formatDate(this.shipmentListForm.controls['fromDate'].value, 'dd/MM/yyyy', 'en');
     let toDate: string = formatDate(this.shipmentListForm.controls['toDate'].value, 'dd/MM/yyyy', 'en');
-    console.log(this.shipmentListForm.value);
+    //console.log(this.shipmentListForm.value);
     let who: string =this._accountInfo.role;
     if(who == "Employee") {
       this.crudOperation.getShipmentList(fromDate, toDate).subscribe((data: Shipment[]) => {

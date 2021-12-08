@@ -212,6 +212,19 @@ export class CrudService {
         catchError(this.handleError));
   }
 
+  getShipmentInfoByAccountCodeList(fromDate: string, toDate: string, country:string, ac:Array<string>): Observable<Shipment[]> {
+
+    let param = `accountCode=${ac}&fromDate=${fromDate}&toDate=${toDate}&country=${country}`;
+    console.log("param" + param);
+    const options = { params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/detailed_report';
+    return this.http.get<Shipment[]>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+  }
+
   /************************************************************************************************** 
    * 
    * For Customer  

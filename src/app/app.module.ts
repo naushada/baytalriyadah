@@ -36,6 +36,7 @@ import { LoginComponent } from './view/login/login.component';
 import { DisplayResultComponent } from './tracking/display-result/display-result.component';
 import { DisplayShipmentListComponent } from './shipping/display-shipment-list/display-shipment-list.component';
 import { DisplayMultipleAwbComponent } from './tracking/display-multiple-awb/display-multiple-awb.component';
+import { ShowDetailedReportComponent } from './reporting/show-detailed-report/show-detailed-report.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { DisplayMultipleAwbComponent } from './tracking/display-multiple-awb/dis
     LoginComponent,
     DisplayResultComponent,
     DisplayShipmentListComponent,
-    DisplayMultipleAwbComponent
+    DisplayMultipleAwbComponent,
+    ShowDetailedReportComponent
   ],
   imports: [
     BrowserModule,

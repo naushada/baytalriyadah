@@ -1,0 +1,109 @@
+<div class="table-container">
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Tracking Number</th>
+            <th>Alternate Reference No.</th>
+            <th>Account Code</th>
+            <th>Created On</th>
+            <th>Created By</th>
+            <!-- Sender Information -->
+            <th>Sender Reference No.</th>
+            <th>Sender Name</th>
+            <th>Sender Country</th>
+            <th>Sender Address</th>
+            <th>Sender City</th>
+            <th>Sender State</th>
+            <th>Sender Postal Code</th>
+            <th>Sender Contact</th>
+            <th>Sender Phone</th>
+            <th>Sender Email</th>
+            <!-- Shipment Information -->
+            <th>Service Type</th>
+            <th>Number Of Items</th>
+            <th>Goods Description</th>
+            <th>Goods Value</th>
+            <th>Customs Value</th>
+            <th>Weight</th>
+            <th>Weight Unit</th>
+            <th>COD Amount</th>
+            <th>Currency </th>
+            <!-- Receiver Information -->
+            <th>SKU </th>
+            <th>Receiver Name</th>
+            <th>Receiver Country</th>
+            <th>Receiver Address</th>
+            <th>Receiver City</th>
+            <th>Receiver State</th>
+            <th>Receiver Postal Code</th>
+            <th>Receiver Contact</th>
+            <th>Receiver Phone</th>
+            <th>Receiver Email</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let s of shipmentList.m_shipmentArray; let idx = index;">
+            <td>{{s.shipmentNo}}</td>
+            <td>{{s.altRefNo}}</td>
+            <td>{{s.accountCode}}</td>
+            <td>{{s.createdOn}}</td>
+            <td>{{s.createdBy}}</td>
+            <!-- Sender Information -->
+            <td>{{s.name}}</td>
+            <td>{{s.country}}</td>
+            <td>{{s.address}}</td>
+            <td>{{s.city}}</td>
+            <td>{{s.state}}</td>
+            <td>{{s.postalCode}}</td>
+            <td>{{s.contact}}</td>
+            <td>{{s.phone}}</td>
+            <td>{{s.email}}</td>
+            <!-- Shipment Information -->
+            <td>{{s.service}}</td>
+            <td>{{s.noOfItems}}</td>
+            <td>{{s.description}}</td>
+            <td>{{s.goodsValue}}</td>
+            <td>{{s.customValue}}</td>
+            <td>{{s.weight}}</td>
+            <td>{{s.weightUnit}}</td>
+            <td>{{s.codAmount}}</td>
+            <td>{{s.currency}}</td>
+            <!-- Receiver Information-->
+            <td>{{s.receiverName}}</td>
+            <td>{{s.receiverCountry}}</td>
+            <td>{{s.receiverAddress}}</td>
+            <td>{{s.receiverCity}}</td>
+            <td>{{s.receiverState}}</td>
+            <td>{{s.receiverPostalCode}}</td>
+            <td>{{s.receiverContact}}</td>
+            <td>{{s.receiverPhone}}</td>
+            <td>{{s.receiverEmail}}</td>
+            <!--
+            <td>{{s.receiverName}}</td>
+            <td>location to be updated</td>
+            <td>{{s.receiverCountry}}</td>
+            <td>{{s.name}}</td>
+            <td>{{s.country}}</td>
+            <td>{{s.address}}</td>
+            <td>{{s.city}}</td>
+            <td>{{s.state}}</td>
+            <td>{{s.postalCode}}</td>
+            <td>{{s.contact}}</td>
+            <td>{{s.phone}}</td>
+            <td>{{s.email}}</td>
+            <td>{{s.service}}</td>
+            <td>{{s.noOfItems}}</td>
+            <td>{{s.description}}</td>
+            <td>{{s.goodsValue}}</td>
+            <td>{{s.customValue}}</td>
+            <td>{{s.weight}}</td>
+            <td>{{s.weightUnit}}</td>
+            <td>{{s.cubicWeight}}</td>
+            <td>{{s.codAmount}}</td>
+            <td>{{s.currency}}</td> -->
+        </tr>
+        <!-- and so on... -->
+    </tbody>
+</table>
+</div>
