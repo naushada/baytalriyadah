@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/data.service';
 import { ShipmentList } from 'src/commonDS/DS';
@@ -8,7 +8,7 @@ import { ShipmentList } from 'src/commonDS/DS';
   templateUrl: './display-shipment-list.component.html',
   styleUrls: ['./display-shipment-list.component.scss']
 })
-export class DisplayShipmentListComponent implements OnInit {
+export class DisplayShipmentListComponent implements OnInit , OnDestroy{
 
   subscription: Subscription;
   _shipmentListInfo!: ShipmentList;
@@ -27,4 +27,7 @@ export class DisplayShipmentListComponent implements OnInit {
     */
   }
 
+  ngOnDestroy(): void {
+      this.subscription.unsubscribe();
+  }
 }

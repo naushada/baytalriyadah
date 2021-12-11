@@ -43,6 +43,8 @@
 <div class="heading">
     <u><i><label>Shipment Information</label></i></u>
 </div>
+<div><label>SKU </label></div>
+<div><input type="text" class="content-item " formControlName="sku" value=""></div>
 <div><label>Service </label></div>
 <div><select class="content-item bg-color-yellow" formControlName="service" value="">
     <option *ngFor="let _svc of ServiceTypes" [value]="_svc">{{_svc}}</option>
@@ -75,8 +77,6 @@
 <div class="heading">
     <u><i><label>Receiver Information</label></i></u>
 </div>
-<div><label>SKU </label></div>
-<div><input type="text" class="content-item " formControlName="sku" value=""></div>
 <div><label>Name </label></div>
 <div><input type="text" class="content-item bg-color-yellow" formControlName="receiverName" value=""></div>
 <div><label>Country </label></div>
@@ -97,7 +97,8 @@
 <div><input type="tel" class="content-item bg-color-yellow" formControlName="receiverPhone" value=""></div>
 <div><label>E-Mail </label></div>
 <div><input type="email" class="content-item " formControlName="receiverEmail" value=""></div>
-       
+<div></div> 
+<div></div> 
 <div class="content-item btn-default ml-10">
     <button type="submit">Submit</button>
 </div>

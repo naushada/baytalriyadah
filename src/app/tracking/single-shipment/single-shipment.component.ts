@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/data.service';
@@ -10,7 +10,7 @@ import { CrudService } from 'src/rest-api/crud.service';
   templateUrl: './single-shipment.component.html',
   styleUrls: ['./single-shipment.component.scss']
 })
-export class SingleShipmentComponent implements OnInit {
+export class SingleShipmentComponent implements OnInit, OnDestroy {
 
   displayResult: string = "";
   shipmentInfo!: Shipment;
@@ -95,4 +95,8 @@ export class SingleShipmentComponent implements OnInit {
       }
     }
   } /** end of onSubmit */
+
+  ngOnDestroy(): void {
+      this.subscription.unsubscribe();
+  }
 }

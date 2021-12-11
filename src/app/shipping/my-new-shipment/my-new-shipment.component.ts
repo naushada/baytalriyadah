@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -17,7 +17,7 @@ import { DataService } from 'src/app/data.service';
   templateUrl: './my-new-shipment.component.html',
   styleUrls: ['./my-new-shipment.component.scss']
 })
-export class MyNewShipmentComponent implements OnInit {
+export class MyNewShipmentComponent implements OnInit, OnDestroy {
 
   _accountInfo!:Account;
   subscription!: Subscription;
@@ -216,5 +216,9 @@ export class MyNewShipmentComponent implements OnInit {
 
       this.crudOperation.getShipmentInfoByAltRefNoForCustomer(altRefNo, this._accountInfo.accountCode).subscribe((data) => {this._shipmentInfo= data; this.fillShipmentInfo(this._shipmentInfo)});
     }
+  }
+
+  ngOnDestroy(): void {
+      this.subscription.unsubscribe();
   }
 }

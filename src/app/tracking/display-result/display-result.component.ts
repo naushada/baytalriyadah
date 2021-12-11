@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/data.service';
 import { Shipment, ShipmentStatus } from 'src/commonDS/DS';
@@ -8,22 +8,26 @@ import { Shipment, ShipmentStatus } from 'src/commonDS/DS';
   templateUrl: './display-result.component.html',
   styleUrls: ['./display-result.component.scss']
 })
-export class DisplayResultComponent implements OnInit {
+export class DisplayResultComponent implements OnInit, OnDestroy {
 
   _shipmentInfo!:Shipment;
   subscription!: Subscription;
   _status: Array<ShipmentStatus> = new Array<ShipmentStatus>();
-
+  length: number = 0;
   constructor(private data: DataService) { 
 
-    this.subscription = this.data.currentShipmentInfo.subscribe((_shInfo: Shipment) => this._shipmentInfo = new Shipment(_shInfo));
+    this.subscription = this.data.currentShipmentInfo.subscribe((_shInfo: Shipment) => {this.length = _shInfo.activity.length; this._shipmentInfo = new Shipment(_shInfo);});
   }
 
   ngOnInit(): void {
     console.log(this._shipmentInfo);
-    this._status = this._shipmentInfo.activity.reverse();
+    this._status = this._shipmentInfo.activity;
+    this._status.reverse();
   }
 
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
 }

@@ -12,11 +12,17 @@
     </select></div>
 <div><label>Account Code </label></div>
 <div><textarea rows="5" type="text" class="content-item bg-color-yellow" formControlName="accountCode" value="" [readonly]="onEmployeeLogin"></textarea> </div>
+
 <div class="content-item btn-default ml-10">
     <button type="submit">Submit</button>
 </div>
 <div class="content-item btn-default w-50">
     <button type="reset">Clear Contents</button>
+</div>
+<div></div>
+<div></div>
+<div class="content-item btn-default ml-10" (click)= "detailedReportIntoExcel($event)">
+    <button>Get Report into Excel</button>
 </div>	
 </form>
 

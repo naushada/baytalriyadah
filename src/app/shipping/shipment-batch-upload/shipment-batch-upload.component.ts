@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import {formatDate} from '@angular/common';
@@ -7,6 +7,7 @@ import { Account, ExcelDataFormat, ExcelDataForShipment, SenderInformation, Ship
 import { CrudService } from 'src/rest-api/crud.service';
 import * as XLSX from 'xlsx';
 import { ExcelService } from 'src/app/upload/excel.service';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 
 @Component({
@@ -14,12 +15,13 @@ import { ExcelService } from 'src/app/upload/excel.service';
   templateUrl: './shipment-batch-upload.component.html',
   styleUrls: ['./shipment-batch-upload.component.scss']
 })
-export class ShipmentBatchUploadComponent implements OnInit {
+export class ShipmentBatchUploadComponent implements OnInit, OnDestroy {
   convertedData: string;
   _accountInfo!: Account;
   _subscription!: Subscription;
-  _customerInfo!: SenderInformation;
   _excelDataList: Array<ExcelDataFormat> = new Array<ExcelDataFormat>();
+  _custInfoList: Map<string, SenderInformation> = new Map(); 
+  _accountCodeList: Array<string> = new Array<string>();
 
   isBtnEnabled: boolean = false;
 
@@ -41,77 +43,88 @@ export class ShipmentBatchUploadComponent implements OnInit {
     });
   }
 
+  getRidofDupElement(data: Array<string>) {
+    return data.filter((value, idx) => data.indexOf(value) === idx);
+  }
+
   ngOnInit(): void {
   }
 
-    onSubmit() {
+  onSubmit() {
 
-      let listOfObj = new Array<string>();
-      for(let row of this._excelDataList) {
-        let req:string = this.fillShipmentInfo(row);
-        listOfObj.push(req);
-      }
-
-      let arrStr = JSON.stringify(listOfObj);
-      this.crudOperation.createBulkShipment(arrStr).subscribe((rsp:any) => { 
-        let record: any; 
-        let jObj = JSON.stringify(rsp);
-        record = JSON.parse(jObj); alert("Shipments Create are: " + record.createdShipments);}); 
+    let listOfObj = new Array<string>();
+    for(let row of this._excelDataList) {
+      let req:string = this.fillShipmentInfo(row);
+      listOfObj.push(req);
     }
 
-    fillShipmentInfo(from: any): string {
+    let arrStr = JSON.stringify(listOfObj);
+    this.crudOperation.createBulkShipment(arrStr).subscribe((rsp:any) => { 
+      let record: any; 
+      let jObj = JSON.stringify(rsp);
+      record = JSON.parse(jObj); alert("Shipments Create are: " + record.createdShipments);
+    });
+  }
 
-     let shInfo: FormGroup = this.fb.group({
-        activity: this.fb.array([{date: formatDate(new Date(), 'dd/MM/yyyy', 'en'), event: "Document Created", 
+  fillShipmentInfo(from: any): string {
+    let accCode: string = from.accountCode;
+    let customerInfo = this._custInfoList.get(accCode);
+    if(customerInfo) {
+
+      let shInfo: FormGroup = this.fb.group({
+          activity: this.fb.array([{date: formatDate(new Date(), 'dd/MM/yyyy', 'en'), event: "Document Created", 
                                   time:new Date().getHours()+':'+new Date().getMinutes(),notes:'', driver:'', 
                                   updatedBy:this._accountInfo.name}]),
-        createdOn:formatDate(new Date(), 'dd/MM/yyyy', 'en'),
-        createdBy: this._accountInfo.name,
-        shipmentNo:'[System Generated]',
-        autogenerate:true,
-        altrefNo: from.altRefNo,
-        /** Sender Informat */
-        referenceNo: from.referenceNo,
-        accountCode: from.accountCode,
-        companyName: this._customerInfo && this._customerInfo.aInfo.companyName || this._accountInfo.companyName,
-        name: this._customerInfo && this._customerInfo.aInfo.name || this._accountInfo.name,
-        country: this._customerInfo && this._customerInfo.aInfo.country || this._accountInfo.country,
-        address: this._customerInfo && this._customerInfo.aInfo.address || this._accountInfo.address,
-        city: this._customerInfo && this._customerInfo.aInfo.city ||this._accountInfo.city,
-        state: this._customerInfo && this._customerInfo.aInfo.state || this._accountInfo.state,
-        postalCode: this._customerInfo && this._customerInfo.aInfo.postalCode || this._accountInfo.postalCode,
-        contact: this._customerInfo && this._customerInfo.aInfo.contact || this._accountInfo.contact,
-        phone: from.phone,
-        email: this._customerInfo && this._customerInfo.aInfo.email || this._accountInfo.email,
-        recvCountryTaxId: from.recvCountryTaxId,
-        /** Shipment Information */
-        serviceType: from.serviceType,
-        noOfitems: from.noOfItems,
-        description: from.description,
-        goodsValue: from.goodsValue,
-        customValue: from.customValue,
-        weight: from.weight,
-        weightUnit: from.weightUnit,
-        cubicWeight: from.cubicWeight,
-        codAmount: from.codAmount,
-        vat: from.vat,
-        currency: from.currency,
+          createdOn:formatDate(new Date(), 'dd/MM/yyyy', 'en'),
+          createdBy: this._accountInfo.name,
+          shipmentNo:'[System Generated]',
+          autogenerate:true,
+          altrefNo: from.altRefNo,
+          /** Sender Informat */
+          referenceNo: from.referenceNo,
+          accountCode: from.accountCode,
+          companyName: customerInfo.aInfo.companyName,
+          name: customerInfo.aInfo.name,
+          country: customerInfo.aInfo.country,
+          address: customerInfo.aInfo.address,
+          city: customerInfo.aInfo.city,
+          state: customerInfo.aInfo.state,
+          postalCode: customerInfo.aInfo.postalCode,
+          contact: customerInfo.aInfo.contact,
+          phone: from.phone,
+          email: customerInfo.aInfo.email,
+          recvCountryTaxId: from.recvCountryTaxId,
+          /** Shipment Information */
+          serviceType: 'Non Document',
+          noOfitems: '1',
+          description: from.description,
+          goodsValue: from.goodsValue,
+          customValue: from.customValue,
+          weight: from.weight,
+          weightUnit: 'KG',
+          cubicWeight: from.cubicWeight,
+          codAmount: from.codAmount,
+          vat: from.vat,
+          currency: from.currency,
+          sku: from.sku,
 
-        /** Receiver Information */
-        sku: from.sku,
-        receiverName: from.receiverName,
-        receiverCountry: from.receiverCountry,
-        receiverAddress: from.receiverAddress,
-        receiverCity: from.receiverCity,
-        receiverState: from.receiverState,
-        receiverPostalCode: from.receiverPostalCode,
-        receiverContact: from.receiverContact,
-        receiverPhone: from.receiverPhone,
-        receiverEmail: from.receiverEmail
-      });
+          /** Receiver Information */
+          receiverName: from.receiverName,
+          receiverCountry: from.receiverCountry,
+          receiverAddress: from.receiverAddress,
+          receiverCity: from.receiverCity,
+          receiverState: from.receiverState,
+          receiverPostalCode: from.receiverPostalCode,
+          receiverContact: from.receiverContact,
+          receiverPhone: from.receiverPhone,
+          receiverEmail: from.receiverEmail
+        });
 
-      return(shInfo.value);
+        return(shInfo.value);
+      }
+      return("");
     }
+
     set accountCode(ac: string)  {
       this.accCode = ac;
     }
@@ -138,20 +151,25 @@ export class ShipmentBatchUploadComponent implements OnInit {
           console.log(rows);
           for(let idx:number = 0; idx < rows.length; ++idx) {
             this._excelDataList[idx] = new ExcelDataFormat(rows[idx]);
+            this._accountCodeList.push(this._excelDataList[idx].accountCode);
           }
         });
       }
 
       fileReader.onloadend = (event) => {
         if(this._accountInfo.role == "Employee") {
-
-          this.crudOperation.getCustomerInfo(this._excelDataList[0].accountCode).subscribe(
-            (data: Account) => {
-              this._customerInfo = new SenderInformation(data);
-              this.isBtnEnabled = true;
-            },
-            (error) => {alert("Invalid AccountCode " + this._excelDataList[0].accountCode);},
-            () => {});
+          let uniq: Array<string> = this.getRidofDupElement(this._accountCodeList);
+          for(let idx: number = 0; idx < uniq.length; ++idx) {
+            this.crudOperation.getCustomerInfo(uniq[idx]).subscribe(
+              (data: Account) => {
+                let customerInfo = new SenderInformation(data);
+                this._custInfoList.set(data.accountCode, customerInfo);
+              },
+              (error) => {alert("Invalid AccountCode " + this._excelDataList[0].accountCode);},
+              () => {
+                console.log("accountCodeList: " + this._accountCodeList);
+                this.isBtnEnabled = true;});
+          }
         } else {
           //this.fillShipmentInfo(this._accountInfo);
           this.isBtnEnabled = true;
@@ -196,5 +214,9 @@ export class ShipmentBatchUploadComponent implements OnInit {
 
   onCreateShipmentTemplate(): void {
     this.xl.createShipmentTemplate();
+  }
+
+  ngOnDestroy(): void {
+      this._subscription.unsubscribe();
   }
 }

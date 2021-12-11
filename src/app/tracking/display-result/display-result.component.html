@@ -7,11 +7,11 @@
     <div class=" item-col1">Service Type</div>
     <div class=" item-col2">: {{_shipmentInfo.service}}</div>
     <div class=" item-col1">Shipped On</div>
-    <div class=" item-col2">: {{_shipmentInfo.activity[0].date}} {{_shipmentInfo.activity[0].time}} {{_shipmentInfo.city}} - {{ _shipmentInfo.country}}</div>
+    <div class=" item-col2">: {{_shipmentInfo.activity[length-1].date}} {{_shipmentInfo.activity[length-1].time}} {{_shipmentInfo.city}} - {{ _shipmentInfo.country}}</div>
     <div class=" item-col1">Destination</div>
     <div class=" item-col2">: {{_shipmentInfo.receiverCity}} - {{_shipmentInfo.receiverCountry}} </div>
     <div class=" item-col1">Status</div>
-    <div class=" item-col2">: {{_status[0].event}}</div>
+    <div class=" item-col2">: {{_shipmentInfo.activity[0].event}}</div>
     <div class=" item-col1">Job #</div>
     <div class=" item-col2">:-</div>
     </div>

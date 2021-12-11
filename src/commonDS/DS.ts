@@ -191,13 +191,14 @@ export class Shipment {
     activity: Array<ShipmentStatus>;
     createdOn:Date;
     createdBy: string;
-    autogenerate: string;
     shipmentNo: string;
+    autogenerate: boolean;
     altRefNo:string;
 
     /*! Sender Information */
     referenceNo:string;
     accountCode:string;
+    companyName: string;
     name:string;
     country: string;
     address: string;
@@ -219,6 +220,7 @@ export class Shipment {
     weightUnit:string;
     cubicWeight:string;
     codAmount:string;
+    vat: string;
     currency:string;
 
 
@@ -246,6 +248,7 @@ export class Shipment {
     /*! Sender Information */
     this.referenceNo = _sp.referenceNo;
     this.accountCode = _sp.accountCode;
+    this.companyName = _sp.companyName;
     this.name = _sp.name;
     this.country = _sp.country;
     this.address = _sp.address;
@@ -267,6 +270,7 @@ export class Shipment {
     this.weightUnit = _sp.weightUnit;
     this.cubicWeight = _sp.cubicWeight;
     this.codAmount = _sp.codAmount;
+    this.vat = _sp.vat;
     this.currency = _sp.currency;
       /*! Receiver Information */
     this.sku = _sp.sku;
@@ -564,7 +568,7 @@ export class ExcelDataFormat {
     this.referenceNo = exl.ReferenceNo;
     this.accountCode = exl.AccountCode;
     this.phone = "";
-    this.serviceType = "Document";
+    this.serviceType = "Non Document";
     this.noOfItems = "";
     this.description=exl.GoodsDescription;
     this.goodsValue=exl.GoodsValue;

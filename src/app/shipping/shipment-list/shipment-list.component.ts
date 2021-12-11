@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import {formatDate} from '@angular/common';
@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './shipment-list.component.html',
   styleUrls: ['./shipment-list.component.scss']
 })
-export class ShipmentListComponent implements OnInit {
+export class ShipmentListComponent implements OnInit, OnDestroy {
 
   shipmentListForm: FormGroup;
   _shipmentList!: ShipmentList;
@@ -80,5 +80,9 @@ export class ShipmentListComponent implements OnInit {
       () => {console.log("End of list");});
 
     }
+  }
+
+  ngOnDestroy(): void {
+      this.subscription.unsubscribe();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/data.service';
 import { ShipmentList, ShipmentStatus } from 'src/commonDS/DS';
@@ -8,7 +8,7 @@ import { ShipmentList, ShipmentStatus } from 'src/commonDS/DS';
   templateUrl: './display-multiple-awb.component.html',
   styleUrls: ['./display-multiple-awb.component.scss']
 })
-export class DisplayMultipleAwbComponent implements OnInit {
+export class DisplayMultipleAwbComponent implements OnInit, OnDestroy {
 
   _shipmentList!: ShipmentList;
   subscription: Subscription;
@@ -35,4 +35,7 @@ export class DisplayMultipleAwbComponent implements OnInit {
     return(status);
   }
 
+  ngOnDestroy(): void {
+      this.subscription.unsubscribe();
+  }
 }

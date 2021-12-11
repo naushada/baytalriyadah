@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/data.service';
@@ -10,7 +10,7 @@ import { CrudService } from 'src/rest-api/crud.service';
   templateUrl: './multiple-shipment.component.html',
   styleUrls: ['./multiple-shipment.component.scss']
 })
-export class MultipleShipmentComponent implements OnInit {
+export class MultipleShipmentComponent implements OnInit, OnDestroy {
 
   _accountInfo!: Account;
   subscription: Subscription;
@@ -32,7 +32,6 @@ export class MultipleShipmentComponent implements OnInit {
   onSubmit() {
 
     let awbNo: string = this.multipleTrackingShipmentForm.controls['trackingNo'].value;
-    console.log("AWB List " + awbNo);
     let awbList = new Array<string>();
     awbList = awbNo.split("\n");
 
@@ -41,7 +40,6 @@ export class MultipleShipmentComponent implements OnInit {
       awbList.push("\"" + item + "\"");
     });*/
 
-    console.log("AAA " + awbList);
     if(this._accountInfo.role == "Employee") {
       if(awbList[0].startsWith("05497") == true) {
         this.crudOperation.getShipmentInfoByAwbList(awbList) 
@@ -50,7 +48,7 @@ export class MultipleShipmentComponent implements OnInit {
                                 this.shipmentInfoList = new ShipmentList(rsp, rsp.length);
                                 this.sharedInfo.setShipmentListInfo(this.shipmentInfoList);
                                 this.showComponent = true;
-                                alert("Number of AWB Records are: " + this.shipmentInfoList.m_length );
+                                //alert("Number of AWB Records are: " + this.shipmentInfoList.m_length );
                               },
                               error => {
                                 alert("Invalid Shipment Number " + awbList);
@@ -103,5 +101,9 @@ export class MultipleShipmentComponent implements OnInit {
 
       }
     }
+  }
+
+  ngOnDestroy(): void {
+      this.subscription.unsubscribe();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import {formatDate} from '@angular/common';
@@ -12,7 +12,7 @@ import { Currency, ServiceType, Events, Role} from '../../../commonDS/DS'
   templateUrl: './update-shipment.component.html',
   styleUrls: ['./update-shipment.component.scss']
 })
-export class UpdateShipmentComponent implements OnInit {
+export class UpdateShipmentComponent implements OnInit, OnDestroy {
 
   _accountInfo!:Account;
   subscription!: Subscription;
@@ -58,5 +58,9 @@ export class UpdateShipmentComponent implements OnInit {
     this.crudOperation.updateShipment(awbNo, activity).subscribe((data) => {alert("Sipment Status is Updated Successfully");},
               (error) => {alert("Shipment Status Update is Failed")},
               () => {});
+  }
+
+  ngOnDestroy(): void {
+      this.subscription.unsubscribe();
   }
 }

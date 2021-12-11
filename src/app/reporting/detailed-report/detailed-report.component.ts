@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/data.service';
@@ -6,13 +6,14 @@ import { Account, CountryName, Shipment, ShipmentList } from '../../../commonDS/
 import { Currency, ServiceType, Events, Role} from '../../../commonDS/DS'
 import {formatDate} from '@angular/common';
 import { CrudService } from 'src/rest-api/crud.service';
+import { ExcelService } from 'src/app/upload/excel.service';
 
 @Component({
   selector: 'app-detailed-report',
   templateUrl: './detailed-report.component.html',
   styleUrls: ['./detailed-report.component.scss']
 })
-export class DetailedReportComponent implements OnInit {
+export class DetailedReportComponent implements OnInit, OnDestroy {
 
   CountryNames = CountryName;
   CurrencyList = Currency;
@@ -27,7 +28,7 @@ export class DetailedReportComponent implements OnInit {
   shipmentList!: ShipmentList;
 
   detailedReportingForm:FormGroup;
-  constructor(private fb: FormBuilder, private data: DataService, private crudOperation: CrudService) { 
+  constructor(private fb: FormBuilder, private data: DataService, private crudOperation: CrudService, private xls: ExcelService) { 
     this._subscription = this.data.currentAccountInfo.subscribe((aInfo: Account) => this._accountInfo = aInfo);
     this.detailedReportingForm = this.fb.group({
       fromDate: '',
@@ -69,5 +70,13 @@ export class DetailedReportComponent implements OnInit {
       },
       /**Operation is executed successfully */
       () => {});
+  }
+
+  detailedReportIntoExcel(event: any) {
+    this.xls.exportAsExcelFile(this.shipmentList.m_shipmentArray, "detailedReport.xlsx");
+  }
+
+  ngOnDestroy(): void {
+      this._subscription.unsubscribe();
   }
 }
