@@ -20,9 +20,7 @@ export class DataService {
 
   setAccountInfo(account: Account) {
     this.accountInfoSource.next(account);
-    console.log("Naushad " + JSON.stringify(account));
     this.accountInfo = new Account(account);
-    console.log(this.accountInfo);
   }
 
  
@@ -32,9 +30,7 @@ export class DataService {
 
   setShipmentInfo(shipmentInfo: Shipment) {
     this.shipmentInfoSource.next(shipmentInfo);
-    console.log("Naushad " + JSON.stringify(shipmentInfo));
     this.shipmentInfo = new Shipment(shipmentInfo);
-    console.log(this.shipmentInfo);
   }
  
   private shipmentListInfoSource = new  BehaviorSubject(this.shipmentListInfo);
@@ -43,8 +39,6 @@ export class DataService {
 
   setShipmentListInfo(_shipmentListInfo: ShipmentList) {
     this.shipmentListInfoSource.next(_shipmentListInfo);
-    console.log("Naushad " + JSON.stringify(_shipmentListInfo));
     this.shipmentListInfo = new ShipmentList(_shipmentListInfo.m_shipmentArray, _shipmentListInfo.m_length);
-    console.log(this.shipmentListInfo);
   }
 }
