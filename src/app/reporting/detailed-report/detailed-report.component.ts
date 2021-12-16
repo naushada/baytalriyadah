@@ -33,7 +33,7 @@ export class DetailedReportComponent implements OnInit, OnDestroy {
     this.detailedReportingForm = this.fb.group({
       fromDate: '',
       toDate: '',
-      country:CountryName[0],
+      country:CountryName[1],
       accountCode:''
     });
   }

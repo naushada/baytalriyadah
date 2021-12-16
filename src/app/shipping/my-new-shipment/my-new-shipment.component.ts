@@ -60,7 +60,7 @@ export class MyNewShipmentComponent implements OnInit, OnDestroy {
       email: '',
       recvCountryTaxId: '',
       /*! Shipment Information */
-      service:ServiceType[0],
+      service:ServiceType[1],
       noOfItems:'',
       description:'',
       goodsValue:'',
@@ -70,12 +70,12 @@ export class MyNewShipmentComponent implements OnInit, OnDestroy {
       cubicWeight:'',
       codAmount:'',
       vat:'',
-      currency:Currency[0],
+      currency:Currency[1],
 
       /*! Receiver Information */
       sku:'',
       receiverName:'',
-      receiverCountry:CountryName[0],
+      receiverCountry:CountryName[1],
       receiverAddress:'',
       receiverCity:'',
       receiverState:'',

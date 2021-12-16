@@ -7,7 +7,6 @@ import { Account, ExcelDataFormat, ExcelDataForShipment, SenderInformation, Ship
 import { CrudService } from 'src/rest-api/crud.service';
 import * as XLSX from 'xlsx';
 import { ExcelService } from 'src/app/upload/excel.service';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 
 @Component({
@@ -167,7 +166,6 @@ export class ShipmentBatchUploadComponent implements OnInit, OnDestroy {
               },
               (error) => {alert("Invalid AccountCode " + this._excelDataList[0].accountCode);},
               () => {
-                console.log("accountCodeList: " + this._accountCodeList);
                 this.isBtnEnabled = true;});
           }
         } else {
@@ -200,7 +198,6 @@ export class ShipmentBatchUploadComponent implements OnInit, OnDestroy {
           this.convertedData = JSON.stringify(data);
           
           JSON.parse(this.convertedData).forEach((row: any) => {
-            console.log(row.accountCode);
             let shInfo: string = this.fillShipmentInfo(row); 
           });
         });

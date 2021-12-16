@@ -34,7 +34,7 @@ export class SingleShipmentComponent implements OnInit, OnDestroy {
 
     let awbNo: string = this.singleTrackingShipmentForm.controls['trackingNo'].value;
     if(this._accountInfo.role == "Employee") {
-      if(awbNo.startsWith("05497") == true) {
+      if(awbNo.startsWith("5497") == true) {
         this.crudOperation.getShipmentInfoByShipmentNo(awbNo) 
                               .subscribe(
                               (rsp : Shipment) => {
@@ -65,7 +65,7 @@ export class SingleShipmentComponent implements OnInit, OnDestroy {
       
     } else {
       let acCode: string = this._accountInfo.accountCode;
-      if(awbNo.startsWith("05497") == true) {
+      if(awbNo.startsWith("5497") == true) {
         this.crudOperation.getShipmentInfoByShipmentNoForCustomer(awbNo, acCode) 
                               .subscribe(
                               (rsp : Shipment) => {

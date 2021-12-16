@@ -23,14 +23,14 @@
     <div class="item navbar" *ngIf="menuOptionSelected === 'shipping'">
         <div class="navbar-item">
             <div><button (click)="navOptionSelected='createShipment'">Create shipment</button></div>
-            <div><button (click)="navOptionSelected='deleteShipment'">Delete Shipment</button></div>
-            <div><button (click)="navOptionSelected='thirdPartyCreateShipment'">Create 3rd Party Shipment</button></div>
-            <div><button (click)="navOptionSelected='thirdPartyDeleteShipment'">Delete 3rd Party Shipment</button></div>
+            <!--<div><button (click)="navOptionSelected='deleteShipment'">Delete Shipment</button></div>-->
             <div><button (click)="navOptionSelected='shipmentList'">Shipment List</button></div>
             <div><button (click)="navOptionSelected='shipmentBatchUpload'">Shipment Batch Upload</button></div>
             <div><button (click)="navOptionSelected='updateShipment'">Update Shipment</button></div>
             <!--<div><button (click)="navOptionSelected='excelTemplate'">Download Template Excel (xls) </button></div>-->
             <div><button (click)="onCreateShipmentTemplate()">Download Template Excel (xls) </button></div>
+            <div><button (click)="navOptionSelected='thirdPartyCreateShipment'">Create 3rd Party Shipment</button></div>
+            <div><button (click)="navOptionSelected='thirdPartyDeleteShipment'">Delete 3rd Party Shipment</button></div>
         </div>
     </div>
 

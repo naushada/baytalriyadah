@@ -53,9 +53,13 @@ export class UpdateShipmentComponent implements OnInit, OnDestroy {
     activity._driver = this.updateShipmentStatusForm.controls['driverName'].value;
     activity._updatedBy = this.updateShipmentStatusForm.controls['updatedBy'].value;
     activity._eventLocation = this.updateShipmentStatusForm.controls['eventLocation'].value;
-
-    console.log(activity);
-    this.crudOperation.updateShipment(awbNo, activity).subscribe((data) => {alert("Sipment Status is Updated Successfully");this.updateShipmentStatusForm.reset();},
+    let awbNoList = new Array<string>();
+    awbNoList = awbNo.split("\n");
+    this.crudOperation.updateShipment(awbNoList, activity).subscribe((data) => {
+                          alert("Sipment Status is Updated Successfully");
+                          this.updateShipmentStatusForm.get('connote')?.setValue('');
+                          this.updateShipmentStatusForm.get('notes')?.setValue('');
+                        },
               (error) => {alert("Shipment Status Update is Failed")},
               () => {});
   }

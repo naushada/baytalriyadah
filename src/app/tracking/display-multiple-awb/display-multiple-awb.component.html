@@ -12,16 +12,16 @@
     <tbody>
         <tr *ngFor="let s of _shipmentList.m_shipmentArray; let idx = index;">
             <td>{{s.shipmentNo}}</td>
-            <ng-container *ngIf="get_lastStatus(s.activity) === 'Proof of Delivery'">
-                <td>{{status}}</td>
-                <td>Delivered On: {{deliveredOn}}<br>
+            <ng-container *ngIf="s.activity[s.activity.length - 1].event === 'Proof of Delivery'">
+                <td>{{s.activity[s.activity.length-1].event}}</td>
+                <td>Delivered On: {{s.activity[s.activity.length -1].date}} : {{s.activity[s.activity.length - 1].time}}<br>
                     Destination: {{s.receiverCity}} - {{s.receiverCountry}}<br>
-                    Signed By: {{notes}} <br>
+                    Signed By: {{s.activity[s.activity.length - 1].notes}} <br>
                     ServiceType: {{s.service}}</td>
 
             </ng-container>
-            <ng-container *ngIf="!(status === 'Proof of Delivery')">
-                <td>{{status}}</td>
+            <ng-container *ngIf="!(s.activity[s.activity.length - 1].event === 'Proof of Delivery')">
+                <td>{{s.activity[s.activity.length-1].event}}</td>
                 <td>Destination: {{s.receiverCity}} - {{s.receiverCountry}}<br>
                     ServiceType: {{s.service}}</td>
 

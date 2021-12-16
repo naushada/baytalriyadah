@@ -41,7 +41,7 @@ export class MultipleShipmentComponent implements OnInit, OnDestroy {
     });*/
 
     if(this._accountInfo.role == "Employee") {
-      if(awbList[0].startsWith("05497") == true) {
+      if(awbList[0].startsWith("5497") == true) {
         this.crudOperation.getShipmentInfoByAwbList(awbList) 
                               .subscribe(
                               (rsp : Shipment[]) => {
@@ -74,18 +74,21 @@ export class MultipleShipmentComponent implements OnInit, OnDestroy {
     } else {
       
       let acCode: string = this._accountInfo.accountCode;
-      if(awbList[0].startsWith("05497") == true) {
+      if(awbList[0].startsWith("5497") == true) {
         this.crudOperation.getShipmentInfoByAwbListForCustomer(awbList, acCode) 
                               .subscribe(
                               (rsp : Shipment[]) => {
                                 this.shipmentInfoList = new ShipmentList(rsp, rsp.length);
-                                this.sharedInfo.setShipmentListInfo(this.shipmentInfoList);
-                                this.showComponent = true;
                               },
                               error => {
                                 alert("Invalid Shipment Number " + awbNo);
                               },
-                              () => {});
+                              () => {
+                                /** Publish the change */
+                                this.sharedInfo.setShipmentListInfo(this.shipmentInfoList);
+                                this.showComponent = true;
+
+                              });
       } else {
         this.crudOperation.getShipmentInfoByAltRefListForCustomer(awbList, acCode) 
                               .subscribe(

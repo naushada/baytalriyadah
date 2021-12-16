@@ -38,7 +38,8 @@ export class DataService {
   currentShipmentListInfo = this.shipmentListInfoSource.asObservable();
 
   setShipmentListInfo(_shipmentListInfo: ShipmentList) {
+    //this.shipmentListInfo = new ShipmentList(_shipmentListInfo.m_shipmentArray, _shipmentListInfo.m_length);
+    this.shipmentListInfo = _shipmentListInfo;
     this.shipmentListInfoSource.next(_shipmentListInfo);
-    this.shipmentListInfo = new ShipmentList(_shipmentListInfo.m_shipmentArray, _shipmentListInfo.m_length);
   }
 }

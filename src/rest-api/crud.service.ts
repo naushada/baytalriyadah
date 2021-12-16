@@ -55,7 +55,7 @@ export class CrudService {
   }
 
 
-  updateShipment(awbNo: string, data: ShipmentStatus) : Observable<any> {
+  updateShipment(awbNo: Array<string>, data: ShipmentStatus) : Observable<any> {
     let param = `shipmentNo=${awbNo}`;
     const options = {params: new HttpParams({fromString: param}),
                      headers: new HttpHeaders({
