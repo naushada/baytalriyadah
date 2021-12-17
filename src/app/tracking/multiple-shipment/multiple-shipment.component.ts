@@ -33,16 +33,25 @@ export class MultipleShipmentComponent implements OnInit, OnDestroy {
 
     let awbNo: string = this.multipleTrackingShipmentForm.controls['trackingNo'].value;
     let awbList = new Array<string>();
-    awbList = awbNo.split("\n");
+
+    let senderRef: string = this.multipleTrackingShipmentForm.controls['senderRefNo'].value;
+    let senderRefList = new Array<string>();
+
+    if(awbNo.length > 0) {
+      awbList = awbNo.split("\n");
+    } else if(senderRef.length > 0) {
+      senderRefList = senderRef.split("\n");
+    }
 
     /*
     awbNo.split("\n").forEach((item: string) => {
       awbList.push("\"" + item + "\"");
     });*/
 
-    if(this._accountInfo.role == "Employee") {
-      if(awbList[0].startsWith("5497") == true) {
-        this.crudOperation.getShipmentInfoByAwbList(awbList) 
+    if(awbNo.length > 0) {
+      if(this._accountInfo.role == "Employee") {
+        if(awbList[0].startsWith("5497") == true) {
+          this.crudOperation.getShipmentInfoByAwbList(awbList) 
                               .subscribe(
                               (rsp : Shipment[]) => {
                                 this.shipmentInfoList = new ShipmentList(rsp, rsp.length);
@@ -55,8 +64,8 @@ export class MultipleShipmentComponent implements OnInit, OnDestroy {
                               },
                               /**Operation is executed successfully */
                               () => {});
-      } else {
-        this.crudOperation.getShipmentInfoByAltRefList(awbList) 
+        } else {
+          this.crudOperation.getShipmentInfoByAltRefList(awbList) 
                               .subscribe(
                               (rsp : Shipment[]) => {
                                 this.shipmentInfoList = new ShipmentList(rsp, rsp.length);
@@ -69,13 +78,11 @@ export class MultipleShipmentComponent implements OnInit, OnDestroy {
                               /**Operation is executed successfully */
                               () => {});
 
-      }
-      
-    } else {
-      
-      let acCode: string = this._accountInfo.accountCode;
-      if(awbList[0].startsWith("5497") == true) {
-        this.crudOperation.getShipmentInfoByAwbListForCustomer(awbList, acCode) 
+        }
+      } else {
+        let acCode: string = this._accountInfo.accountCode;
+        if(awbList[0].startsWith("5497") == true) {
+          this.crudOperation.getShipmentInfoByAwbListForCustomer(awbList, acCode) 
                               .subscribe(
                               (rsp : Shipment[]) => {
                                 this.shipmentInfoList = new ShipmentList(rsp, rsp.length);
@@ -89,8 +96,40 @@ export class MultipleShipmentComponent implements OnInit, OnDestroy {
                                 this.showComponent = true;
 
                               });
+        } else {
+          this.crudOperation.getShipmentInfoByAltRefListForCustomer(awbList, acCode) 
+                              .subscribe(
+                              (rsp : Shipment[]) => {
+                                this.shipmentInfoList = new ShipmentList(rsp, rsp.length);
+                                this.sharedInfo.setShipmentListInfo(this.shipmentInfoList);
+                                this.showComponent = true;
+                              },
+                              error => {
+                                alert("Invalid ALT REF NO Number " + awbList);
+                              },
+                              () => {});
+        }
+      }
+    } else if(senderRef.length > 0) {
+      if(this._accountInfo.role == "Employee") {
+        this.crudOperation.getShipmentInfoBySenderRefNoList(senderRefList) 
+                              .subscribe(
+                              (rsp : Shipment[]) => {
+                                this.shipmentInfoList = new ShipmentList(rsp, rsp.length);
+                              },
+                              error => {
+                                alert("Invalid Shipment Number " + awbNo);
+                              },
+                              () => {
+                                /** Publish the change */
+                                this.sharedInfo.setShipmentListInfo(this.shipmentInfoList);
+                                this.showComponent = true;
+
+                              });
+
       } else {
-        this.crudOperation.getShipmentInfoByAltRefListForCustomer(awbList, acCode) 
+        let acCode: string = this._accountInfo.accountCode;
+        this.crudOperation.getShipmentInfoBySenderRefNoListForCustomer(senderRefList, acCode) 
                               .subscribe(
                               (rsp : Shipment[]) => {
                                 this.shipmentInfoList = new ShipmentList(rsp, rsp.length);
@@ -105,6 +144,7 @@ export class MultipleShipmentComponent implements OnInit, OnDestroy {
       }
     }
   }
+
 
   ngOnDestroy(): void {
       this.subscription.unsubscribe();

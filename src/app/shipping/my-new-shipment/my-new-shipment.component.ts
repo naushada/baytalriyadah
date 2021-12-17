@@ -24,7 +24,7 @@ export class MyNewShipmentComponent implements OnInit, OnDestroy {
   _customerInfo!: SenderInformation;
   _shipmentInfo!: Shipment;
 
-  accountCodeList: Account[] = [];
+  accountCodeList: Array<Account> = new Array<Account>();
 
   /* These are the Global Properties defined in DS.ts file. */
   CountryNames = CountryName;
@@ -46,6 +46,7 @@ export class MyNewShipmentComponent implements OnInit, OnDestroy {
       autogenerate: false,
       altRefNo:'',
       /*! Sender Information */
+      addressBook: '',
       referenceNo:'',
       accountCode: '',
       coName:'',
@@ -96,11 +97,25 @@ export class MyNewShipmentComponent implements OnInit, OnDestroy {
   
   ngOnInit(): void {
     this.subscription = this.data.currentAccountInfo.subscribe((message: Account) => this._accountInfo = message);
-    //this.shipmentForm.controls.accountCode.setValue(this._accountInfo.accountCode);
-    //this.crudOperation.getAccountCodeList().subscribe((data : Account[]) => {console.log(data); this.accountCodeList = data; this.fillAccountCode(this.accountCodeList);});
+
+    this.crudOperation.getAccountCodeList().subscribe((data : Account[]) => 
+        {
+          data.forEach((item: Account) => {
+            this.accountCodeList.push(new Account(item));
+          });
+        },
+
+        (error)=> {},
+
+        () => {});
+
     if(this._accountInfo && this._accountInfo.role == "Customer") {
       this.fillCustomerInfo();
     }
+  }
+
+  onChangeAccountCode() {
+    this.shipmentForm.get('accountCode')?.setValue(this.shipmentForm.get('addressBook')?.value);
   }
 
   fillCustomerInfo() {

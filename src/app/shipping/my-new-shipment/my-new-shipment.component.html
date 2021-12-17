@@ -12,6 +12,10 @@
 <div class="heading">
     <u><i><label>Sender Information</label></i></u>
 </div>
+<div><label>Address Book</label></div>
+<div><select class="content-item bg-color-white" formControlName="addressBook" (change)="onChangeAccountCode()">
+    <option *ngFor="let _ab of accountCodeList" [value]="_ab.accountCode">{{_ab.accountCode}} - {{_ab.name}} </option>
+    </select></div>
 <div><label>Reference Number </label></div>
 <div><input type="text" class="content-item bg-color-yellow" formControlName="referenceNo" value="" required></div>
 <div><label>Account Code </label></div>

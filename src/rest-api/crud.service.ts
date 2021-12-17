@@ -212,6 +212,30 @@ export class CrudService {
         catchError(this.handleError));
   }
 
+  getShipmentInfoBySenderRefNoList(senderRefNoList:Array<string>): Observable<Shipment[]> {
+    let param = `senderRefNo=${senderRefNoList}`;
+
+    const options = { params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/senderRefNoList';
+    return this.http.get<Shipment[]>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+  }
+
+  getShipmentInfoBySenderRefNo(senderRefNo:string): Observable<Shipment> {
+    let param = `senderRefNo=${senderRefNo}`;
+
+    const options = { params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/senderRefNo';
+    return this.http.get<Shipment>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+  }
+
   getShipmentInfoByAccountCodeList(fromDate: string, toDate: string, country:string, ac:Array<string>): Observable<Shipment[]> {
 
     let param = `accountCode=${ac}&fromDate=${fromDate}&toDate=${toDate}&country=${country}`;
@@ -305,4 +329,27 @@ export class CrudService {
         catchError(this.handleError));
   }
 
+  getShipmentInfoBySenderRefNoListForCustomer(senderRefNoList:Array<string>, accCode: string): Observable<Shipment[]> {
+    let param = `senderRefNo=${senderRefNoList}&accountCode=${accCode}`;
+
+    const options = { params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/senderRefNoList';
+    return this.http.get<Shipment[]>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+  }
+
+  getShipmentInfoBySenderRefNoForCustomer(senderRefNo:string, accCode:string): Observable<Shipment> {
+    let param = `senderRefNo=${senderRefNo}&accountCode=${accCode}`;
+
+    const options = { params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/senderRefNo';
+    return this.http.get<Shipment>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+  }
 }

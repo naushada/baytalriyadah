@@ -33,9 +33,13 @@ export class SingleShipmentComponent implements OnInit, OnDestroy {
   onSubmit() {
 
     let awbNo: string = this.singleTrackingShipmentForm.controls['trackingNo'].value;
+    let senderRef: string = this.singleTrackingShipmentForm.controls['senderRefNo'].value;
+
     if(this._accountInfo.role == "Employee") {
-      if(awbNo.startsWith("5497") == true) {
-        this.crudOperation.getShipmentInfoByShipmentNo(awbNo) 
+      console.log("awbNo.length :" + awbNo.length);
+      if(awbNo.length > 0) {
+        if(awbNo.startsWith("5497") == true) {
+          this.crudOperation.getShipmentInfoByShipmentNo(awbNo) 
                               .subscribe(
                               (rsp : Shipment) => {
                                 this.shipmentInfo = new Shipment(rsp);
@@ -47,8 +51,8 @@ export class SingleShipmentComponent implements OnInit, OnDestroy {
                               },
                               /**Operation is executed successfully */
                               () => {});
-      } else {
-        this.crudOperation.getShipmentInfoByAltRefNo(awbNo) 
+        } else {
+          this.crudOperation.getShipmentInfoByAltRefNo(awbNo) 
                               .subscribe(
                               (rsp : Shipment) => {
                                 this.shipmentInfo = new Shipment(rsp);
@@ -60,13 +64,24 @@ export class SingleShipmentComponent implements OnInit, OnDestroy {
                               },
                               /**Operation is executed successfully */
                               () => {});
+        }
+      } else if(senderRef.length > 0) {
+        this.crudOperation.getShipmentInfoBySenderRefNo(senderRef).subscribe(
+          (rsp: Shipment) =>
+          {
+              this.shipmentInfo = new Shipment(rsp);
+              this.sharedShipmentInfo.setShipmentInfo(this.shipmentInfo);
+              this.displayResult = "True";
 
+          },
+          (error) => {},
+          () => {});
       }
-      
     } else {
       let acCode: string = this._accountInfo.accountCode;
-      if(awbNo.startsWith("5497") == true) {
-        this.crudOperation.getShipmentInfoByShipmentNoForCustomer(awbNo, acCode) 
+      if(awbNo.length > 0) {
+        if(awbNo.startsWith("5497") == true) {
+          this.crudOperation.getShipmentInfoByShipmentNoForCustomer(awbNo, acCode) 
                               .subscribe(
                               (rsp : Shipment) => {
                                 this.shipmentInfo = new Shipment(rsp);
@@ -78,9 +93,22 @@ export class SingleShipmentComponent implements OnInit, OnDestroy {
                               },
                               /**Operation is executed successfully */
                               () => {});
-      } else {
-        this.crudOperation.getShipmentInfoByAltRefNoForCustomer(awbNo, acCode) 
+        } else {
+          this.crudOperation.getShipmentInfoByAltRefNoForCustomer(awbNo, acCode) 
                               .subscribe(
+                              (rsp : Shipment) => {
+                                this.shipmentInfo = new Shipment(rsp);
+                                this.sharedShipmentInfo.setShipmentInfo(this.shipmentInfo);
+                                this.displayResult = "True";
+                              },
+                              error => {
+                                alert("Invalid ALT REF NO Number " + awbNo);
+                              },
+                              /**Operation is executed successfully */
+                              () => {});
+        }
+      } else if(senderRef.length > 0) {
+          this.crudOperation.getShipmentInfoBySenderRefNoForCustomer(senderRef, acCode).subscribe(
                               (rsp : Shipment) => {
                                 this.shipmentInfo = new Shipment(rsp);
                                 this.sharedShipmentInfo.setShipmentInfo(this.shipmentInfo);
