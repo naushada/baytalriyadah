@@ -238,7 +238,13 @@ export class CrudService {
 
   getShipmentInfoByAccountCodeList(fromDate: string, toDate: string, country:string, ac:Array<string>): Observable<Shipment[]> {
 
-    let param = `accountCode=${ac}&fromDate=${fromDate}&toDate=${toDate}&country=${country}`;
+    let param: string = "";
+    if(ac.length > 0) {
+      param = `accountCode=${ac}&fromDate=${fromDate}&toDate=${toDate}&country=${country}`;
+    } else {
+      param = `fromDate=${fromDate}&toDate=${toDate}&country=${country}`;
+    }
+
     console.log("param" + param);
     const options = { params: new HttpParams({fromString: param})};
 

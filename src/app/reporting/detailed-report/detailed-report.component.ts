@@ -55,7 +55,9 @@ export class DetailedReportComponent implements OnInit, OnDestroy {
     let country: string = this.detailedReportingForm.controls['country'].value;
     let accountCode: string = this.detailedReportingForm.controls['accountCode'].value;
     let acList = new Array<string>();
-    acList = accountCode.split("\n");
+    if(accountCode.length > 0) {
+      acList = accountCode.split("\n");
+    }
 
     this.crudOperation.getShipmentInfoByAccountCodeList(fromDate,toDate,country, acList)
       .subscribe((rsp:Shipment[]) => {
