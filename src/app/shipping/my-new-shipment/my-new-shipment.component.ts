@@ -72,9 +72,9 @@ export class MyNewShipmentComponent implements OnInit, OnDestroy {
       codAmount:'',
       vat:'',
       currency:Currency[1],
+      sku:'',
 
       /*! Receiver Information */
-      sku:'',
       receiverName:'',
       receiverCountry:CountryName[1],
       receiverAddress:'',

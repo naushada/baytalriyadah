@@ -222,10 +222,9 @@ export class Shipment {
     codAmount:string;
     vat: string;
     currency:string;
-
+    sku: string;
 
     /*! Receiver Information */
-    sku: string;
     receiverName:string;
     receiverCountry:string;
     receiverAddress:string;

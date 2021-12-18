@@ -78,7 +78,7 @@ export class ShipmentBatchUploadComponent implements OnInit, OnDestroy {
           createdBy: this._accountInfo.name,
           shipmentNo:'[System Generated]',
           autogenerate:true,
-          altrefNo: from.altRefNo,
+          altRefNo: from.altRefNo,
           /** Sender Informat */
           referenceNo: from.referenceNo,
           accountCode: from.accountCode,
@@ -94,8 +94,8 @@ export class ShipmentBatchUploadComponent implements OnInit, OnDestroy {
           email: customerInfo.aInfo.email,
           recvCountryTaxId: from.recvCountryTaxId,
           /** Shipment Information */
-          serviceType: 'Non Document',
-          noOfitems: '1',
+          service: 'Non Document',
+          noOfItems: '1',
           description: from.description,
           goodsValue: from.goodsValue,
           customValue: from.customValue,
