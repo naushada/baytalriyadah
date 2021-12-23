@@ -124,7 +124,7 @@ export let ExcelHeading: Array<string> = [
   "ReceiverAlternatePhoneNo",
   "GoodsDescription",
   "CodAmount",
-  "AlternameReferenceNo",
+  "AlternateReferenceNo",
   "CustomsValue",
   "CustomsCurrency"
   /*
@@ -563,7 +563,7 @@ export class ExcelDataFormat {
   receiverEmail: string;
 
   constructor(exl: any) {
-    this.altRefNo = exl.AlternameReferenceNo;
+    this.altRefNo = exl.AlternateReferenceNo;
     this.referenceNo = exl.ReferenceNo;
     this.accountCode = exl.AccountCode;
     this.phone = "";

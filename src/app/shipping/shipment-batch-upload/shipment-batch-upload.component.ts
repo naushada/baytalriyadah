@@ -19,7 +19,9 @@ export class ShipmentBatchUploadComponent implements OnInit, OnDestroy {
   _accountInfo!: Account;
   _subscription!: Subscription;
   _excelDataList: Array<ExcelDataFormat> = new Array<ExcelDataFormat>();
-  _custInfoList: Map<string, SenderInformation> = new Map(); 
+  _custInfoList: Map<string, Account> = new Map<string, Account>(); 
+  //_custInfoList: Map<string, SenderInformation> = new Map<string, SenderInformation>(); 
+  //_custInfoList = new Map(); 
   _accountCodeList: Array<string> = new Array<string>();
 
   isBtnEnabled: boolean = false;
@@ -63,11 +65,30 @@ export class ShipmentBatchUploadComponent implements OnInit, OnDestroy {
       let jObj = JSON.stringify(rsp);
       record = JSON.parse(jObj); alert("Shipments Create are: " + record.createdShipments);
     });
+
+    this._custInfoList.clear();
   }
 
   fillShipmentInfo(from: any): string {
-    let accCode: string = from.accountCode;
-    let customerInfo = this._custInfoList.get(accCode);
+    let acc: string = from.accountCode;
+    console.log("acc :" + acc);
+    console.log("custInfoList :" + this._custInfoList.size + " " + this._custInfoList.has(acc));
+    let customerInfo:Account = new Account();
+    //let customerInfo: Account  = <Account>this._custInfoList.get(acc);
+
+    for (let [key, value] of this._custInfoList) {
+      if(key == acc) {
+        customerInfo = value;
+        break;
+      }
+    }
+
+    /*
+    console.log(customerInfo);
+    this._custInfoList.forEach((value: Account, key: string) => {
+      console.log(key, value);
+    });*/
+
     if(customerInfo) {
 
       let shInfo: FormGroup = this.fb.group({
@@ -82,16 +103,16 @@ export class ShipmentBatchUploadComponent implements OnInit, OnDestroy {
           /** Sender Informat */
           referenceNo: from.referenceNo,
           accountCode: from.accountCode,
-          companyName: customerInfo.aInfo.companyName,
-          name: customerInfo.aInfo.name,
-          country: customerInfo.aInfo.country,
-          address: customerInfo.aInfo.address,
-          city: customerInfo.aInfo.city,
-          state: customerInfo.aInfo.state,
-          postalCode: customerInfo.aInfo.postalCode,
-          contact: customerInfo.aInfo.contact,
+          companyName: customerInfo.companyName,
+          name: customerInfo.name,
+          country: customerInfo.country,
+          address: customerInfo.address,
+          city: customerInfo.city,
+          state: customerInfo.state,
+          postalCode: customerInfo.postalCode,
+          contact: customerInfo.contact,
           phone: from.phone,
-          email: customerInfo.aInfo.email,
+          email: customerInfo.email,
           recvCountryTaxId: from.recvCountryTaxId,
           /** Shipment Information */
           service: 'Non Document',
@@ -135,7 +156,7 @@ export class ShipmentBatchUploadComponent implements OnInit, OnDestroy {
     getAccountCode(event: any) : void {
       let rows: any[] = [];
       const selectedFile = event.target.files[0];
-      console.log(selectedFile);
+      //console.log(selectedFile);
       const fileReader = new FileReader();
       fileReader.readAsBinaryString(selectedFile);
 
@@ -161,8 +182,9 @@ export class ShipmentBatchUploadComponent implements OnInit, OnDestroy {
           for(let idx: number = 0; idx < uniq.length; ++idx) {
             this.crudOperation.getCustomerInfo(uniq[idx]).subscribe(
               (data: Account) => {
-                let customerInfo = new SenderInformation(data);
-                this._custInfoList.set(data.accountCode, customerInfo);
+                //let customerInfo = new SenderInformation(data);
+                this._custInfoList.set(data.accountCode, data);
+                console.log(this._custInfoList.has(data.accountCode));
               },
               (error) => {alert("Invalid AccountCode " + this._excelDataList[0].accountCode);},
               () => {
