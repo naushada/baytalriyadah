@@ -112,6 +112,8 @@ export class MyNewShipmentComponent implements OnInit, OnDestroy {
     if(this._accountInfo && this._accountInfo.role == "Customer") {
       this.fillCustomerInfo();
     }
+
+    this.shipmentForm.get('noOfItems')?.setValue("1");
   }
 
   onChangeAccountCode() {
