@@ -71,8 +71,6 @@ export class ShipmentBatchUploadComponent implements OnInit, OnDestroy {
 
   fillShipmentInfo(from: any): string {
     let acc: string = from.accountCode;
-    console.log("acc :" + acc);
-    console.log("custInfoList :" + this._custInfoList.size + " " + this._custInfoList.has(acc));
     let customerInfo:Account = new Account();
     //let customerInfo: Account  = <Account>this._custInfoList.get(acc);
 
@@ -104,7 +102,7 @@ export class ShipmentBatchUploadComponent implements OnInit, OnDestroy {
           referenceNo: from.referenceNo,
           accountCode: from.accountCode,
           companyName: customerInfo.companyName,
-          name: customerInfo.name,
+          name: from.name && from.name || customerInfo.name,
           country: customerInfo.country,
           address: customerInfo.address,
           city: customerInfo.city,
@@ -184,7 +182,7 @@ export class ShipmentBatchUploadComponent implements OnInit, OnDestroy {
               (data: Account) => {
                 //let customerInfo = new SenderInformation(data);
                 this._custInfoList.set(data.accountCode, data);
-                console.log(this._custInfoList.has(data.accountCode));
+                //console.log(this._custInfoList.has(data.accountCode));
               },
               (error) => {alert("Invalid AccountCode " + this._excelDataList[0].accountCode);},
               () => {

@@ -126,7 +126,8 @@ export let ExcelHeading: Array<string> = [
   "CodAmount",
   "AlternateReferenceNo",
   "CustomsValue",
-  "CustomsCurrency"
+  "CustomsCurrency",
+  "SenderName"
   /*
   "phone",
   "serviceType",
@@ -539,6 +540,7 @@ export class ExcelDataFormat {
   altRefNo: string;
   referenceNo: string;
   accountCode: string;
+  name: string;
   phone: string;
   serviceType: string;
   noOfItems: string;
@@ -566,6 +568,7 @@ export class ExcelDataFormat {
     this.altRefNo = exl.AlternateReferenceNo;
     this.referenceNo = exl.ReferenceNo;
     this.accountCode = exl.AccountCode;
+    this.name = exl.SenderName;
     this.phone = "";
     this.serviceType = "Non Document";
     this.noOfItems = "";
