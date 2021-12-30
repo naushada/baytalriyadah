@@ -3,16 +3,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<div>
-    <i class="fa fa-print" style="font-size:24px; margin-left: 10px"><button (click)="generatePdf()"></button></i>
-    <i class="fa fa-minus-circle" style="font-size:24px; margin-left: 10px;" ></i>
+<div class="box">
+    <button (click)="generatePdf('A6')">
+    <i class="fa fa-print" style="font-size:24px; margin-right: 5px"></i>A6
+    </button>
+    <button (click)="generatePdf('A4')">
+    <i class="fa fa-print" style="font-size:24px; margin-right:5px"></i>A4
+    </button>
+    <button>
+    <i class="fa fa-minus-circle" style="font-size:24px; margin-right: 5px;" ></i> Delete AWB
+    </button>
 </div>
 <!--<app-label-a6></app-label-a6>-->
 <div class="table-container">
 <table class="styled-table">
     <thead>
         <tr>
-            <th><input type="checkbox" name="shipment" (click)="onSelectAll()" [checked]="selected[0]">Select All </th>
+            <th><input type="checkbox" name="shipmentM" (change)="onSelectAll($event)" [checked]="selected[0]">Select All </th>
             <th>Serial No.</th>
             <th>Shipment No</th>
             <th>ALT REF No</th>
@@ -29,7 +36,7 @@
 
     <tbody>
         <tr *ngFor="let s of _shipmentListInfo.m_shipmentArray; let idx = index;">
-            <td><input type="checkbox" name="shipment" [checked]="selected[idx + 1]" value="{{s.shipmentNo}}"> </td>
+            <td><input type="checkbox" name="shipment" [checked]="selected[idx+ 1]" value="{{s.shipmentNo}}" (change)="onSingleSelect($event, idx + 1)"> </td>
             <td>{{idx + 1}}</td>
             <td>{{s.shipmentNo}}</td>
             <td>{{s.altRefNo}}</td>

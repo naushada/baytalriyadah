@@ -46,3 +46,13 @@
 input[type="checkbox"] {
     width: 20px;
 }
+
+.box {
+    display: grid;
+    grid-template-columns: repeat(5,150px);
+    grid-template-rows: auto;
+    grid-auto-flow: column;
+    grid-gap: 10px;
+    margin-left: 10px; 
+    justify-items: end;
+}
