@@ -86,10 +86,11 @@ export class DisplayShipmentListComponent implements OnInit , OnDestroy{
               [ {text: 'COD: '+ elm.codAmount, bold: true}, ''],
             ]
           },
-          //pageBreak: 'after'
+          pageBreak: 'after'
+          /*
           pageBreakAfter: (currentNode:any, followingNodesOnPage:any, nodesOnNextPage:any, previousNodesOnPage:any) => {
             return currentNode.headlineLevel === 1 && followingNodesOnPage.length === 0;
-         }
+         }*/
         }
       ];
 
