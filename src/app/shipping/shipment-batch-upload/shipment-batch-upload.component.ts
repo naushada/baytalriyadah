@@ -92,7 +92,7 @@ export class ShipmentBatchUploadComponent implements OnInit, OnDestroy {
       let shInfo: FormGroup = this.fb.group({
           activity: this.fb.array([{date: formatDate(new Date(), 'dd/MM/yyyy', 'en'), event: "Document Created", 
                                   time:new Date().getHours()+':'+new Date().getMinutes(),notes:'', driver:'', 
-                                  updatedBy:this._accountInfo.name}]),
+                                  updatedBy:this._accountInfo.name, eventLocation:'Riyadh'}]),
           createdOn:formatDate(new Date(), 'dd/MM/yyyy', 'en'),
           createdBy: this._accountInfo.name,
           shipmentNo:'[System Generated]',

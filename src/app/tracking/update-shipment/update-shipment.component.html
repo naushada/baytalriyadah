@@ -19,10 +19,9 @@
 
 
 <div><label>event Location </label></div>
-<div><select rows="5" type="text" class="content-item bg-color-yellow" formControlName="eventLocation" value="">
-    <option>Makka</option>
-    <option>Madina</option>
-</select> </div>
+<div><select type="text" class="content-item bg-color-yellow" style="width:35%" formControlName="eventLocation" value="">
+    <option *ngFor="let cityNames of CityNames" [value]="cityNames">{{cityNames}}</option>
+</select> <input style="width:42%;" class="content-item ml-10" type="text" formControlName="manualEvtLoc" placeholder="Provide City Name"> </div>
 <div><label>Driver </label></div>
 <div><input type="text" class="content-item bg-color-yellow" formControlName="driverName" value=""> </div>
 

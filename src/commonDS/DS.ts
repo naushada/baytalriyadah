@@ -143,6 +143,40 @@ export let ExcelHeading: Array<string> = [
   "receiverEmail"*/
 ];
 
+export let EventLocation: Array<string> = [
+  "",
+  "Riyadh",
+  "Dammam",
+  "Jeddah",
+  "Mecca",
+  "Medina",
+  "Khobar",
+  "Jubail",
+  "Tabuk",
+  "Buraidah",
+  "Onaizah",
+  "Rass",
+  "Sakakah",
+  "AlQurayyat",
+  "Arar",
+  "Hail",
+  "Rafaha",
+  "Dawadmi",
+  "AlKhafji",
+  "HAFAR ALBATIN",
+  "Khamis Mushait",
+  "Najran",
+  "Jizan",
+  "Hassa",
+  "Yanbu",
+  "AlQunfudhah",
+  "Taif",
+  "AlMajmaah",
+  "AlQatif",
+  "Dhahran",
+  "AlKharj"
+];
+
 export class ShipmentStatus {
   date: string;
   event: string;

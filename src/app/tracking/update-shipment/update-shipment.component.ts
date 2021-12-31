@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import {formatDate} from '@angular/common';
 import { DataService } from 'src/app/data.service';
 import { CrudService } from 'src/rest-api/crud.service';
-import { Account, CountryName, Shipment, ShipmentStatus } from '../../../commonDS/DS'
+import { Account, CountryName, EventLocation, Shipment, ShipmentStatus } from '../../../commonDS/DS'
 import { Currency, ServiceType, Events, Role} from '../../../commonDS/DS'
 
 @Component({
@@ -23,6 +23,7 @@ export class UpdateShipmentComponent implements OnInit, OnDestroy {
   ServiceTypes = ServiceType;
   EventList = Events;
   Roles = Role;
+  CityNames = EventLocation;
 
   updateShipmentStatusForm: FormGroup;
   constructor(private fb: FormBuilder, private data: DataService, private crudOperation: CrudService) { 
@@ -35,7 +36,8 @@ export class UpdateShipmentComponent implements OnInit, OnDestroy {
       notes:'',
       driverName:'',
       updatedBy: this._accountInfo.name,
-      eventLocation:'',
+      eventLocation: this.CityNames[1],
+      manualEvtLoc:'',
       connote:''
     });
   }
@@ -53,6 +55,11 @@ export class UpdateShipmentComponent implements OnInit, OnDestroy {
     activity._driver = this.updateShipmentStatusForm.controls['driverName'].value;
     activity._updatedBy = this.updateShipmentStatusForm.controls['updatedBy'].value;
     activity._eventLocation = this.updateShipmentStatusForm.controls['eventLocation'].value;
+
+    if(!this.updateShipmentStatusForm.get('eventLocation')?.value.length) {
+      activity._eventLocation = this.updateShipmentStatusForm.controls['manualEvtLoc'].value;
+    }
+
     let awbNoList = new Array<string>();
     awbNoList = awbNo.split("\n");
     this.crudOperation.updateShipment(awbNoList, activity).subscribe((data) => {
