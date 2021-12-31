@@ -255,6 +255,18 @@ export class CrudService {
         catchError(this.handleError));
   }
 
+  onDeleteShipment(awbList: Array<string>) {
+    let param = `awbList=${awbList}`;
+
+    const options = {params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/deleteAwbList';
+    return this.http.delete<string>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+  }
+
   /************************************************************************************************** 
    * 
    * For Customer  

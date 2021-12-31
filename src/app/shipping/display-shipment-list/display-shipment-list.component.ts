@@ -6,6 +6,7 @@ import { Shipment, ShipmentList } from 'src/commonDS/DS';
 import * as JsBarcode from "jsbarcode";
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { CrudService } from 'src/rest-api/crud.service';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -20,7 +21,7 @@ export class DisplayShipmentListComponent implements OnInit , OnDestroy{
   _shipmentListInfo!: ShipmentList;
   selected: boolean[] = [];
 
-  constructor(private data: DataService) { 
+  constructor(private data: DataService, private crudOperation: CrudService) { 
     let checkboxes = document.getElementsByName("shipment");
     for( let idx: number=0; idx < checkboxes.length; ++idx) {
       this.selected[idx] = false;
@@ -196,6 +197,24 @@ export class DisplayShipmentListComponent implements OnInit , OnDestroy{
       this.buildA4ContentsBody();
       pdfMake.createPdf(this.docDefinitionA4).download( pgType + "-label");
     }
+  }
+
+  onDeleteAWB() {
+    let elm:string;
+    let awbList:Array<string> = new Array<string>();
+    for(let idx:number = 1; idx < this.selected.length; ++idx) {
+      if(!this.selected[idx]) {continue;}
+      elm = this._shipmentListInfo.m_shipmentArray[idx -1].shipmentNo;
+      awbList.push(elm);
+    }
+
+    this.crudOperation.onDeleteShipment(awbList).subscribe((rsp) => {
+      alert("Shipment(s) is/are Delete successfully.");
+    },
+    (error) => {
+      alert("Shipment deletion failed");
+    },
+    () => {});
   }
 
   ngOnDestroy(): void {
