@@ -73,7 +73,7 @@
   .logo {
     grid-column: col-start / col-1;
     grid-row:row-one/row-two;
-    margin: 5px auto;
+    margin: 15px auto;
     filter:contrast(100%);
   }
 

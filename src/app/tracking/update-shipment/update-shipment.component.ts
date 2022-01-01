@@ -56,7 +56,7 @@ export class UpdateShipmentComponent implements OnInit, OnDestroy {
     activity._updatedBy = this.updateShipmentStatusForm.controls['updatedBy'].value;
     activity._eventLocation = this.updateShipmentStatusForm.controls['eventLocation'].value;
 
-    if(!this.updateShipmentStatusForm.get('eventLocation')?.value.length) {
+    if(this.updateShipmentStatusForm.get('manualEvtLoc')?.value.length) {
       activity._eventLocation = this.updateShipmentStatusForm.controls['manualEvtLoc'].value;
     }
 
