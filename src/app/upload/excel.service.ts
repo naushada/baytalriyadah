@@ -36,6 +36,7 @@ export class ExcelService {
         'City': elm.city,
         'Status': elm.activity[elm.activity.length - 1].event,
         'Notes': elm.activity[elm.activity.length - 1].notes,
+        'UpdatedOn': elm.activity[elm.activity.length - 1].date + ':' + elm.activity[elm.activity.length - 1].time,
         'Contact': elm.contact,
         'Phone': elm.phone,
         'Email': elm.email,

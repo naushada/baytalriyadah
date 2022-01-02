@@ -8,6 +8,7 @@
             <th>Created On</th>
             <th>Status</th>
             <th>Notes</th>
+            <th>Updated On</th>
             <th>Created By</th>
             <!-- Sender Information -->
             <th>Sender Reference No.</th>
@@ -52,6 +53,7 @@
             <td>{{s.createdOn}}</td>
             <td>{{s.activity[s.activity.length - 1].event}}</td>
             <td>{{s.activity[s.activity.length - 1].notes}}</td>
+            <td>{{s.activity[s.activity.length - 1].date}}-:-{{s.activity[s.activity.length - 1].time}}</td>
             <td>{{s.createdBy}}</td>
             <!-- Sender Information -->
             <td>{{s.referenceNo}}</td>
