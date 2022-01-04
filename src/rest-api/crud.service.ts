@@ -267,6 +267,18 @@ export class CrudService {
         catchError(this.handleError));
   }
 
+  onAllDeleteShipment(startDate: string, endDate: string) {
+    let param = `startDate=${startDate}&endDate=${endDate}`;
+
+    const options = {params: new HttpParams({fromString: param})};
+
+    let uri: string = this.apiURL + '/api/deleteAwbList';
+    return this.http.delete<string>(uri, options)
+      .pipe(
+        retry(0),
+        catchError(this.handleError));
+  }
+
   /************************************************************************************************** 
    * 
    * For Customer  

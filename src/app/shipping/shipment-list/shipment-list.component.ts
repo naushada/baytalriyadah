@@ -21,7 +21,7 @@ export class ShipmentListComponent implements OnInit, OnDestroy {
   _accountInfo!:Account;
   subscription!: Subscription;
 
-  m_current_date: any = new Date();
+  m_current_date?: Date ;
   constructor(private fb:FormBuilder, private crudOperation: CrudService, private data: DataService) { 
     this.subscription = this.data.currentAccountInfo.subscribe((message: Account) => this._accountInfo = message);
     this.shipmentListForm = this.fb.group({
@@ -31,14 +31,18 @@ export class ShipmentListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.shipmentListForm.controls['fromDate'].setValue(formatDate(this.m_current_date, 'dd/MM/yyyy', 'en'));
+
     this.shipmentListForm.controls['toDate'].setValue(formatDate(new Date(), 'dd/MM/yyyy', 'en'));
+    this.shipmentListForm.controls['fromDate'].setValue(formatDate(new Date(), 'dd/MM/yyyy', 'en'));
   }
 
   onSubmit() {
     
     let fromDate: string = formatDate(this.shipmentListForm.controls['fromDate'].value, 'dd/MM/yyyy', 'en');
     let toDate: string = formatDate(this.shipmentListForm.controls['toDate'].value, 'dd/MM/yyyy', 'en');
+    /** publish start & end Date to subscriber */
+    this.data.setCurrentDateRange(fromDate, toDate);
+
     //console.log(this.shipmentListForm.value);
     let who: string =this._accountInfo.role;
     if(who == "Employee") {

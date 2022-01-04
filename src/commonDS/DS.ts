@@ -177,6 +177,11 @@ export let EventLocation: Array<string> = [
   "AlKharj"
 ];
 
+export interface DateRange {
+  startDate:string;
+  endDate:string;
+}
+
 export class ShipmentStatus {
   date: string;
   event: string;
