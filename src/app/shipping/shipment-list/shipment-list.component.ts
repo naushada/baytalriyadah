@@ -33,6 +33,7 @@ export class ShipmentListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.shipmentListForm.controls['toDate'].setValue(formatDate(new Date(), 'dd/MM/yyyy', 'en'));
+    //this.shipmentListForm.controls['toDate'].setValue(formatDate(Date.now(), 'dd/MM/yyyy', 'en'));
     this.shipmentListForm.controls['fromDate'].setValue(formatDate(new Date(), 'dd/MM/yyyy', 'en'));
   }
 

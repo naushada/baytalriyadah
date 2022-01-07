@@ -237,7 +237,7 @@ export class Shipment {
 
     /*! Sender Information */
     referenceNo:string;
-    accountCode:string;
+    accountCode:number;
     companyName: string;
     name:string;
     country: string;

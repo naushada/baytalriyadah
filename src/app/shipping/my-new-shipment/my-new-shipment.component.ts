@@ -141,7 +141,6 @@ export class MyNewShipmentComponent implements OnInit, OnDestroy {
   onSubmit()  {
     this.shipmentForm.controls['createdOn'].setValue(formatDate(new Date(), 'dd/MM/yyy', 'en'));
     this.shipmentForm.controls['createdBy'].setValue(this._accountInfo.name);
-    console.log(this.shipmentForm.value);
     let newShipment = new Shipment(this.shipmentForm.value);
     this.crudOperation.createShipment(newShipment).subscribe((data) => {alert("Shipment is created successfully")}, (error: any)=> {alert("Shipment Creation is Failed");}, () =>{});
   }

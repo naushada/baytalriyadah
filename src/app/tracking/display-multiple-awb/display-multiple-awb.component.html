@@ -1,3 +1,20 @@
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<div class="box">
+    <button (click)="generatePdf('A6')">
+    <i class="fa fa-print" style="font-size:24px; margin-right: 5px"></i>A6
+    </button>
+    <button (click)="generatePdf('A4')">
+    <i class="fa fa-print" style="font-size:24px; margin-right:5px"></i>A4
+    </button>
+    <!--
+    <button (click)="onDeleteAWB()">
+    <i class="fa fa-minus-circle" style="font-size:24px; margin-right: 5px;" ></i> Delete AWB
+    </button>-->
+</div>
 <div class="table-container">
 <table class="styled-table">
     <thead>
