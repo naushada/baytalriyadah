@@ -89,7 +89,7 @@ export class DisplayShipmentListComponent implements OnInit , OnDestroy{
               [ {text: 'Date: ' + elm.activity[0].date + ' '+ elm.activity[0].time, fontSize:10}, {text: 'Destination: ' + elm.receiverCity +'\n' + 'Product Type: ' + elm.service, bold: true}],
               [ {text: 'Account Number: '+ elm.accountCode, fontSize:10}, {image: this.textToBase64Barcode(elm.shipmentNo, 70), bold: false, alignment: 'center',rowSpan:2, width: 170}],
               [ { text: 'No. of Items: ' + elm.noOfItems + '\n' + 'Weight: '+ elm.weight + elm.weightUnit + '\n' + 'Goods Value: '+ elm.customValue, bold: false, fontSize: 10 }, ''],
-              [ { text: 'From:\n' + elm.companyName +'\n'+ 'Mobile:'+ elm.contact + '\n' + 'Country: '+ elm.country, bold: false, fontSize:10 }, {text: 'To:\n'+ elm.receiverName + '\n'+ 'Address: '+elm.receiverAddress+'\n'+'City: '+ elm.receiverCity+ '\n'+'Mobile: '+elm.receiverPhone +'\n'+'Country:'+elm.receiverCountry, fontSize: 10}],
+              [ { text: 'From:\n' + elm.companyName +'\n'+ 'Mobile: '+ elm.contact + '\n' + 'Altername Mobile: '+ elm.phone + '\n' + 'Country: '+ elm.country, bold: false, fontSize:10 }, {text: 'To:\n'+ elm.receiverName + '\n'+ 'Address: '+elm.receiverAddress+'\n'+'City: '+ elm.receiverCity+ '\n'+'Mobile: '+ elm.receiverPhone +'\n' + 'Altername Mobile: '+elm.receiverContact +'\n'+'Country:'+elm.receiverCountry, fontSize: 10}],
               [ {text: 'Description: ' + elm.description, fontSize:10}, {image: this.textToBase64Barcode(elm.altRefNo, 70), bold:false, alignment:'center',rowSpan:2, width:170} ],
               [ {text: 'COD: '+ elm.currency + ' ' + elm.codAmount, bold: true}, ''],
             ]
@@ -123,7 +123,7 @@ export class DisplayShipmentListComponent implements OnInit , OnDestroy{
               [ {text: 'Date:' + elm.activity[0].date + ' '+ elm.activity[0].time}, {text: 'Destination:' + elm.receiverCity +'\n' + 'Product Type:' + elm.service, bold: true}],
               [ {text: 'Account Number:'+ elm.accountCode}, {image: this.textToBase64Barcode(elm.shipmentNo, 70), bold: false, alignment: 'center',rowSpan:2, width: 170}],
               [ { text: 'No. of Items: ' + elm.noOfItems + '\n' + 'Weight: '+ elm.weight + elm.weightUnit + '\n' + 'Goods Value: '+ elm.customValue, bold: false }, ''],
-              [ { text: 'From:\n' + elm.companyName +'\n'+ 'Mobile:'+ elm.phone + '\n' + 'Country: '+ elm.country, bold: false }, {text: 'To:\n'+ elm.receiverName + '\n'+ 'Address:'+elm.receiverAddress+'\n'+'City:'+ elm.receiverCity+ '\n'+'Mobile:'+elm.receiverContact+'\n'+'Country:'+elm.receiverCountry}],
+              [ { text: 'From:\n' + elm.companyName +'\n'+ 'Mobile: '+ elm.contact + '\n' + 'Altername Mobile: '+ elm.phone + '\n' + 'Country: '+ elm.country, bold: false }, {text: 'To:\n'+ elm.receiverName + '\n'+ 'Address: '+elm.receiverAddress+'\n'+'City: '+ elm.receiverCity+ '\n'+ 'Mobile: '+ elm.receiverPhone + '\n' + 'Altername Mobile: ' + elm.receiverContact +'\n' + 'Country: '+ elm.receiverCountry}],
               [ {text: 'Description:' + elm.description}, {image: this.textToBase64Barcode(elm.altRefNo , 70), bold:false, alignment:'center',rowSpan:2, width:170} ],
               [ {text: 'COD: '+ elm.currency +' '+elm.codAmount, bold: true}, ''],
             ]
