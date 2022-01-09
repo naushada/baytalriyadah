@@ -30,11 +30,10 @@ export class LoginComponent implements OnInit {
                               this.loginForm.controls['password'].value).subscribe(
                               (rsp : Account) => {
                                 if(rsp) {
-                                  console.log(rsp); this.accountInfo = new Account(rsp); console.log(this.accountInfo);
+                                  this.accountInfo = new Account(rsp); 
                                   this.sharedAccountInfo.setAccountInfo(this.accountInfo);
                                   if (this.accountInfo.role == "Employee") {
-                                    console.log("I am employee");
-                                    this.router.navigate(["/bayt"]);
+                                    this.router.navigate(["/main"]);
                                   } else {
                                     this.router.navigate(["/guest"]);
                                   }

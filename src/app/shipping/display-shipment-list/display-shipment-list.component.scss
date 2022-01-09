@@ -56,3 +56,15 @@ input[type="checkbox"] {
     margin-left: 10px; 
     justify-items: end;
 }
+
+.box-pagination {
+    display: grid;
+    grid-template-columns: repeat(5,50px);
+    grid-template-rows: auto;
+    grid-auto-flow: column;
+    grid-gap: 10px;
+    margin-left: 10px; 
+    justify-items: center;
+    margin-top: 20px;
+
+}

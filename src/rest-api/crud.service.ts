@@ -17,7 +17,7 @@ export class CrudService {
   } 
 
   //apiURL = 'http://localhost:8080';
-  apiURL = 'https://logistics-sw.herokuapp.com'
+  apiURL = 'https://xpmile.herokuapp.com'
 
   constructor(private http: HttpClient) { }
 

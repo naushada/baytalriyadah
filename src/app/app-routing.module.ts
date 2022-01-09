@@ -6,9 +6,10 @@ import { BasicViewComponent } from './view/basic-view/basic-view.component';
 import { LoginComponent } from './view/login/login.component';
 
 const routes: Routes = [
-  {path:'bayt', component:ShippingMainComponent},
+  {path:'main', component:ShippingMainComponent},
   {path:'guest', component:BasicViewComponent},
-  {path:'', component:LoginComponent}
+  //{path:'', component:LoginComponent}
+  {path:'', component:LoginComponent},
 ];
 
 @NgModule({
