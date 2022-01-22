@@ -30,7 +30,7 @@ export class UpdateShipmentComponent implements OnInit, OnDestroy {
 
     this.subscription = this.data.currentAccountInfo.subscribe((message: Account) => this._accountInfo = message);
     this.updateShipmentStatusForm = this.fb.group({
-      date:'',
+      date:[formatDate(new Date(Date.now()), 'yyyy-MM-dd', 'en')],
       event:this.EventList[0],
       time:'',
       notes:'',
@@ -61,7 +61,9 @@ export class UpdateShipmentComponent implements OnInit, OnDestroy {
     }
 
     let awbNoList = new Array<string>();
+    awbNo = awbNo.trim();
     awbNoList = awbNo.split("\n");
+
     this.crudOperation.updateShipment(awbNoList, activity).subscribe((data) => {
                           alert("Sipment Status is Updated Successfully");
                           this.updateShipmentStatusForm.get('connote')?.setValue('');

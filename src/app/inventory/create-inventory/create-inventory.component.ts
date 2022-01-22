@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-create-inventory',
@@ -14,7 +15,7 @@ export class CreateInventoryComponent implements OnInit {
       productName:'',
       productId:'',
       quantity:'',
-      createdOn:new Date(),
+      createdOn:[formatDate(new Date(Date.now()), 'yyyy-MM-dd', 'en')],
       bulkCreate:''
     });
   }

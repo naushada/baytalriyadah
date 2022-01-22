@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validator } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import {formatDate} from '@angular/common';
 import { CrudService } from 'src/rest-api/crud.service';
@@ -20,21 +20,22 @@ export class ShipmentListComponent implements OnInit, OnDestroy {
   m_displayList: string = "";
   _accountInfo!:Account;
   subscription!: Subscription;
+  m_current_date: Date  = new Date(Date.now());
 
-  m_current_date?: Date ;
   constructor(private fb:FormBuilder, private crudOperation: CrudService, private data: DataService) { 
     this.subscription = this.data.currentAccountInfo.subscribe((message: Account) => this._accountInfo = message);
+
     this.shipmentListForm = this.fb.group({
-      fromDate: [''],
-      toDate: ''
+      fromDate: [formatDate(this.m_current_date, 'yyyy-MM-dd', 'en'), [Validators.required]],
+      toDate:[formatDate(this.m_current_date, 'yyyy-MM-dd', 'en'), [Validators.required]] 
     });
   }
 
   ngOnInit(): void {
 
-    this.shipmentListForm.controls['toDate'].setValue(formatDate(new Date(), 'dd/MM/yyyy', 'en'));
+    //this.shipmentListForm.controls['toDate'].setValue(formatDate(new Date(), 'dd/MM/yyyy', 'en'));
     //this.shipmentListForm.controls['toDate'].setValue(formatDate(Date.now(), 'dd/MM/yyyy', 'en'));
-    this.shipmentListForm.controls['fromDate'].setValue(formatDate(new Date(), 'dd/MM/yyyy', 'en'));
+    //this.shipmentListForm.controls['fromDate'].setValue(formatDate(new Date(), 'dd/MM/yyyy', 'en'));
   }
 
   onSubmit() {

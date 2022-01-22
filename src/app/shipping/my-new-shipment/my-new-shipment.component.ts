@@ -39,7 +39,7 @@ export class MyNewShipmentComponent implements OnInit, OnDestroy {
 
     this.shipmentForm = this.fb.group({
       //activity: this.fb.array([{"Date": "", "Event": "", "Time": "", "Notes": "", "Driver": "", "Updated By" : "", "EventLocation": ""}]),
-      activity: this.fb.array([{date:formatDate(new Date(), 'dd/MM/yyyy', 'en'), event:'Document Created', time: new Date().getHours() +':' + new Date().getMinutes(), notes: "", driver: "", updatedBy : this._accountInfo.name, eventLocation: ''}]),
+      activity: this.fb.array([{date:formatDate(new Date(), 'dd/MM/yyyy', 'en'), event:'Document Created', time: new Date().getHours() +':' + new Date().getMinutes(), notes: 'Document Created', driver: "", updatedBy : this._accountInfo.name, eventLocation: ''}]),
       createdOn: '',
       createdBy: '',
       shipmentNo:'',

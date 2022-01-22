@@ -286,7 +286,7 @@ export class Shipment {
     this.altRefNo = _sp.altRefNo;
     /*! Sender Information */
     this.referenceNo = _sp.referenceNo;
-    this.accountCode = _sp.accountCode;
+    this.accountCode = Number(_sp.accountCode);
     this.companyName = _sp.companyName;
     this.name = _sp.name;
     this.country = _sp.country;

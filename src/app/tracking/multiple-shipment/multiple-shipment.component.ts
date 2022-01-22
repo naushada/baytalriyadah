@@ -38,8 +38,10 @@ export class MultipleShipmentComponent implements OnInit, OnDestroy {
     let senderRefList = new Array<string>();
 
     if(awbNo.length > 0) {
+      awbNo = awbNo.trim();
       awbList = awbNo.split("\n");
     } else if(senderRef.length > 0) {
+      senderRef = senderRef.trim();
       senderRefList = senderRef.split("\n");
     }
 

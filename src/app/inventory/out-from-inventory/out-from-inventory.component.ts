@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-out-from-inventory',
@@ -15,7 +16,7 @@ export class OutFromInventoryComponent implements OnInit {
       productId:'',
       quantity:'',
       remainingQuantity:'',
-      outOn: new Date(),
+      outOn: [formatDate(new Date(Date.now()), 'yyyy-MM-dd', 'en')],
       bulkOut:''
     });
   }

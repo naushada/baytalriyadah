@@ -31,8 +31,8 @@ export class DetailedReportComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder, private data: DataService, private crudOperation: CrudService, private xls: ExcelService) { 
     this._subscription = this.data.currentAccountInfo.subscribe((aInfo: Account) => this._accountInfo = aInfo);
     this.detailedReportingForm = this.fb.group({
-      fromDate: '',
-      toDate: '',
+      fromDate: [formatDate(new Date(Date.now()), 'yyyy-MM-dd', 'en')],
+      toDate: [formatDate(new Date(Date.now()), 'yyyy-MM-dd', 'en')],
       country:CountryName[1],
       accountCode:''
     });
@@ -56,6 +56,7 @@ export class DetailedReportComponent implements OnInit, OnDestroy {
     let accountCode: string = this.detailedReportingForm.controls['accountCode'].value;
     let acList = new Array<string>();
     if(accountCode.length > 0) {
+      accountCode = accountCode.trim();
       acList = accountCode.split("\n");
     }
 
