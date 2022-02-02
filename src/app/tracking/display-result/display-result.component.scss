@@ -118,7 +118,10 @@
   li:first-child::before {
     display: none;
   }
-  
+  li:last-child {
+    background-color: aquamarine;
+  }
+
   .active {
     background: dodgerblue;
   }
