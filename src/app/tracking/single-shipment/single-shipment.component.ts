@@ -124,6 +124,12 @@ export class SingleShipmentComponent implements OnInit, OnDestroy {
     }
   } /** end of onSubmit */
 
+  onReset() : void {
+    this.singleTrackingShipmentForm.controls['trackingNo'].setValue("");
+    this.singleTrackingShipmentForm.controls['senderRefNo'].setValue("");
+    this.displayResult = "False";
+  }
+
   ngOnDestroy(): void {
       this.subscription.unsubscribe();
   }
